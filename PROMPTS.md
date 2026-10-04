@@ -18,3 +18,18 @@ I need to adjust the UI structure to strictly match our Master-Detail requiremen
 
 - **Agent did:** Added `src/components/BookDetails.jsx`; added selected-book state and master-detail composition in `src/App.jsx`; made `BookCard` show only its cover and title and respond to clicks; passed selection state through `BookList`; added sidebar, genre tag, active card, focus, and responsive layout styles in `src/App.css`.
 - **I checked:** `npm.cmd run build` succeeded and `git diff --check` passed. A headless browser rendered the initial placeholder and all three cover/title cards. Reviewed the state and prop flow that applies the selected border and fills the details panel when a card is clicked.
+
+### Prompt 3 — Make the Task 2 Details Panel Visible
+
+- **Prompt:** Please check the current UI layout against Task 2 requirements.
+Currently, cards have an active border when clicked, but the details side panel is missing from the layout.
+
+Please implement the following:
+1. In `src/components/BookDetails.jsx`: Render the full details of the selected book (larger cover, title, author, publish year, snippet/description, and genres).
+2. If no book is selected, show the empty state message: "Select a book from the list".
+3. Update `src/App.jsx` and `src/App.css` to use a Master-Detail layout (books list on one side, details panel on the other).
+4. Run the git command to commit the changes as Task 2 completion.
+5. Add the log entry into `prompts.md`.
+
+- **Agent did:** Confirmed `App.jsx` already passes selected-book state to `BookDetails.jsx`, which renders the cover, full metadata, genres, and empty-state message. Updated `src/App.css` to place the list and details sidebar in explicit named grid areas, keep them side by side at wider sizes, and stack them on narrow screens.
+- **I checked:** `npm.cmd run build` succeeded; `git diff --check` passed. A headless browser rendered the empty-state sidebar alongside all three book cards at a desktop viewport.
