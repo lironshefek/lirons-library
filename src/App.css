@@ -56,6 +56,13 @@ h1 {
   font-size: 1.05rem;
 }
 
+.master-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: 28px;
+}
+
 .book-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -63,10 +70,28 @@ h1 {
 }
 
 .book-card {
+  display: block;
+  width: 100%;
+  padding: 0;
   overflow: hidden;
-  border: 1px solid #e8e5dc;
+  border: 2px solid #e8e5dc;
   border-radius: 18px;
   background: #fffefa;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.book-card--active {
+  border-color: #547c61;
+  box-shadow: 0 0 0 3px rgb(84 124 97 / 18%);
+}
+
+.book-card:focus-visible {
+  outline: 3px solid #547c61;
+  outline-offset: 3px;
 }
 
 .book-card__cover {
@@ -77,37 +102,82 @@ h1 {
   background: #e9e5d9;
 }
 
-.book-card__content {
-  padding: 22px 22px 24px;
-}
-
-.book-card__year {
-  margin: 0 0 8px;
-  color: #718176;
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
 .book-card__title {
-  margin: 0;
+  display: block;
+  padding: 16px 18px 18px;
   font-size: 1.45rem;
   line-height: 1.2;
 }
 
-.book-card__author {
-  margin: 8px 0 14px;
-  color: #657068;
-  font-size: 0.92rem;
+.book-details {
+  min-height: 220px;
+  padding: 22px;
+  border: 1px solid #e8e5dc;
+  border-radius: 18px;
+  background: #fffefa;
 }
 
-.book-card__description {
+.book-details__placeholder {
   margin: 0;
+  color: #59645d;
+}
+
+.book-details__cover {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.book-details__title {
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.65rem;
+  line-height: 1.2;
+}
+
+.book-details__author,
+.book-details__year {
+  margin: 8px 0 0;
+  color: #657068;
+}
+
+.book-details__description {
+  margin: 16px 0 0;
   color: #59645d;
   font-size: 0.9rem;
   line-height: 1.6;
 }
 
+.book-details__genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.book-details__genre {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #e9eee8;
+  color: #405d48;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
 @media (max-width: 820px) {
+  .master-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .book-details {
+    grid-row: 1;
+  }
+
   .book-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -126,6 +196,10 @@ h1 {
   .book-grid {
     grid-template-columns: 1fr;
     gap: 18px;
+  }
+
+  .book-details {
+    grid-row: auto;
   }
 
   .book-card__cover {

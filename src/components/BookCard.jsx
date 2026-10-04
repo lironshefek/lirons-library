@@ -1,16 +1,16 @@
 import React from 'react';
 
-function BookCard({ book }) {
+function BookCard({ book, isSelected, onSelect }) {
   return (
-    <article className="book-card">
+    <button
+      className={`book-card${isSelected ? ' book-card--active' : ''}`}
+      type="button"
+      onClick={() => onSelect(book)}
+      aria-pressed={isSelected}
+    >
       <img className="book-card__cover" src={book.coverUrl} alt={`Cover of ${book.title}`} />
-      <div className="book-card__content">
-        <p className="book-card__year">{book.year}</p>
-        <h2 className="book-card__title">{book.title}</h2>
-        <p className="book-card__author">{book.author}</p>
-        <p className="book-card__description">{book.description}</p>
-      </div>
-    </article>
+      <span className="book-card__title">{book.title}</span>
+    </button>
   );
 }
 
