@@ -33,3 +33,17 @@ Please implement the following:
 
 - **Agent did:** Confirmed `App.jsx` already passes selected-book state to `BookDetails.jsx`, which renders the cover, full metadata, genres, and empty-state message. Updated `src/App.css` to place the list and details sidebar in explicit named grid areas, keep them side by side at wider sizes, and stack them on narrow screens.
 - **I checked:** `npm.cmd run build` succeeded; `git diff --check` passed. A headless browser rendered the empty-state sidebar alongside all three book cards at a desktop viewport.
+
+### Prompt 5 — Explain Book Selection Architecture in README
+
+- **Prompt:** Please inspect our code architecture and append a short section at the end of README.md titled "## בחירת ספר והצגת פרטים .
+
+In this section, write exactly 5 concise sentences in Hebrew explaining:
+1. In which component the selected book item/state is stored and managed.
+2. How the selection event flows from the clicked card back up to the parent component.
+3. How the selected book data is passed down to the details panel component.
+
+Make sure the Hebrew explanation is natural, clear, and serves as prep notes for a student video walkthrough.
+Log this interaction in prompts.md and commit the changes via terminal when done.
+- **Agent did:** Created `README.md` with the requested Hebrew section describing selected-book state in `App`, the selection callback through `BookCard` and `BookList`, and the selected book prop passed to `BookDetails`. Added this request to `PROMPTS.md`.
+- **I checked:** Inspected the current `App`, `BookCard`, `BookList`, and `BookDetails` implementations to confirm the described state and prop flow; checked that the new README section contains exactly five Hebrew sentences.
