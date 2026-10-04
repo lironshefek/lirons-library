@@ -1,3 +1,4 @@
+import React from 'react';
 import books from './data/mockBooks.json';
 import BookList from './components/BookList.jsx';
 import './App.css';

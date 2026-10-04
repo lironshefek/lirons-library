@@ -1,3 +1,5 @@
+import React from 'react';
+
 function BookCard({ book }) {
   return (
     <article className="book-card">
