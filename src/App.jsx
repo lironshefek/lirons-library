@@ -1,4 +1,4 @@
-import books from './data/books.json';
+import books from './data/mockBooks.json';
 import BookList from './components/BookList.jsx';
 import './App.css';
 
