@@ -47,3 +47,9 @@ Make sure the Hebrew explanation is natural, clear, and serves as prep notes for
 Log this interaction in prompts.md and commit the changes via terminal when done.
 - **Agent did:** Created `README.md` with the requested Hebrew section describing selected-book state in `App`, the selection callback through `BookCard` and `BookList`, and the selected book prop passed to `BookDetails`. Added this request to `PROMPTS.md`.
 - **I checked:** Inspected the current `App`, `BookCard`, `BookList`, and `BookDetails` implementations to confirm the described state and prop flow; checked that the new README section contains exactly five Hebrew sentences.
+
+### Prompt 6 — Diagnose Push Internal Server Error
+
+- **Prompt:** solve the internal server error when i push the commits to the rempote repo
+- **Agent did:** Inspected the failed push response and outgoing commits; retried over HTTPS, tried HTTP/1.1, and pushed the first commit individually to isolate the failure. No repository or commit content was changed.
+- **I checked:** Each attempt was rejected by GitHub with `remote: Internal Server Error` after object resolution. `origin/main` remains at `297db235`, and local `main` is two commits ahead. GitHub Status reported Git operations operational; SSH could not be tested because the host key is not verified on this machine.
