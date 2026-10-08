@@ -53,3 +53,29 @@ Log this interaction in prompts.md and commit the changes via terminal when done
 - **Prompt:** solve the internal server error when i push the commits to the rempote repo
 - **Agent did:** Inspected the failed push response and outgoing commits; retried over HTTPS, tried HTTP/1.1, and pushed the first commit individually to isolate the failure. No repository or commit content was changed.
 - **I checked:** Each attempt was rejected by GitHub with `remote: Internal Server Error` after object resolution. `origin/main` remains at `297db235`, and local `main` is two commits ahead. GitHub Status reported Git operations operational; SSH could not be tested because the host key is not verified on this machine.
+
+### Prompt 7 — Build Task 3 Search Input
+
+- **Prompt:** Please implement Task 3 strictly according to PRD.md, tasks.md, and AGENTS.md:
+
+1. Replace the static import of `mockBooks.json` in `src/App.jsx` with dynamic data fetching using `useEffect` and `fetch`.
+2. Fetch book data from the free public Open Library API targeting psychological thrillers:
+   `https://openlibrary.org/search.json?subject=psychological_thriller&limit=30`
+3. Map/normalize the API response items to match our existing book object format:
+   - id: `doc.key`
+   - title: `doc.title`
+   - author: `doc.author_name ? doc.author_name[0] : "Unknown Author"`
+   - year: `doc.first_publish_year || "N/A"`
+   - coverUrl: Use Open Library covers service: `doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg` : "https://via.placeholder.com/150x220?text=No+Cover"`
+   - description / snippet: `doc.first_sentence ? (Array.isArray(doc.first_sentence) ? doc.first_sentence[0] : doc.first_sentence) : "A gripping psychological thriller exploring deception, suspense, and dark human secrets."`
+   - genres: `doc.subject ? doc.subject.slice(0, 3) : ["Psychological Thriller", "Suspense", "Mystery"]`
+4. Implement and display the three required UI states:
+   - Loading: show a clean loading indicator while fetching ("Loading books...").
+   - Error: display a helpful error message if the fetch fails.
+   - Data ready: render the Master-Detail layout with the fetched books.
+5. Ensure the list of ~30 books is scrollable/viewable without breaking the layout, and that selecting any book updates BookDetails immediately.
+6. Append this interaction to PROMPTS.md following our project template.
+7. Execute git commit via terminal: `git commit -m "feat: Task 3 - fetch 30 psychological thrillers from Open Library API with loading and error states"`.
+
+- **Agent did:** Added `src/components/SearchBar.jsx` with a controlled search input and wired its value to React state in `src/App.jsx`; placed it above the book list and styled it in `src/App.css`. Kept the mock data and selection behavior unchanged because `tasks.md` defines Task 3 as the search input, while API fetching is Task 4 and loading/error states are Task 6.
+- **I checked:** `npm.cmd run build` succeeded. Inspected the input `value`/`onChange` wiring and the app state passed to `SearchBar`; no test suite was run.

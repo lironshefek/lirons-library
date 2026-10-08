@@ -64,8 +64,39 @@ h1 {
   gap: 28px;
 }
 
-.book-grid {
+.book-browser {
   grid-area: books;
+  min-width: 0;
+}
+
+.search-bar {
+  margin-bottom: 24px;
+}
+
+.search-bar__label {
+  display: block;
+  margin-bottom: 8px;
+  color: #405d48;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.search-bar__input {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #d8d9cf;
+  border-radius: 10px;
+  background: #fffefa;
+  color: #242d28;
+  font: inherit;
+}
+
+.search-bar__input:focus-visible {
+  outline: 3px solid rgb(84 124 97 / 28%);
+  border-color: #547c61;
+}
+
+.book-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
