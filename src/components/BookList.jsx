@@ -1,11 +1,11 @@
 import React from 'react';
 import BookCard from './BookCard.jsx';
 
-function BookList({ books, selectedBookId, onSelectBook }) {
+function BookList({ books, selectedBookId, onSelectBook, emptyMessage }) {
   return (
     <section className="book-grid" aria-label="Sample books">
       {books.length === 0 ? (
-        <p className="book-list__empty">No books match your search.</p>
+        emptyMessage && <p className="book-list__empty">{emptyMessage}</p>
       ) : (
         books.map((book) => (
           <BookCard

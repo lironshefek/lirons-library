@@ -1,13 +1,43 @@
-import React, { useState } from 'react';
-import books from './data/mockBooks.json';
+import React, { useEffect, useState } from 'react';
+import { searchBooks } from './api/openLibrary.js';
 import BookDetails from './components/BookDetails.jsx';
 import BookList from './components/BookList.jsx';
 import SearchBar from './components/SearchBar.jsx';
 import './App.css';
 
 function App() {
+  const [books, setBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    const query = searchQuery.trim();
+    setSelectedBook(null);
+
+    if (query === '') {
+      setBooks([]);
+      return undefined;
+    }
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(async () => {
+      try {
+        const results = await searchBooks(query, { signal: controller.signal });
+        setBooks(results);
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          console.error('Could not search Open Library:', error);
+          setBooks([]);
+        }
+      }
+    }, 300);
+
+    return () => {
+      clearTimeout(timeoutId);
+      controller.abort();
+    };
+  }, [searchQuery]);
+
   const searchTerm = searchQuery.trim().toLowerCase();
   const filteredBooks = books.filter((book) => {
     if (searchTerm === '') {
@@ -34,6 +64,7 @@ function App() {
             books={filteredBooks}
             selectedBookId={selectedBook?.id}
             onSelectBook={setSelectedBook}
+            emptyMessage={searchTerm ? 'No books match your search.' : null}
           />
         </div>
         <BookDetails book={selectedBook} />

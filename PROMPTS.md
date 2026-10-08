@@ -102,3 +102,19 @@ Process & Documentation:
 
 - **Agent did:** Added a case-insensitive title/author filter as derived `filteredBooks` in `src/App.jsx`, passed that array to `BookList`, and added the no-match message and styling in `BookList.jsx` and `App.css`. The original books data and selection state remain unchanged.
 - **I checked:** `npm.cmd run build` succeeded; reviewed the empty-query, title, author, no-match, and selected-book prop paths. Student browser testing: [ ] Type a title/author, clear the input, and try a term with no matches.
+
+### Prompt 9 — Connect Live Search to Open Library
+
+- **Prompt:** Please implement Task 4 strictly according to PRD.md, tasks.md, and AGENTS.md:
+
+Task 4 Requirement: Connect Live Search to Open Library API
+1. Create a dedicated API helper module (e.g., `src/api/openLibrary.js` or `src/services/bookService.js`).
+2. In this module, create an async function `searchBooks(query)` that calls the Open Library Search endpoint: `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=30` (If query is empty, allow a default fallback like psychological thrillers `subject=psychological_thriller&limit=30` or handle an empty results list cleanly).
+3. Connect `SearchBar` input changes / submissions in `App.jsx` to this API helper using `useEffect` with a slight debounce or on search submit; populate `books` with live results; clear results when the input is cleared.
+4. Normalize each document with `id`, `title`, `author`, `year`, `cover_i`, `coverUrl`, `description`, and `genres` using the specified Open Library fields and fallbacks.
+5. Ensure selecting a live result updates `BookDetails`.
+6. Append this interaction to `PROMPTS.md` following our project template (prompt, agent actions, testing notes).
+7. Commit with `feat: Task 4 - connect live search to Open Library API with dedicated service module`.
+
+- **Agent did:** Added `src/api/openLibrary.js` with `searchBooks`, the encoded query and 30-result limit, and normalization to the current book object format. Replaced the static mock data import with API result state in `src/App.jsx`; added a 300 ms debounce with request cancellation; clearing the input clears results and selection. Preserved the derived title/author filter and details selection flow.
+- **I checked:** `npm.cmd run build` succeeded and `git diff --check` passed. Reviewed endpoint construction, API field fallbacks, abort handling, empty-query behavior, and selected-book propagation. The Open Library request was not exercised end to end in this environment; student browser testing: [ ] Search for `harry potter`, select a result, then clear the input.
