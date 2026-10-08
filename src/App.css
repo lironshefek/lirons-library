@@ -102,6 +102,16 @@ h1 {
   gap: 24px;
 }
 
+.book-list__empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 28px 22px;
+  border: 1px dashed #c9cec4;
+  border-radius: 14px;
+  color: #59645d;
+  text-align: center;
+}
+
 .book-card {
   display: block;
   width: 100%;

@@ -8,6 +8,17 @@ import './App.css';
 function App() {
   const [selectedBook, setSelectedBook] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const searchTerm = searchQuery.trim().toLowerCase();
+  const filteredBooks = books.filter((book) => {
+    if (searchTerm === '') {
+      return true;
+    }
+
+    const title = String(book.title ?? '').toLowerCase();
+    const author = String(book.author ?? '').toLowerCase();
+
+    return title.includes(searchTerm) || author.includes(searchTerm);
+  });
 
   return (
     <main className="page-shell">
@@ -20,7 +31,7 @@ function App() {
         <div className="book-browser">
           <SearchBar value={searchQuery} onChange={setSearchQuery} />
           <BookList
-            books={books}
+            books={filteredBooks}
             selectedBookId={selectedBook?.id}
             onSelectBook={setSelectedBook}
           />

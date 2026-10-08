@@ -79,3 +79,26 @@ Log this interaction in prompts.md and commit the changes via terminal when done
 
 - **Agent did:** Added `src/components/SearchBar.jsx` with a controlled search input and wired its value to React state in `src/App.jsx`; placed it above the book list and styled it in `src/App.css`. Kept the mock data and selection behavior unchanged because `tasks.md` defines Task 3 as the search input, while API fetching is Task 4 and loading/error states are Task 6.
 - **I checked:** `npm.cmd run build` succeeded. Inspected the input `value`/`onChange` wiring and the app state passed to `SearchBar`; no test suite was run.
+
+### Prompt 8 — Add Real-Time Search Filtering
+
+- **Prompt:** Please fix the search input behavior in `src/App.jsx` (and child components if applicable) to implement real-time dynamic filtering:
+
+1. When the search box is empty (`""`), display ALL fetched books in the list.
+2. As the user types, immediately filter the visible books in real time.
+3. The search must be case-insensitive (`toLowerCase()`).
+4. Match against either the book `title` OR `author` (e.g., `book.title.toLowerCase().includes(term) || book.author.toLowerCase().includes(term)`).
+5. If no books match the query, display a friendly message in the list: "No books match your search."
+
+Selection & State Integrity:
+- Keep the original fetched books array intact (do not mutate the original state on search).
+- Use a derived list: `filteredBooks = books.filter(...)`.
+- Pass `filteredBooks` down to `BookList`.
+- Ensure clicking on any book in the filtered list still correctly selects it and displays its full info in `BookDetails`.
+
+Process & Documentation:
+- Append this interaction to `PROMPTS.md` with prompt text, agent actions, and a placeholder for student testing.
+- Stage and commit the changes via terminal: `git commit -m "feat: implement real-time case-insensitive search filtering for book list"`.
+
+- **Agent did:** Added a case-insensitive title/author filter as derived `filteredBooks` in `src/App.jsx`, passed that array to `BookList`, and added the no-match message and styling in `BookList.jsx` and `App.css`. The original books data and selection state remain unchanged.
+- **I checked:** `npm.cmd run build` succeeded; reviewed the empty-query, title, author, no-match, and selected-book prop paths. Student browser testing: [ ] Type a title/author, clear the input, and try a term with no matches.
