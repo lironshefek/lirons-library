@@ -148,3 +148,39 @@ Task 4 Requirement: Connect Live Search to Open Library API
 
 - **Agent did:** Inspected the Task 4 implementation in `src/api/openLibrary.js` and `src/App.jsx`; it was already committed as `636c915` with the requested message. Added this repeated request to `PROMPTS.md`; no application code changes were needed.
 - **I checked:** Confirmed the working tree was clean before this log update and reviewed the API endpoint, normalized fields, 300 ms debounce and abort handling, empty-query clearing, and selected-book flow. The prior Task 4 completion recorded a successful `npm.cmd run build` and `git diff --check`; student browser testing: [ ] Search for `harry potter`, select a result, then clear the input.
+
+### Prompt 11 — Fix Empty Book List on Initial Load
+
+- **Prompt:** Fix the issue where NO books are currently displayed on the screen.
+
+Inspect the API call, the network response, and the component mapping immediately:
+
+1. API Response & Object Normalization:
+   - Verify what the Open Library API actually returns. The endpoint `https://openlibrary.org/search.json` returns a JSON object containing a `docs` array: `data.docs`.
+   - Ensure the API helper / fetch extracts `data.docs` and maps each item to a well-defined JavaScript object with all required properties:
+     ```javascript
+     {
+       id: doc.key,
+       title: doc.title || "Untitled",
+       author: Array.isArray(doc.author_name) ? doc.author_name[0] : (doc.author_name || "Unknown Author"),
+       year: doc.first_publish_year || "N/A",
+       cover_i: doc.cover_i || null,
+       coverUrl: doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg` : "https://via.placeholder.com/150x220?text=No+Cover",
+       description: Array.isArray(doc.first_sentence) ? doc.first_sentence[0] : (doc.first_sentence || "No description available."),
+       genres: Array.isArray(doc.subject) ? doc.subject.slice(0, 3) : ["General"]
+     }
+     ```
+   - If `query` is empty on initial load, do NOT leave the array empty. Fetch an initial list (e.g. `q=psychological+thriller&limit=20` or `subject=psychological_thriller&limit=20`) so books appear immediately when the page loads.
+
+2. State Management & Debugging:
+   - In `App.jsx`, ensure `setBooks(mappedBooks)` is actually called with an array of objects.
+   - Add a `console.log("Fetched books:", mappedBooks)` in `App.jsx` to verify the state update.
+   - Ensure `BookList` receives `books={books}` and that it iterates over `books.map((book) => <BookCard key={book.id} book={book} ... />)`.
+   - Check if any early return (like an unhandled loading or error state) is blocking the render.
+
+3. Process & Documentation:
+   - Log this fix in `PROMPTS.md` under Prompt/Task 4.
+   - Commit via terminal: `git commit -m "fix: ensure API returns mapped book objects and displays initial results on mount"`
+
+- **Agent did:** Updated `src/App.jsx` to fetch default results on initial mount, keep clearing results after the user has searched and empties the input, log fetched books, and set state from the mapped array. Updated `src/api/openLibrary.js` to use the default subject query with a 20-result limit, validate `data.docs`, and normalize the requested fallbacks. `BookList` already renders `books.map(...)` and required no changes.
+- **I checked:** The Open Library request could not be reached from this environment (remote host connection failed; the web page tool also could not access the endpoint), so the live response could not be inspected here. `npm.cmd run build` passed with elevated access and `git diff --check` passed. Browser follow-up: [ ] Confirm cards appear on initial load, select a card, search a term, and clear the input.

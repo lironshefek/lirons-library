@@ -9,12 +9,13 @@ function App() {
   const [books, setBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
     const query = searchQuery.trim();
     setSelectedBook(null);
 
-    if (query === '') {
+    if (query === '' && hasSearched) {
       setBooks([]);
       return undefined;
     }
@@ -22,8 +23,9 @@ function App() {
     const controller = new AbortController();
     const timeoutId = setTimeout(async () => {
       try {
-        const results = await searchBooks(query, { signal: controller.signal });
-        setBooks(results);
+        const mappedBooks = await searchBooks(query, { signal: controller.signal });
+        console.log('Fetched books:', mappedBooks);
+        setBooks(mappedBooks);
       } catch (error) {
         if (error.name !== 'AbortError') {
           console.error('Could not search Open Library:', error);
@@ -36,7 +38,12 @@ function App() {
       clearTimeout(timeoutId);
       controller.abort();
     };
-  }, [searchQuery]);
+  }, [searchQuery, hasSearched]);
+
+  function handleSearchChange(value) {
+    setHasSearched(true);
+    setSearchQuery(value);
+  }
 
   const searchTerm = searchQuery.trim().toLowerCase();
   const filteredBooks = books.filter((book) => {
@@ -59,7 +66,7 @@ function App() {
       </header>
       <div className="master-detail-layout">
         <div className="book-browser">
-          <SearchBar value={searchQuery} onChange={setSearchQuery} />
+          <SearchBar value={searchQuery} onChange={handleSearchChange} />
           <BookList
             books={filteredBooks}
             selectedBookId={selectedBook?.id}
