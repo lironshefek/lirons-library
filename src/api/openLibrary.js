@@ -1,7 +1,17 @@
 const SEARCH_URL = 'https://openlibrary.org/search.json';
 
 export async function searchBooks({ signal } = {}) {
-  const url = `${SEARCH_URL}?q=the&sort=rating&limit=100`;
+  const fields = [
+    'key',
+    'title',
+    'author_name',
+    'first_publish_year',
+    'cover_i',
+    'subject',
+    'ratings_average',
+    'ratings_count',
+  ].join(',');
+  const url = `${SEARCH_URL}?q=fiction&sort=rating&limit=100&fields=${fields}`;
   const response = await fetch(url, { signal });
 
   if (!response.ok) {

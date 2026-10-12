@@ -228,3 +228,10 @@ Inspect the API call, the network response, and the component mapping immediatel
 
 - **Agent did:** Updated `src/api/openLibrary.js` to fetch the requested 100-result rating-sorted catalog, removed description normalization, kept up to four subjects as tags, and normalized average rating and rating count. Updated `src/components/BookDetails.jsx` to show the rating and count or the missing-rating message, and adjusted its rating style in `src/App.css`.
 - **I checked:** Reviewed the exact API query, absence of description fields/rendering, subject slicing, rating rounding/count mapping, and missing-rating fallback. Student browser check: [ ] Select several books and confirm rating data or the no-rating message and genre tags display correctly.
+
+### Prompt 16 — Fix Open Library Fetch and Details Rendering
+
+- **Prompt:** Fix the API fetch and rendering issue
+
+- **Agent did:** Diagnosed that the existing `q=the` request returned HTTP 422 because Open Library rejects that broad query. Updated `src/api/openLibrary.js` to use the working `q=fiction&sort=rating&limit=100` request and explicitly request the title, author, year, cover, subject, and rating fields the app maps and renders.
+- **I checked:** Queried the updated endpoint and confirmed it returned 100 documents with subject tags, rating average, and rating count. `npm.cmd run build` succeeded. `git diff --check` was run before commit.
