@@ -206,3 +206,13 @@ Inspect the API call, the network response, and the component mapping immediatel
 
 - **Agent did:** Updated `src/App.jsx` so the derived search filter compares the lowercased query only against each book's lowercased title.
 - **I checked:** Reviewed the filter to confirm it uses `toLowerCase()` on both values and no longer reads the author field. Student browser check: [ ] Search for part of a title with different capitalization and verify author-only terms do not match.
+
+### Prompt 14 — Fetch and Scroll Through 70 Books
+
+- **Prompt:** Please update the initial data fetching configuration:
+
+- Change the API fetch request to retrieve 70 books instead of 30 (update the `limit` parameter to 70).
+- Ensure the layout and scroll container smoothly handle displaying all 70 items without breaking.
+
+- **Agent did:** Updated `src/api/openLibrary.js` so both typed searches and the initial psychological thriller search request up to 70 books. Updated `.book-grid` in `src/App.css` with a viewport-based maximum height, vertical scrolling, contained overscroll, and a stable scrollbar gutter so the full results stay in a bounded scroll area.
+- **I checked:** Reviewed both API URL branches to confirm `limit=70` and the grid's responsive column rules alongside its scroll constraints. Student browser check: [ ] Load the page and scroll the results list through its final cards at desktop and mobile widths.

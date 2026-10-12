@@ -4,8 +4,8 @@ const DEFAULT_DESCRIPTION = 'No description available.';
 export async function searchBooks(query, { signal } = {}) {
   const trimmedQuery = query.trim();
   const searchParams = trimmedQuery
-    ? `q=${encodeURIComponent(trimmedQuery)}&limit=30`
-    : 'subject=psychological_thriller&limit=20';
+    ? `q=${encodeURIComponent(trimmedQuery)}&limit=70`
+    : 'subject=psychological_thriller&limit=70';
   const url = `${SEARCH_URL}?${searchParams}`;
   const response = await fetch(url, { signal });
 
