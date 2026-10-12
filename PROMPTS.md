@@ -184,3 +184,15 @@ Inspect the API call, the network response, and the component mapping immediatel
 
 - **Agent did:** Updated `src/App.jsx` to fetch default results on initial mount, keep clearing results after the user has searched and empties the input, log fetched books, and set state from the mapped array. Updated `src/api/openLibrary.js` to use the default subject query with a 20-result limit, validate `data.docs`, and normalize the requested fallbacks. `BookList` already renders `books.map(...)` and required no changes.
 - **I checked:** The Open Library request could not be reached from this environment (remote host connection failed; the web page tool also could not access the endpoint), so the live response could not be inspected here. `npm.cmd run build` passed with elevated access and `git diff --check` passed. Browser follow-up: [ ] Confirm cards appear on initial load, select a card, search a term, and clear the input.
+
+### Prompt 12 — Keep Base Books While Filtering Search
+
+- **Prompt:** Please fix the search filtering behavior:
+
+- Ensure the base books state is never overwritten or wiped on search.
+- Filter the list in real time using derived state (`books.filter(...)`) so results narrow down immediately with each typed letter.
+- When the search input is completely cleared/empty, instantly restore and display all original books.
+- Ensure the search check is case-insensitive and matches against both title and author.
+
+- **Agent did:** Updated `src/App.jsx` so the base `books` collection loads once on mount and is no longer replaced or cleared by search input changes. Kept filtering as derived `books.filter(...)`, matching lowercased title or author strings; an empty query displays all loaded books.
+- **I checked:** Reviewed the fetch effect dependencies, input state wiring, derived filter, and `BookList` prop to confirm typing only changes the query and never the base list. Student browser check: [ ] Type mixed-case title and author fragments, verify cards narrow immediately, then clear the field and confirm the full original list returns.
