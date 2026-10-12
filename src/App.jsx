@@ -15,7 +15,7 @@ function App() {
 
     async function loadBooks() {
       try {
-        const mappedBooks = await searchBooks('', { signal: controller.signal });
+        const mappedBooks = await searchBooks({ signal: controller.signal });
         console.log('Fetched books:', mappedBooks);
         setBooks(mappedBooks);
       } catch (error) {

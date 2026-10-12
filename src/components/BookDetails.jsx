@@ -9,6 +9,9 @@ function BookDetails({ book }) {
     );
   }
 
+  const hasRating = typeof book.rating === 'number'
+    && typeof book.ratingsCount === 'number';
+
   return (
     <aside className="book-details" aria-label={`Details for ${book.title}`}>
       <img
@@ -19,7 +22,11 @@ function BookDetails({ book }) {
       <h2 className="book-details__title">{book.title}</h2>
       <p className="book-details__author">{book.author}</p>
       <p className="book-details__year">First published {book.year}</p>
-      <p className="book-details__description">{book.description}</p>
+      <p className="book-details__rating">
+        {hasRating
+          ? `${book.rating.toFixed(1)} / 5 · ${book.ratingsCount.toLocaleString()} ratings`
+          : 'No rating available'}
+      </p>
       <ul className="book-details__genres" aria-label="Genres">
         {book.genres.map((genre) => (
           <li className="book-details__genre" key={genre}>{genre}</li>

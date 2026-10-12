@@ -193,11 +193,11 @@ h1 {
   color: #657068;
 }
 
-.book-details__description {
-  margin: 16px 0 0;
-  color: #59645d;
+.book-details__rating {
+  margin: 12px 0 0;
+  color: #405d48;
   font-size: 0.9rem;
-  line-height: 1.6;
+  font-weight: 600;
 }
 
 .book-details__genres {

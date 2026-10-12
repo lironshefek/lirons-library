@@ -216,3 +216,15 @@ Inspect the API call, the network response, and the component mapping immediatel
 
 - **Agent did:** Updated `src/api/openLibrary.js` so both typed searches and the initial psychological thriller search request up to 70 books. Updated `.book-grid` in `src/App.css` with a viewport-based maximum height, vertical scrolling, contained overscroll, and a stable scrollbar gutter so the full results stay in a bounded scroll area.
 - **I checked:** Reviewed both API URL branches to confirm `limit=70` and the grid's responsive column rules alongside its scroll constraints. Student browser check: [ ] Load the page and scroll the results list through its final cards at desktop and mobile widths.
+
+### Prompt 15 — Fetch Popular Books and Show Ratings
+
+- **Prompt:** Please update the API fetch and details view configuration:
+
+- Update the Open Library API query to fetch 100 diverse, popular books across genres using `q=the&sort=rating&limit=100`.
+- Remove the `description` field from the data mapping and remove it from `BookDetails.jsx`.
+- Add diverse genre tags from `doc.subject` by taking the first 3–4 subjects per book.
+- Add book rating data mapping and display it in `BookDetails.jsx`: map `doc.ratings_average` (rounded to 1 decimal place) and `doc.ratings_count`, displaying it cleanly, or show "No rating available" if missing.
+
+- **Agent did:** Updated `src/api/openLibrary.js` to fetch the requested 100-result rating-sorted catalog, removed description normalization, kept up to four subjects as tags, and normalized average rating and rating count. Updated `src/components/BookDetails.jsx` to show the rating and count or the missing-rating message, and adjusted its rating style in `src/App.css`.
+- **I checked:** Reviewed the exact API query, absence of description fields/rendering, subject slicing, rating rounding/count mapping, and missing-rating fallback. Student browser check: [ ] Select several books and confirm rating data or the no-rating message and genre tags display correctly.

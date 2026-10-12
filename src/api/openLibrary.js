@@ -1,12 +1,7 @@
 const SEARCH_URL = 'https://openlibrary.org/search.json';
-const DEFAULT_DESCRIPTION = 'No description available.';
 
-export async function searchBooks(query, { signal } = {}) {
-  const trimmedQuery = query.trim();
-  const searchParams = trimmedQuery
-    ? `q=${encodeURIComponent(trimmedQuery)}&limit=70`
-    : 'subject=psychological_thriller&limit=70';
-  const url = `${SEARCH_URL}?${searchParams}`;
+export async function searchBooks({ signal } = {}) {
+  const url = `${SEARCH_URL}?q=the&sort=rating&limit=100`;
   const response = await fetch(url, { signal });
 
   if (!response.ok) {
@@ -28,9 +23,10 @@ export async function searchBooks(query, { signal } = {}) {
     coverUrl: doc.cover_i
       ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`
       : 'https://via.placeholder.com/150x220?text=No+Cover',
-    description: (Array.isArray(doc.first_sentence)
-      ? doc.first_sentence[0]
-      : doc.first_sentence) || DEFAULT_DESCRIPTION,
-    genres: Array.isArray(doc.subject) ? doc.subject.slice(0, 3) : ['General'],
+    genres: Array.isArray(doc.subject) ? doc.subject.slice(0, 4) : ['General'],
+    rating: typeof doc.ratings_average === 'number'
+      ? Number(doc.ratings_average.toFixed(1))
+      : null,
+    ratingsCount: typeof doc.ratings_count === 'number' ? doc.ratings_count : null,
   }));
 }
