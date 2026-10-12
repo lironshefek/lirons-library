@@ -247,3 +247,12 @@ Inspect the API call, the network response, and the component mapping immediatel
 
 - **Agent did:** Updated `src/api/openLibrary.js` to query the four requested subjects, keep a 100-result limit, and request all fields consumed by the UI. Missing subjects map to a `General` tag and missing ratings map to null. Updated `src/components/BookDetails.jsx` with safe rating/genre rendering and an inline SVG star beside available numerical ratings; styled it in `src/App.css`.
 - **I checked:** Confirmed the genre query returned 100 documents with subject and rating fields. `npm.cmd run build` succeeded and `git diff --check` passed. Student browser check: [ ] Select a rated book and a book without ratings; confirm the star only appears next to the numeric rating and missing tags do not break the panel.
+
+### Prompt 18 — Limit Genre Tags in Book Details
+
+- **Prompt:** Please update the genre tags limit:
+
+- Ensure each book displays at most 3 genres/subjects in the details view
+
+- **Agent did:** Updated `src/components/BookDetails.jsx` to render only the first three genres, even when a book object contains more.
+- **I checked:** Reviewed the genre array slice and mapped list to confirm the details panel renders no more than three tags. Student browser check: [ ] Select a book with several subjects and confirm at most three tags appear.

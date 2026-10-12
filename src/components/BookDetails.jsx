@@ -11,7 +11,7 @@ function BookDetails({ book }) {
 
   const hasRating = Number.isFinite(book.rating)
     && Number.isFinite(book.ratingsCount);
-  const genres = Array.isArray(book.genres) ? book.genres : [];
+  const genres = Array.isArray(book.genres) ? book.genres.slice(0, 3) : [];
 
   return (
     <aside className="book-details" aria-label={`Details for ${book.title}`}>
