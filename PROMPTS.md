@@ -118,3 +118,33 @@ Task 4 Requirement: Connect Live Search to Open Library API
 
 - **Agent did:** Added `src/api/openLibrary.js` with `searchBooks`, the encoded query and 30-result limit, and normalization to the current book object format. Replaced the static mock data import with API result state in `src/App.jsx`; added a 300 ms debounce with request cancellation; clearing the input clears results and selection. Preserved the derived title/author filter and details selection flow.
 - **I checked:** `npm.cmd run build` succeeded and `git diff --check` passed. Reviewed endpoint construction, API field fallbacks, abort handling, empty-query behavior, and selected-book propagation. The Open Library request was not exercised end to end in this environment; student browser testing: [ ] Search for `harry potter`, select a result, then clear the input.
+
+### Prompt 10 — Continue Task 4 Live Search Implementation
+
+- **Prompt:** Please continue to implement Task 4 strictly according to PRD.md, tasks.md, and AGENTS.md:
+
+Task 4 Requirement: Connect Live Search to Open Library API
+1. Create a dedicated API helper module (e.g., `src/api/openLibrary.js` or `src/services/bookService.js`).
+2. In this module, create an async function `searchBooks(query)` that calls the Open Library Search endpoint:
+   `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=30`
+   (If query is empty, allow a default fallback like psychological thrillers `subject=psychological_thriller&limit=30` or handle an empty results list cleanly).
+3. Connect `SearchBar` input changes / submissions in `App.jsx` to this API helper using `useEffect` with a slight debounce or on search submit:
+   - When a user types a query in `SearchBar`, trigger the live fetch against Open Library API.
+   - Populate `books` with the live returned books.
+   - If the input is cleared, handle the state gracefully per Task 4 specs.
+4. Normalize the incoming Open Library API documents so existing components (`BookList`, `BookCard`, `BookDetails`) receive matching fields:
+   - id: `doc.key`
+   - title: `doc.title`
+   - author: `doc.author_name ? doc.author_name[0] : "Unknown Author"`
+   - year: `doc.first_publish_year || "N/A"`
+   - cover_i: `doc.cover_i`
+   - coverUrl: `doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg` : null`
+   - description: `doc.first_sentence ? (Array.isArray(doc.first_sentence) ? doc.first_sentence[0] : doc.first_sentence) : "No description available."`
+   - genres: `doc.subject ? doc.subject.slice(0, 3) : ["General"]`
+5. Ensure selection flow remains functional: clicking any book from the live search results updates `BookDetails`.
+6. Append this interaction to `PROMPTS.md` following our project template (prompt, agent actions, testing notes).
+7. Execute git commit via terminal:
+   `git commit -m "feat: Task 4 - connect live search to Open Library API with dedicated service module"`
+
+- **Agent did:** Inspected the Task 4 implementation in `src/api/openLibrary.js` and `src/App.jsx`; it was already committed as `636c915` with the requested message. Added this repeated request to `PROMPTS.md`; no application code changes were needed.
+- **I checked:** Confirmed the working tree was clean before this log update and reviewed the API endpoint, normalized fields, 300 ms debounce and abort handling, empty-query clearing, and selected-book flow. The prior Task 4 completion recorded a successful `npm.cmd run build` and `git diff --check`; student browser testing: [ ] Search for `harry potter`, select a result, then clear the input.
