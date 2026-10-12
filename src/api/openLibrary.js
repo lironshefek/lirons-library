@@ -11,7 +11,9 @@ export async function searchBooks({ signal } = {}) {
     'ratings_average',
     'ratings_count',
   ].join(',');
-  const url = `${SEARCH_URL}?q=fiction&sort=rating&limit=100&fields=${fields}`;
+  const query = 'subject:(psychological_thriller OR comedy OR drama OR biography)';
+  const params = new URLSearchParams({ q: query, limit: '100', fields });
+  const url = `${SEARCH_URL}?${params}`;
   const response = await fetch(url, { signal });
 
   if (!response.ok) {
@@ -34,9 +36,9 @@ export async function searchBooks({ signal } = {}) {
       ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`
       : 'https://via.placeholder.com/150x220?text=No+Cover',
     genres: Array.isArray(doc.subject) ? doc.subject.slice(0, 4) : ['General'],
-    rating: typeof doc.ratings_average === 'number'
+    rating: Number.isFinite(doc.ratings_average)
       ? Number(doc.ratings_average.toFixed(1))
       : null,
-    ratingsCount: typeof doc.ratings_count === 'number' ? doc.ratings_count : null,
+    ratingsCount: Number.isFinite(doc.ratings_count) ? doc.ratings_count : null,
   }));
 }

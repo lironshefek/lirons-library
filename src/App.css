@@ -200,6 +200,14 @@ h1 {
   font-weight: 600;
 }
 
+.book-details__rating-star {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.3em;
+  fill: #c58a27;
+  vertical-align: -0.12em;
+}
+
 .book-details__genres {
   display: flex;
   flex-wrap: wrap;

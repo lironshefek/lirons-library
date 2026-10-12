@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 function BookDetails({ book }) {
   if (!book) {
@@ -9,8 +9,9 @@ function BookDetails({ book }) {
     );
   }
 
-  const hasRating = typeof book.rating === 'number'
-    && typeof book.ratingsCount === 'number';
+  const hasRating = Number.isFinite(book.rating)
+    && Number.isFinite(book.ratingsCount);
+  const genres = Array.isArray(book.genres) ? book.genres : [];
 
   return (
     <aside className="book-details" aria-label={`Details for ${book.title}`}>
@@ -23,12 +24,21 @@ function BookDetails({ book }) {
       <p className="book-details__author">{book.author}</p>
       <p className="book-details__year">First published {book.year}</p>
       <p className="book-details__rating">
-        {hasRating
-          ? `${book.rating.toFixed(1)} / 5 · ${book.ratingsCount.toLocaleString()} ratings`
-          : 'No rating available'}
+        {hasRating ? (
+          <>
+            <svg
+              className="book-details__rating-star"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+            >
+              <path d="m12 2 2.9 6.2 6.8.8-5 4.8 1.3 6.8-6-3.4-6 3.4 1.2-6.8-5-4.8 6.9-.8L12 2Z" />
+            </svg>
+            {book.rating.toFixed(1)} / 5 · {book.ratingsCount.toLocaleString()} ratings
+          </>
+        ) : 'No rating available'}
       </p>
       <ul className="book-details__genres" aria-label="Genres">
-        {book.genres.map((genre) => (
+        {genres.map((genre) => (
           <li className="book-details__genre" key={genre}>{genre}</li>
         ))}
       </ul>

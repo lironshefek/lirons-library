@@ -235,3 +235,15 @@ Inspect the API call, the network response, and the component mapping immediatel
 
 - **Agent did:** Diagnosed that the existing `q=the` request returned HTTP 422 because Open Library rejects that broad query. Updated `src/api/openLibrary.js` to use the working `q=fiction&sort=rating&limit=100` request and explicitly request the title, author, year, cover, subject, and rating fields the app maps and renders.
 - **I checked:** Queried the updated endpoint and confirmed it returned 100 documents with subject tags, rating average, and rating count. `npm.cmd run build` succeeded. `git diff --check` was run before commit.
+
+### Prompt 17 — Search Requested Genres and Add Rating Star
+
+- **Prompt:** Please update the API query and rating display:
+
+- Update the fetch URL to retrieve books across the requested genres using:
+  `https://openlibrary.org/search.json?q=subject:(psychological_thriller OR comedy OR drama OR biography)&limit=100`
+- In `BookDetails.jsx`, ensure a small star icon or symbol (? or an SVG star) appears directly beside the numerical rating.
+- Safely handle cases where ratings or subjects are missing without breaking the render.
+
+- **Agent did:** Updated `src/api/openLibrary.js` to query the four requested subjects, keep a 100-result limit, and request all fields consumed by the UI. Missing subjects map to a `General` tag and missing ratings map to null. Updated `src/components/BookDetails.jsx` with safe rating/genre rendering and an inline SVG star beside available numerical ratings; styled it in `src/App.css`.
+- **I checked:** Confirmed the genre query returned 100 documents with subject and rating fields. `npm.cmd run build` succeeded and `git diff --check` passed. Student browser check: [ ] Select a rated book and a book without ratings; confirm the star only appears next to the numeric rating and missing tags do not break the panel.
