@@ -196,3 +196,13 @@ Inspect the API call, the network response, and the component mapping immediatel
 
 - **Agent did:** Updated `src/App.jsx` so the base `books` collection loads once on mount and is no longer replaced or cleared by search input changes. Kept filtering as derived `books.filter(...)`, matching lowercased title or author strings; an empty query displays all loaded books.
 - **I checked:** Reviewed the fetch effect dependencies, input state wiring, derived filter, and `BookList` prop to confirm typing only changes the query and never the base list. Student browser check: [ ] Type mixed-case title and author fragments, verify cards narrow immediately, then clear the field and confirm the full original list returns.
+
+### Prompt 13 — Filter Search by Title Only
+
+- **Prompt:** Please update the search filter criteria:
+
+- Match only against the book title (`title`), removing the author check from the filter logic.
+- Keep the comparison strictly case-insensitive (`toLowerCase()`).
+
+- **Agent did:** Updated `src/App.jsx` so the derived search filter compares the lowercased query only against each book's lowercased title.
+- **I checked:** Reviewed the filter to confirm it uses `toLowerCase()` on both values and no longer reads the author field. Student browser check: [ ] Search for part of a title with different capitalization and verify author-only terms do not match.

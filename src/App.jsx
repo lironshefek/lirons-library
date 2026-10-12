@@ -40,9 +40,7 @@ function App() {
     }
 
     const title = String(book.title ?? '').toLowerCase();
-    const author = String(book.author ?? '').toLowerCase();
-
-    return title.includes(searchTerm) || author.includes(searchTerm);
+    return title.includes(searchTerm);
   });
 
   return (
