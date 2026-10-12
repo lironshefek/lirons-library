@@ -1,5 +1,28 @@
 const SEARCH_URL = 'https://openlibrary.org/search.json';
 
+function getCleanGenres(subjects) {
+  if (!Array.isArray(subjects)) {
+    return ['General Fiction'];
+  }
+
+  const cleanGenres = subjects
+    .filter((subject) => typeof subject === 'string')
+    .map((subject) => subject.trim())
+    .filter((subject) => {
+      const lowerSubject = subject.toLowerCase();
+
+      return subject.length > 0
+        && subject.length <= 30
+        && !/[:=\/\\\d]/.test(subject)
+        && !lowerSubject.startsWith('nyt')
+        && !lowerSubject.startsWith('accessible book')
+        && !lowerSubject.startsWith('protected daisy');
+    });
+
+  const selectedGenres = cleanGenres.slice(0, 3);
+  return selectedGenres.length > 0 ? selectedGenres : ['General Fiction'];
+}
+
 export async function searchBooks({ signal } = {}) {
   const fields = [
     'key',
@@ -35,7 +58,7 @@ export async function searchBooks({ signal } = {}) {
     coverUrl: doc.cover_i
       ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`
       : 'https://via.placeholder.com/150x220?text=No+Cover',
-    genres: Array.isArray(doc.subject) ? doc.subject.slice(0, 4) : ['General'],
+    genres: getCleanGenres(doc.subject),
     rating: Number.isFinite(doc.ratings_average)
       ? Number(doc.ratings_average.toFixed(1))
       : null,

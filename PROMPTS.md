@@ -256,3 +256,17 @@ Inspect the API call, the network response, and the component mapping immediatel
 
 - **Agent did:** Updated `src/components/BookDetails.jsx` to render only the first three genres, even when a book object contains more.
 - **I checked:** Reviewed the genre array slice and mapped list to confirm the details panel renders no more than three tags. Student browser check: [ ] Select a book with several subjects and confirm at most three tags appear.
+
+### Prompt 19 — Clean Book Genre Tags
+
+- **Prompt:** Please clean and filter the genre/subject tags:
+
+- Filter out technical, metadata, and internal tags from `doc.subject` before picking genres:
+  - Exclude any tag containing colons (`:`), equal signs (`=`), slashes (`/`), or dates/numbers.
+  - Exclude tags that are overly long (e.g. more than 30 characters) or start with prefixes like "nyt", "accessible book", or "protected DAISY".
+  - Keep only clean, human-readable genre names.
+- After filtering, take at most 3 clean genres per book.
+- If no valid genres remain after filtering, provide a fallback tag such as "General Fiction".
+
+- **Agent did:** Added `getCleanGenres` in `src/api/openLibrary.js` to trim subjects, reject non-string/empty tags, tags over 30 characters, metadata punctuation, digits, and the specified prefixes. It selects at most three remaining tags and falls back to `General Fiction` when none remain.
+- **I checked:** Reviewed each requested exclusion and the max-three/fallback behavior; `git diff --check` passed. Student browser check: [ ] Select books with differing subjects and confirm metadata-like tags are absent, no book shows more than three tags, and the fallback appears when needed.
