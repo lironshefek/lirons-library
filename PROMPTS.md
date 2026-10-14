@@ -368,3 +368,12 @@ Implement an interactive book roulette page at route `/random` that picks a surp
 
 - **Agent did:** Replaced the complete `tasks.MD` content with the supplied plan, preserving Tasks 1–5 and updating Tasks 6–8 exactly.
 - **I checked:** Read back all eight task headings and the new testing, favorites/404, and roulette/theme/responsive criteria. `git diff --check` passed.
+
+### Prompt 26 — Restore Live Open Library Search
+
+- **Prompt:** Issue: The live Open Library API fetching stopped working or was removed during the recent changes.
+
+Please fix this immediatel
+
+- **Agent did:** Updated `src/api/openLibrary.ts` to accept a query and use it in the encoded Open Library request, retaining the broad genre query only for the initial catalog. Updated `src/App.tsx` to debounce typed searches by 300 ms, cancel stale requests, and store remote results separately from the original catalog. The visible list filters immediately by title and switches to matching remote results when available; clearing the input restores the original catalog. Details routes can resolve books from both collections.
+- **I checked:** `npm.cmd run build` passed with strict TypeScript checking and Vite production build. Executed the API helper with `harry potter`; it returned 100 normalized books, with the first result `Harry Potter and the Philosopher's Stone` by J. K. Rowling. `git diff --check` passed.

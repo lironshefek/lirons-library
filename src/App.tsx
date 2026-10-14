@@ -7,10 +7,22 @@ import SearchBar from './components/SearchBar';
 import type { Book } from './types/book';
 import './App.css';
 
-function BookListPage({ books }: { books: Book[] }) {
-  const [searchQuery, setSearchQuery] = useState('');
+interface BookListPageProps {
+  books: Book[];
+  searchResults: SearchResultSet | null;
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+}
+
+interface SearchResultSet {
+  query: string;
+  books: Book[];
+}
+
+function BookListPage({ books, searchResults, searchQuery, onSearchChange }: BookListPageProps) {
   const searchTerm = searchQuery.trim().toLowerCase();
-  const filteredBooks = books.filter((book) =>
+  const booksToFilter = searchResults?.query === searchTerm ? searchResults.books : books;
+  const filteredBooks = booksToFilter.filter((book) =>
     String(book.title ?? '').toLowerCase().includes(searchTerm),
   );
 
@@ -22,7 +34,7 @@ function BookListPage({ books }: { books: Book[] }) {
         <p className="page-intro">Browse a few hand-picked reads from the shelf.</p>
       </header>
       <div className="book-browser">
-        <SearchBar value={searchQuery} onChange={setSearchQuery} />
+        <SearchBar value={searchQuery} onChange={onSearchChange} />
         <BookList
           books={filteredBooks}
           emptyMessage={searchTerm ? 'No books match your search.' : null}
@@ -34,6 +46,8 @@ function BookListPage({ books }: { books: Book[] }) {
 
 function App() {
   const [books, setBooks] = useState<Book[]>([]);
+  const [searchResults, setSearchResults] = useState<SearchResultSet | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -41,7 +55,7 @@ function App() {
 
     async function loadBooks() {
       try {
-        const mappedBooks = await searchBooks(controller.signal);
+        const mappedBooks = await searchBooks('', controller.signal);
         setBooks(mappedBooks);
       } catch (error: unknown) {
         if (error instanceof Error && error.name !== 'AbortError') {
@@ -59,11 +73,50 @@ function App() {
     return () => controller.abort();
   }, []);
 
+  useEffect(() => {
+    const query = searchQuery.trim();
+
+    if (!query) {
+      setSearchResults(null);
+      return undefined;
+    }
+
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(async () => {
+      try {
+        const results = await searchBooks(query, controller.signal);
+        setSearchResults({ query: query.toLowerCase(), books: results });
+      } catch (error: unknown) {
+        if (error instanceof Error && error.name !== 'AbortError') {
+          console.error('Could not search Open Library:', error);
+          setSearchResults(null);
+        }
+      }
+    }, 300);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      controller.abort();
+    };
+  }, [searchQuery]);
+
+  const detailBooks = searchResults ? [...books, ...searchResults.books] : books;
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<BookListPage books={books} />} />
-        <Route path="/books/:id" element={<BookDetailsPage books={books} loading={loading} />} />
+        <Route
+          path="/"
+          element={(
+            <BookListPage
+              books={books}
+              searchResults={searchResults}
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+            />
+          )}
+        />
+        <Route path="/books/:id" element={<BookDetailsPage books={detailBooks} loading={loading} />} />
         <Route path="*" element={<main className="page-shell"><p>Page not found.</p></main>} />
       </Routes>
     </BrowserRouter>

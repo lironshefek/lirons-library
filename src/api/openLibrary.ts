@@ -50,7 +50,7 @@ function normalizeBook(doc: OpenLibraryDocument): Book | null {
   };
 }
 
-export async function searchBooks(signal?: AbortSignal): Promise<Book[]> {
+export async function searchBooks(query = '', signal?: AbortSignal): Promise<Book[]> {
   const fields = [
     'key',
     'title',
@@ -61,8 +61,9 @@ export async function searchBooks(signal?: AbortSignal): Promise<Book[]> {
     'ratings_average',
     'ratings_count',
   ].join(',');
-  const query = 'subject:(psychological_thriller OR comedy OR Mystery OR romance OR science_fiction OR fantasy)';
-  const params = new URLSearchParams({ q: query, limit: '100', fields });
+  const trimmedQuery = query.trim();
+  const apiQuery = trimmedQuery || 'subject:(psychological_thriller OR comedy OR Mystery OR romance OR science_fiction OR fantasy)';
+  const params = new URLSearchParams({ q: apiQuery, limit: '100', fields });
   const response = await fetch(`${SEARCH_URL}?${params}`, { signal });
 
   if (!response.ok) {
