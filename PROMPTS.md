@@ -396,3 +396,8 @@ Please run the tests and show the passing output.
 
 - **Agent did:** Installed Vitest 2.1.9, Vitest UI, jsdom, and the requested Testing Library dependencies. Configured jsdom and test setup in `vite.config.ts`; added `test` and `test:ui` scripts. Added strict typed filtering, year formatting, and cover URL helpers, updated `App`, `BookDetails`, and the API mapper to use them, and wrote utility and SearchBar tests. Added explicit Testing Library cleanup after the first run exposed duplicate rendered inputs.
 - **I checked:** `npm test` passed: 2 test files, 9 tests. `npm run test:ui -- --api.port 51204` launched the UI and passed 2 test files / 9 tests. `npm run build` passed strict TypeScript checking and Vite production bundling. `git diff --check` passed. The UI server was stopped after verification.
+
+### Prompt 28 — Explain Task 6 Tests
+**Prompt:** tell me more about the tests that you added - where are they located in the project? where can i find the purpose of them?
+**Agent did:** Inspected the Task 6 test files and appended this request to `PROMPTS.md`.
+**I checked:** Confirmed the unit and component test locations and reviewed their `describe`/`it` names to identify each test's purpose.
