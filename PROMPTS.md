@@ -270,3 +270,12 @@ Inspect the API call, the network response, and the component mapping immediatel
 
 - **Agent did:** Added `getCleanGenres` in `src/api/openLibrary.js` to trim subjects, reject non-string/empty tags, tags over 30 characters, metadata punctuation, digits, and the specified prefixes. It selects at most three remaining tags and falls back to `General Fiction` when none remain.
 - **I checked:** Reviewed each requested exclusion and the max-three/fallback behavior; `git diff --check` passed. Student browser check: [ ] Select books with differing subjects and confirm metadata-like tags are absent, no book shows more than three tags, and the fallback appears when needed.
+
+### Prompt 20 — Update Course Development Tasks
+
+- **Prompt:** Please update the file `tasks.MD` (or `tasks.md`) in the project root. Keep the first 4 completed tasks exactly as they were, and update tasks 5 through 8 according to the new course guidelines (TypeScript, React Router, Vitest, 2 extra interactive pages, responsive CSS).
+
+Replace the entire content of `tasks.MD` with the requested eight-task plan: mark Tasks 1–4 completed; define Task 5 as TypeScript migration with React Router and a dedicated book details page; Task 6 as Vitest and Vitest UI with typed helper tests; Task 7 as a localStorage favorites page; and Task 8 as a reading statistics page plus responsive polish. The full replacement text is present in `tasks.MD`.
+
+- **Agent did:** Replaced the project-root `tasks.MD` with the supplied content exactly, including the completion labels for Tasks 1–4 and new Tasks 5–8.
+- **I checked:** Read back the full `tasks.MD` contents to confirm all eight task sections and supplied requirements are present. A pre-existing unrelated modification in `src/api/openLibrary.js` was left untouched.
