@@ -411,3 +411,8 @@ Please run the tests and show the passing output.
 **Prompt:** do you think that i need to change something in the PRD,tasks,agents .md files? according to the changes that we have done
 **Agent did:** Reviewed whether the recent Task 6 test changes require updates to `PRD.md`, `tasks.MD`, or `AGENTS.md`; concluded the current requirements already cover the work.
 **I checked:** Confirmed the Task 6 testing requirements are documented in `tasks.MD` and that the recent test-purpose comments are recorded in `PROMPTS.md`.
+
+### Prompt 31 — Restore Responsive Layout on Book Details
+**Prompt:** i have noticed that when i click a book - the layout is not responsive anymore (like it used to , in the main page)
+**Agent did:** Updated `BookDetails` markup and `App.css` so the selected book detail view uses a responsive cover-and-information layout that stacks on narrow screens.
+**I checked:** Ran `npm run build` to verify the updated React and CSS compile successfully; inspect the book detail route at desktop and mobile widths in the browser.

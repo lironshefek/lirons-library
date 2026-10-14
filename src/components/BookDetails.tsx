@@ -17,6 +17,7 @@ function BookDetails({ book }: BookDetailsProps) {
         src={getCoverUrl(book.cover_i, 'L')}
         alt={`Cover of ${book.title}`}
       />
+      <div className="book-details__content">
       <h2 className="book-details__title">{book.title}</h2>
       <p className="book-details__author">{book.author}</p>
       <p className="book-details__year">First published {formatPublishYear(book.year)}</p>
@@ -39,6 +40,7 @@ function BookDetails({ book }: BookDetailsProps) {
           <li className="book-details__genre" key={genre}>{genre}</li>
         ))}
       </ul>
+      </div>
     </aside>
   );
 }
