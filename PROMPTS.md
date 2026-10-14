@@ -301,3 +301,22 @@ Make sure `npm run build` succeeds cleanly when you are done.
 
 - **Agent did:** Added strict TypeScript configuration and `Book`/Open Library types, migrated all project `.js`/`.jsx` files including `vite.config.js` to `.ts`/`.tsx`, and updated `index.html` to load `/src/main.tsx`. Installed React Router, TypeScript, and required type packages. Added routes for `/` and `/books/:id`; book keys have `/works/` stripped during normalization and card links encode route IDs. Replaced the inline selection/details sidebar with a separate details route using `useParams` and a return link. Preserved the existing API query content while migrating its helper.
 - **I checked:** `npm.cmd run build` succeeded, including strict `tsc --noEmit` and Vite production build. Confirmed no project `.js`/`.jsx` files remain and no `any` type appears in source TypeScript. Route and ID handling were reviewed in source; interactive browser navigation was not automated.
+
+### Prompt 23 — Summarize Task 5 Changes
+
+- **Prompt:** Please provide a clear and concise summary of everything you changed in Task 5:
+
+1. **Files Created & Renamed:** Which new files were created (e.g., config files, types, pages) and which files were renamed from `.jsx`/`.js` to `.tsx`/`.ts`?
+2. **TypeScript & Types:** Where did you define the types/interfaces, and what are the main interfaces you created (e.g. `Book`)? Did you eliminate all `any` usages?
+3. **Routing Architecture:** How is React Router set up? What routes exist in `App.tsx`, how does `BookCard` navigate to the details page, and how does `BookDetailPage` read the book ID?
+4. **Build & Cleanliness:** Does `npm run build` pass without warnings or errors?
+
+- **Agent did:** Summarized Task 5 file migrations, TypeScript interfaces, route behavior, ID handling, and build result in the chat. Initially did not record this prompt in `PROMPTS.md`.
+- **I checked:** Compared the summary against the Task 5 implementation and the successful `npm run build` output.
+
+### Prompt 24 — Record the Missed Prompt in PROMPTS.md
+
+- **Prompt:** prompt it to PROMPTS.md
+
+- **Agent did:** Added this correction and the previous Task 5 summary request to `PROMPTS.md`.
+- **I checked:** Reviewed the appended entries and ran `git diff --check`.
