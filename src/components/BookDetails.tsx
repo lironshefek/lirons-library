@@ -1,4 +1,5 @@
 import type { Book } from '../types/book';
+import { formatPublishYear, getCoverUrl } from '../utils/bookHelpers';
 
 interface BookDetailsProps {
   book: Book;
@@ -13,12 +14,12 @@ function BookDetails({ book }: BookDetailsProps) {
     <aside className="book-details" aria-label={`Details for ${book.title}`}>
       <img
         className="book-details__cover"
-        src={book.coverUrl}
+        src={getCoverUrl(book.cover_i, 'L')}
         alt={`Cover of ${book.title}`}
       />
       <h2 className="book-details__title">{book.title}</h2>
       <p className="book-details__author">{book.author}</p>
-      <p className="book-details__year">First published {book.year}</p>
+      <p className="book-details__year">First published {formatPublishYear(book.year)}</p>
       <p className="book-details__rating">
         {hasRating ? (
           <>

@@ -1,4 +1,5 @@
 import type { Book, OpenLibraryDocument, OpenLibraryResponse } from '../types/book';
+import { getCoverUrl } from '../utils/bookHelpers';
 
 const SEARCH_URL = 'https://openlibrary.org/search.json';
 
@@ -39,9 +40,7 @@ function normalizeBook(doc: OpenLibraryDocument): Book | null {
     author,
     year: doc.first_publish_year ?? 'N/A',
     cover_i: coverId,
-    coverUrl: coverId
-      ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`
-      : 'https://via.placeholder.com/150x220?text=No+Cover',
+    coverUrl: getCoverUrl(coverId),
     genres: getCleanGenres(doc.subject),
     rating: Number.isFinite(doc.ratings_average)
       ? Number(doc.ratings_average?.toFixed(1))

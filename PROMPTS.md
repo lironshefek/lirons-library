@@ -377,3 +377,22 @@ Please fix this immediatel
 
 - **Agent did:** Updated `src/api/openLibrary.ts` to accept a query and use it in the encoded Open Library request, retaining the broad genre query only for the initial catalog. Updated `src/App.tsx` to debounce typed searches by 300 ms, cancel stale requests, and store remote results separately from the original catalog. The visible list filters immediately by title and switches to matching remote results when available; clearing the input restores the original catalog. Details routes can resolve books from both collections.
 - **I checked:** `npm.cmd run build` passed with strict TypeScript checking and Vite production build. Executed the API helper with `harry potter`; it returned 100 normalized books, with the first result `Harry Potter and the Philosopher's Stone` by J. K. Rowling. `git diff --check` passed.
+
+### Prompt 27 — Implement Task 6 Testing Setup
+
+- **Prompt:** Read Task 6 in `tasks.MD` and implement it now.
+
+Task 6: Unit Testing with Vitest, Vitest UI, and React Testing Library.
+
+Requirements:
+1. Install Vitest, @vitest/ui, jsdom, and React Testing Library dependencies (@testing-library/react, @testing-library/jest-dom, @testing-library/user-event).
+2. Configure `vite.config.ts` for Vitest and add scripts `test` and `test:ui` to `package.json`.
+3. Extract pure book utility helpers (filtering, year formatting, cover fallback URL) into `src/utils/bookHelpers.ts` with strict TypeScript types (no any). Update components to use them.
+4. Create unit tests in `src/utils/bookHelpers.test.ts` testing the helper functions.
+5. Create a component UI test in `src/components/SearchBar.test.tsx` testing that the search input renders properly and responds to typing.
+6. Verify that `npm test` runs in the terminal with at least 5 passing tests, `npm run test:ui` works, and `npm run build` succeeds without errors.
+
+Please run the tests and show the passing output.
+
+- **Agent did:** Installed Vitest 2.1.9, Vitest UI, jsdom, and the requested Testing Library dependencies. Configured jsdom and test setup in `vite.config.ts`; added `test` and `test:ui` scripts. Added strict typed filtering, year formatting, and cover URL helpers, updated `App`, `BookDetails`, and the API mapper to use them, and wrote utility and SearchBar tests. Added explicit Testing Library cleanup after the first run exposed duplicate rendered inputs.
+- **I checked:** `npm test` passed: 2 test files, 9 tests. `npm run test:ui -- --api.port 51204` launched the UI and passed 2 test files / 9 tests. `npm run build` passed strict TypeScript checking and Vite production bundling. `git diff --check` passed. The UI server was stopped after verification.

@@ -5,6 +5,7 @@ import BookDetailsPage from './components/BookDetailsPage';
 import BookList from './components/BookList';
 import SearchBar from './components/SearchBar';
 import type { Book } from './types/book';
+import { filterBooksByTitle } from './utils/bookHelpers';
 import './App.css';
 
 interface BookListPageProps {
@@ -22,9 +23,7 @@ interface SearchResultSet {
 function BookListPage({ books, searchResults, searchQuery, onSearchChange }: BookListPageProps) {
   const searchTerm = searchQuery.trim().toLowerCase();
   const booksToFilter = searchResults?.query === searchTerm ? searchResults.books : books;
-  const filteredBooks = booksToFilter.filter((book) =>
-    String(book.title ?? '').toLowerCase().includes(searchTerm),
-  );
+  const filteredBooks = filterBooksByTitle(booksToFilter, searchQuery);
 
   return (
     <main className="page-shell">
