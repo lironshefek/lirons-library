@@ -421,3 +421,8 @@ Please run the tests and show the passing output.
 **Prompt:** Read Task 7 in `tasks.MD` and implement it now. Add favorites persisted in localStorage with toggles on book cards and details, a `/favorites` page with an empty state, active Home/Favorites navigation, and a styled catch-all 404 page. Verify there are no `any` types, `npm test` passes, and `npm run build` succeeds.
 **Agent did:** Added localStorage-backed favorites, favorite toggles, shared navigation, `FavoritesPage.tsx`, and `NotFoundPage.tsx`; wired the new routes and added matching responsive styling.
 **I checked:** Ran `npm test`, `npm run build`, searched source for `any` usages, and checked the diff for whitespace errors.
+
+### Prompt 33 — Ask About LocalStorage Persistence
+**Prompt:** when i refresh the page i can still see the "saved" books that i liked . this is the purpose of saving it in the local storage? thats permament?
+**Agent did:** Explained that localStorage preserves favorites across refreshes and browser restarts on the same browser/device, until removed or site data is cleared.
+**I checked:** Confirmed the Task 7 implementation writes favorites to browser localStorage and reloads them when the app starts.
