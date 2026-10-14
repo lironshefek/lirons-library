@@ -279,3 +279,10 @@ Replace the entire content of `tasks.MD` with the requested eight-task plan: mar
 
 - **Agent did:** Replaced the project-root `tasks.MD` with the supplied content exactly, including the completion labels for Tasks 1–4 and new Tasks 5–8.
 - **I checked:** Read back the full `tasks.MD` contents to confirm all eight task sections and supplied requirements are present. A pre-existing unrelated modification in `src/api/openLibrary.js` was left untouched.
+
+### Prompt 21 — Verify Tasks 1–4 Before Task 5
+
+- **Prompt:** before we will continue to task 5, i want you to check that all the four tasks completed and working as well
+
+- **Agent did:** Audited `tasks.MD`, the app, API helper, mock data, search/list/card/details components, and package scripts. No implementation changes were made. Task 2 selection is wired from `BookCard` through `BookList` to `App` state and `BookDetails`; Task 3 uses a controlled input. The app still has the mock JSON from Task 1, but the current app uses the API catalog. Task 4's current behavior loads a fixed catalog once and filters titles locally, so it does not satisfy the task's stated requirement to query Open Library with each typed search term.
+- **I checked:** `npm.cmd run build` passed. Executed the current `searchBooks` helper against Open Library; it returned 100 normalized records with no missing IDs, titles, or genre arrays. Inspected the selection and input prop flow. Interactive browser clicks were not automated in this environment. Existing uncommitted changes in `src/api/openLibrary.js` were left untouched.
