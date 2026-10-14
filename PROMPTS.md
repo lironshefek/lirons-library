@@ -401,3 +401,8 @@ Please run the tests and show the passing output.
 **Prompt:** tell me more about the tests that you added - where are they located in the project? where can i find the purpose of them?
 **Agent did:** Inspected the Task 6 test files and appended this request to `PROMPTS.md`.
 **I checked:** Confirmed the unit and component test locations and reviewed their `describe`/`it` names to identify each test's purpose.
+
+### Prompt 29 — Add Purpose Comments Above Tests
+**Prompt:** i want you to write a comment above every test so i will know his purpose - write it as simple as you can
+**Agent did:** Added a simple purpose comment immediately above each test in `src/utils/bookHelpers.test.ts` and `src/components/SearchBar.test.tsx`.
+**I checked:** Reviewed the comments to confirm each explains the behavior checked by its test; did not rerun tests because this change only adds comments.

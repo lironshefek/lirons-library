@@ -16,6 +16,7 @@ function SearchBarHarness() {
 }
 
 describe('SearchBar', () => {
+  // Shows the search input with the expected placeholder text.
   it('renders the search field with its expected placeholder', () => {
     render(<SearchBar value="" onChange={() => undefined} />);
 
@@ -23,6 +24,7 @@ describe('SearchBar', () => {
       .toHaveAttribute('placeholder', 'Search for a book...');
   });
 
+  // Updates the input and saved search value as the user types.
   it('updates the controlled search value while typing', async () => {
     const user = userEvent.setup();
     render(<SearchBarHarness />);
