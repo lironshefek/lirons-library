@@ -1,14 +1,10 @@
-﻿import React from 'react';
+import type { Book } from '../types/book';
 
-function BookDetails({ book }) {
-  if (!book) {
-    return (
-      <aside className="book-details" aria-label="Book details">
-        <p className="book-details__placeholder">Select a book from the list</p>
-      </aside>
-    );
-  }
+interface BookDetailsProps {
+  book: Book;
+}
 
+function BookDetails({ book }: BookDetailsProps) {
   const hasRating = Number.isFinite(book.rating)
     && Number.isFinite(book.ratingsCount);
   const genres = Array.isArray(book.genres) ? book.genres.slice(0, 3) : [];
@@ -33,7 +29,7 @@ function BookDetails({ book }) {
             >
               <path d="m12 2 2.9 6.2 6.8.8-5 4.8 1.3 6.8-6-3.4-6 3.4 1.2-6.8-5-4.8 6.9-.8L12 2Z" />
             </svg>
-            {book.rating.toFixed(1)} / 5 · {book.ratingsCount.toLocaleString()} ratings
+            {book.rating?.toFixed(1)} / 5 · {book.ratingsCount?.toLocaleString()} ratings
           </>
         ) : 'No rating available'}
       </p>

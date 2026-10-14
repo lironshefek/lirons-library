@@ -286,3 +286,18 @@ Replace the entire content of `tasks.MD` with the requested eight-task plan: mar
 
 - **Agent did:** Audited `tasks.MD`, the app, API helper, mock data, search/list/card/details components, and package scripts. No implementation changes were made. Task 2 selection is wired from `BookCard` through `BookList` to `App` state and `BookDetails`; Task 3 uses a controlled input. The app still has the mock JSON from Task 1, but the current app uses the API catalog. Task 4's current behavior loads a fixed catalog once and filters titles locally, so it does not satisfy the task's stated requirement to query Open Library with each typed search term.
 - **I checked:** `npm.cmd run build` passed. Executed the current `searchBooks` helper against Open Library; it returned 100 normalized records with no missing IDs, titles, or genre arrays. Inspected the selection and input prop flow. Interactive browser clicks were not automated in this environment. Existing uncommitted changes in `src/api/openLibrary.js` were left untouched.
+
+### Prompt 22 — Implement Task 5 TypeScript and React Router
+
+- **Prompt:** Read Task 5 in `tasks.MD` and implement it now.
+
+Keep in mind:
+- Update the script source in `index.html` to point to `/src/main.tsx`.
+- Handle the book ID cleanly (strip `/works/` or encode it) so React Router doesn't break.
+- Remove the old inline sidebar selection state from the main page view.
+- Strictly NO `any` types.
+
+Make sure `npm run build` succeeds cleanly when you are done.
+
+- **Agent did:** Added strict TypeScript configuration and `Book`/Open Library types, migrated all project `.js`/`.jsx` files including `vite.config.js` to `.ts`/`.tsx`, and updated `index.html` to load `/src/main.tsx`. Installed React Router, TypeScript, and required type packages. Added routes for `/` and `/books/:id`; book keys have `/works/` stripped during normalization and card links encode route IDs. Replaced the inline selection/details sidebar with a separate details route using `useParams` and a return link. Preserved the existing API query content while migrating its helper.
+- **I checked:** `npm.cmd run build` succeeded, including strict `tsc --noEmit` and Vite production build. Confirmed no project `.js`/`.jsx` files remain and no `any` type appears in source TypeScript. Route and ID handling were reviewed in source; interactive browser navigation was not automated.

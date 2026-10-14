@@ -128,6 +128,8 @@ h1 {
   color: inherit;
   font: inherit;
   text-align: left;
+  color: inherit;
+  text-decoration: none;
   cursor: pointer;
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
@@ -206,6 +208,26 @@ h1 {
   margin-right: 0.3em;
   fill: #c58a27;
   vertical-align: -0.12em;
+}
+
+.book-details-page__back {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #405d48;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.book-details-page__back:hover {
+  text-decoration: underline;
+}
+
+.book-details-page__content {
+  max-width: 560px;
+}
+
+.book-details-page__message {
+  color: #59645d;
 }
 
 .book-details__genres {

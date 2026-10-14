@@ -1,6 +1,15 @@
-import React from 'react';
+import type { ChangeEvent } from 'react';
 
-function SearchBar({ value, onChange }) {
+interface SearchBarProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+function SearchBar({ value, onChange }: SearchBarProps) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    onChange(event.target.value);
+  }
+
   return (
     <div className="search-bar">
       <label className="search-bar__label" htmlFor="book-search">
@@ -12,7 +21,7 @@ function SearchBar({ value, onChange }) {
         type="search"
         placeholder="Search for a book..."
         value={value}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={handleChange}
       />
     </div>
   );
