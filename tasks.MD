@@ -21,13 +21,13 @@ Migrate the project from JavaScript to TypeScript: configure tsconfig.json, conv
 **Done when:** All source files use TypeScript, `npm run build` passes with zero errors, and clicking a book navigates to its dedicated `/books/:id` URL with a working back button.
 
 ## Task 6: Unit Testing with Vitest and Vitest UI
-Install Vitest, `@vitest/ui`, and testing utilities. Extract book filtering, publish year formatting, and cover URL generation logic into pure functions in `src/utils/bookHelpers.ts` with explicit types. Write unit tests covering these functions and configure scripts `test` and `test:ui`.
-**Done when:** Running `npm test` runs in the terminal and passes all tests green, and `npm run test:ui` launches the Vitest browser interface without errors.
+Install and configure Vitest and `@vitest/ui`. Extract book filtering, publish year formatting, and cover URL fallback logic into pure utility functions in `src/utils/bookHelpers.ts` with explicit TypeScript types. Write unit tests covering these helpers and configure scripts `test` and `test:ui`.
+**Done when:** Running `npm test` passes all tests in the terminal, and `npm run test:ui` launches the Vitest browser interface with all tests passing.
 
-## Task 7: Build Favorites Page with LocalStorage (Extra Page 1)
-Implement a Favorites page at route `/favorites`. Allow users to toggle books as favorites from cards and detail views, persisting the list in browser `localStorage`. Display saved books in a grid or an empty state message if none are saved, with a link to navigate back to search.
-**Done when:** Favoriting books persists across page reloads, and the `/favorites` page displays all saved items with full navigation back to details.
+## Task 7: Build Favorites Page with LocalStorage (Bonus) & 404 Route
+Implement a Favorites page at route `/favorites`. Allow users to bookmark books from cards and detail views, persisting the list in browser `localStorage`. Display saved books in a grid with an empty state message if none are saved. Add a customized 404 "Page Not Found" route for any invalid path.
+**Done when:** Bookmarked books persist across browser reloads, `/favorites` renders all saved items, and invalid URLs display a styled 404 page with a link back to `/`.
 
-## Task 8: Build Reading Statistics Dashboard Page & Responsive Polish (Extra Page 2)
-Implement a dynamic statistics page at route `/stats` calculating metrics from current results and saved favorites (total books, earliest/latest publication year, and top authors). Create a reusable `StatCard` component, write 1–2 unit tests for the calculation logic, and refine responsive CSS across mobile and desktop.
-**Done when:** Navigating to `/stats` displays calculated summary cards, at least 5 unit tests pass across the entire suite, and `npm run build` succeeds cleanly.
+## Task 8: Build Mystery Book Roulette Page, Custom Color Palette & Responsive CSS
+Implement an interactive book roulette page at route `/random` that picks a surprise random book from the search results, displaying its cover, details, and navigation to `/books/:id`. Introduce a custom CSS color palette using CSS variables for a cohesive theme, and refine responsive styling across mobile and desktop.
+**Done when:** The `/random` roulette works smoothly, the custom color palette and responsive design are applied across the entire app, at least 5 unit tests pass, and `npm run build` succeeds cleanly.

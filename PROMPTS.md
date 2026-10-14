@@ -320,3 +320,51 @@ Make sure `npm run build` succeeds cleanly when you are done.
 
 - **Agent did:** Added this correction and the previous Task 5 summary request to `PROMPTS.md`.
 - **I checked:** Reviewed the appended entries and ran `git diff --check`.
+
+### Prompt 25 — Finalize Tasks 6–8 Guidelines
+
+- **Prompt:** Please perform the following steps carefully:
+
+Step 1: Update `tasks.MD`
+Update the project's `tasks.MD` file to reflect our finalized plan:
+
+- Update Tasks 6, 7, and 8 with the exact definitions below:
+
+```markdown
+# Development Tasks – BookFinder
+
+## Task 1: Render Book List with Local Mock Data (Completed)
+Create a local JSON file containing 2–3 sample book objects (including title, author, year, mock cover image URL, description snippet, and genres). Build the `BookList` and `BookCard` components and render these sample items on the screen inside a responsive grid.
+**Done when:** The page renders the sample book cards showing their cover, title, author, publication year, and description snippet without connecting to any external API.
+
+## Task 2: Implement Item Selection and Master-Detail Panel (Completed)
+Create the `BookDetails` sidebar component and introduce selection state in `App`. When no book is selected, the sidebar displays the placeholder text "Select a book from the list". Clicking any card updates the state, highlights that card with an active border, and displays its full details and genre tags in the sidebar.
+**Done when:** Clicking a sample book card visibly highlights it and displays its expanded information and genres in the side panel.
+
+## Task 3: Build Search Input Component and Controlled State (Completed)
+Create the `SearchBar` component with an input field and the placeholder "Search for a book...". Wire it up to React state so the input text updates as the user types, and render it at the top of the main view above the book list.
+**Done when:** I can type text into the search bar, see the typed characters in real time, and verify the value is tracked in state.
+
+## Task 4: Connect Live Search to Open Library API (Completed)
+Create an API helper module to fetch book data from the Open Library Search endpoint using the query string typed into `SearchBar`. Replace the local mock data source with this live API call, and clear results when the input is empty.
+**Done when:** Typing "harry potter" queries the Open Library API and populates the list with live book search results.
+
+## Task 5: TypeScript Migration, React Router & Dedicated Details Page
+Migrate the project from JavaScript to TypeScript: configure tsconfig.json, convert all .jsx/.js files to .tsx/.ts, and define strict types in `src/types/book.ts` without any `any`. Install `react-router-dom` and replace the inline details sidebar with dedicated routing (`/` for book list and `/books/:id` for details reading the id via `useParams`).
+**Done when:** All source files use TypeScript, `npm run build` passes with zero errors, and clicking a book navigates to its dedicated `/books/:id` URL with a working back button.
+
+## Task 6: Unit Testing with Vitest and Vitest UI
+Install and configure Vitest and `@vitest/ui`. Extract book filtering, publish year formatting, and cover URL fallback logic into pure utility functions in `src/utils/bookHelpers.ts` with explicit TypeScript types. Write unit tests covering these helpers and configure scripts `test` and `test:ui`.
+**Done when:** Running `npm test` passes all tests in the terminal, and `npm run test:ui` launches the Vitest browser interface with all tests passing.
+
+## Task 7: Build Favorites Page with LocalStorage (Bonus) & 404 Route
+Implement a Favorites page at route `/favorites`. Allow users to bookmark books from cards and detail views, persisting the list in browser `localStorage`. Display saved books in a grid with an empty state message if none are saved. Add a customized 404 "Page Not Found" route for any invalid path.
+**Done when:** Bookmarked books persist across browser reloads, `/favorites` renders all saved items, and invalid URLs display a styled 404 page with a link back to `/`.
+
+## Task 8: Build Mystery Book Roulette Page, Custom Color Palette & Responsive CSS
+Implement an interactive book roulette page at route `/random` that picks a surprise random book from the search results, displaying its cover, details, and navigation to `/books/:id`. Introduce a custom CSS color palette using CSS variables for a cohesive theme, and refine responsive styling across mobile and desktop.
+**Done when:** The `/random` roulette works smoothly, the custom color palette and responsive design are applied across the entire app, at least 5 unit tests pass, and `npm run build` succeeds cleanly.
+```
+
+- **Agent did:** Replaced the complete `tasks.MD` content with the supplied plan, preserving Tasks 1–5 and updating Tasks 6–8 exactly.
+- **I checked:** Read back all eight task headings and the new testing, favorites/404, and roulette/theme/responsive criteria. `git diff --check` passed.
