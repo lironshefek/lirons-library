@@ -580,3 +580,9 @@ Please run the tests and show the passing output.
 **Agent did:** Recorded the confirmation; the book-description feature (Prompts 54-56) is verified in the browser. No code changed.
 **I checked:** Liron checked "La chica de nieve" (`/books/OL25065067W`) in the browser.
 **Questions asked:** Liron answered Prompt 56: the book without a description shows "No description is available for this book." New question: continue Task 8 with responsive styling, or choose the color palette first? Awaiting answer.
+
+### Prompt 60 — Commit Rules for Prompt Log Updates (2026-10-21)
+**Prompt:** when you commit prompt, done name it "log prompt x" - write short line of the changes that you made . also, you dont need to commit only prompts , commit only if you made changes (more than prompts.md)
+**Agent did:** Added two git rules to `AGENTS.md`: no commits when only `PROMPTS.md` changed (the entry rides along with the next real commit), and commit messages must describe the change instead of "log prompt N". Committed because `AGENTS.md` changed.
+**I checked:** Re-read the git section of `AGENTS.md`.
+**Questions asked:** Prompt 59's question (responsive styling or colors first?) is still open.

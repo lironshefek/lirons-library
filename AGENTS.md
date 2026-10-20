@@ -30,4 +30,6 @@ Your goal is to guide step-by-step, foster genuine understanding, and strictly f
 - **Commit on Working States & Tasks:** At the end of every completed task or successful fix, execute the git commands directly in the integrated terminal to stage and commit the changes (e.g., `git add . && git commit -m "feat: Task X - ..."` or `fix: resolve React reference error in Task 1"`).
 - **Small, separate commits:** Commit each logical change on its own (e.g. one feature, one fix, one docs update) instead of bundling many changes into a single commit.
 - **Commit once verified:** The agent may commit on its own after verifying the change works (tests pass, build succeeds, and the behavior is checked, e.g. against the live API). Mark a whole task as `(Completed)` in `tasks.MD` only after Liron confirms it in the browser.
+- **No log-only commits:** Do not commit when only `PROMPTS.md` changed. Leave the log entry uncommitted and include it in the next commit that contains real changes (code, styles, tests, or other docs).
+- **Descriptive messages:** Commit messages describe the actual change in a short line (e.g. `docs: add commit rules for prompt log`), never just "log prompt N".
 - Never wait for Liron to run git commands manually unless terminal permissions are denied.
