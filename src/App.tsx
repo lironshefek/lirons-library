@@ -12,16 +12,10 @@ import './App.css';
 
 interface BookListPageProps {
   books: Book[];
-  searchResults: SearchResultSet | null;
   searchQuery: string;
   onSearchChange: (query: string) => void;
   favoriteIds: ReadonlySet<string>;
   onToggleFavorite: (book: Book) => void;
-}
-
-interface SearchResultSet {
-  query: string;
-  books: Book[];
 }
 
 function isStringArray(value: unknown): value is string[] {
@@ -30,15 +24,14 @@ function isStringArray(value: unknown): value is string[] {
 
 function BookListPage({
   books,
-  searchResults,
   searchQuery,
   onSearchChange,
   favoriteIds,
   onToggleFavorite,
 }: BookListPageProps) {
-  const searchTerm = searchQuery.trim().toLowerCase();
-  const booksToFilter = searchResults?.query === searchTerm ? searchResults.books : books;
-  const filteredBooks = filterBooksByTitle(booksToFilter, searchQuery);
+  // Search only filters the books already shown on the home page by title.
+  const searchTerm = searchQuery.trim();
+  const filteredBooks = filterBooksByTitle(books, searchQuery);
 
   return (
     <main className="page-shell">
@@ -93,7 +86,6 @@ function App() {
       return [];
     }
   });
-  const [searchResults, setSearchResults] = useState<SearchResultSet | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -121,33 +113,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const query = searchQuery.trim();
-
-    if (!query) {
-      setSearchResults(null);
-      return undefined;
-    }
-
-    const controller = new AbortController();
-    const timeoutId = window.setTimeout(async () => {
-      try {
-        const results = await searchBooks(query, controller.signal);
-        setSearchResults({ query: query.toLowerCase(), books: results });
-      } catch (error: unknown) {
-        if (error instanceof Error && error.name !== 'AbortError') {
-          console.error('Could not search Open Library:', error);
-          setSearchResults(null);
-        }
-      }
-    }, 300);
-
-    return () => {
-      window.clearTimeout(timeoutId);
-      controller.abort();
-    };
-  }, [searchQuery]);
-
-  useEffect(() => {
     try {
       localStorage.setItem('bookfinder-favorites', JSON.stringify(favorites));
     } catch (error: unknown) {
@@ -155,7 +120,6 @@ function App() {
     }
   }, [favorites]);
 
-  const detailBooks = searchResults ? [...books, ...searchResults.books] : books;
   const favoriteIds = new Set(favorites.map((book) => book.id));
 
   function toggleFavorite(book: Book) {
@@ -182,7 +146,6 @@ function App() {
           element={(
             <BookListPage
               books={books}
-              searchResults={searchResults}
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
               favoriteIds={favoriteIds}
@@ -192,7 +155,7 @@ function App() {
         />
         <Route path="/books/:id" element={(
           <BookDetailsPage
-            books={detailBooks}
+            books={books}
             loading={loading}
             favoriteIds={favoriteIds}
             onToggleFavorite={toggleFavorite}
