@@ -3,7 +3,7 @@
 ## Task 1: Render Book List with Local Mock Data (Completed)
 Create a local JSON file containing 2–3 sample book objects (including title, author, year, mock cover image URL, description snippet, and genres). Build the `BookList` and `BookCard` components and render these sample items on the screen inside a responsive grid.
 **Done when:** The page renders the sample book cards showing their cover, title, author, publication year, and description snippet without connecting to any external API.
-**Note:** Since Task 4 the cards use live Open Library data and show the cover, title, author, and publication year. The description snippet was dropped because the Search API does not provide one reliably. `src/data/mockBooks.json` is kept for reference.
+**Note:** Since Task 4 the cards use live Open Library data and show the cover, title, author, and publication year. The description is not shown on cards because the Search API does not include it; instead, the details page and the roulette load it per book from the Works API (`/works/{id}.json`) and show "No description is available for this book." when there is none. `src/data/mockBooks.json` is kept for reference.
 
 ## Task 2: Implement Item Selection and Master-Detail Panel (Completed)
 Create the `BookDetails` sidebar component and introduce selection state in `App`. When no book is selected, the sidebar displays the placeholder text "Select a book from the list". Clicking any card updates the state, highlights that card with an active border, and displays its full details and genre tags in the sidebar.

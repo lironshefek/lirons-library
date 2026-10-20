@@ -544,3 +544,15 @@ Please run the tests and show the passing output.
 **Prompt:** git push
 **Agent did:** Logged this prompt, committed the log, and pushed `main` to `origin` (https://github.com/lironshefek/lirons-library).
 **I checked:** Ran `git status -sb` before and after the push to confirm `main` is in sync with `origin/main`.
+
+### Prompt 54 — Do the Books Have a Description? (2026-10-20)
+**Prompt:** are you sure that the books dont have a descreption? even a short line
+**Agent did:** Re-checked the data instead of relying on the earlier claim. The Search API (used for the list) has no description field; only 24/100 books have a `first_sentence` and 3/100 a `subtitle`. The per-book Works API (`https://openlibrary.org/works/{id}.json`) has a `description` for 30/30 tested books (e.g. The Silent Patient, The Housemaid). Corrected the earlier statement: descriptions do exist, but need one extra request per book. No code changed yet.
+**I checked:** Queried the Search API for the current list and the Works API for the first 30 books.
+**Questions asked:** Where should the description appear — details page + roulette only (one request per opened book), or also as a short line on every card (about 100 extra requests on load)? Awaiting answer.
+
+### Prompt 55 — Show Book Descriptions on Details and Roulette (2026-10-21)
+**Prompt:** i am choosing option 1. if the book dont have descreption you shoud mention it to the user
+**Agent did:** Added `OpenLibraryWork` type (`src/types/book.ts`), `getDescriptionText` helper (`src/utils/bookHelpers.ts`) that cleans source notes, bold markers, and Markdown links, and `getBookDescription` (`src/api/openLibrary.ts`) that reads `/works/{id}.json`. `BookDetails.tsx` now loads and shows the description, with "Loading description..." while waiting and "No description is available for this book." when there is none; the roulette passes `loadDescription={!isSpinning}` so it only loads after the spin stops. Added description styles in `App.css`, 4 new tests, and updated Task 1 in `tasks.MD` and the details/roulette/data sections in `PRD.MD`.
+**I checked:** `npx vitest run` (16 tests passed), `npm run build` (succeeded), and ran the same cleanup over 30 real descriptions from the live API (0 with leftover markup). Committed after verifying.
+**Questions asked:** Asked the student to look at a few details pages and the roulette in the browser. Awaiting answer.

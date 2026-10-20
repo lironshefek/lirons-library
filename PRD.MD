@@ -9,9 +9,9 @@ Individuals and avid readers who want a fast, effortless way to look up books, e
 ## 3. Screens
 The application uses React Router with dedicated pages:
 * **Home (`/`):** A search bar at the top with a responsive grid of psychological thrillers first published in 2000 or later that have a cover image, loaded from Open Library. Typing filters this list by title.
-* **Book Details (`/books/:id`):** A dedicated page with the selected book's larger cover, title, author, publication year, rating, genre tags, a favorite toggle, and a back link.
+* **Book Details (`/books/:id`):** A dedicated page with the selected book's larger cover, title, author, publication year, rating, description, genre tags, a favorite toggle, and a back link.
 * **Favorites (`/favorites`):** A grid of bookmarked books, or an empty-state message when none are saved.
-* **Mystery Book Roulette (`/random`):** Spins through the home page's books and stops on a surprise book, showing its cover and full details on the same page (Task 8).
+* **Mystery Book Roulette (`/random`):** Spins through the home page's books and stops on a surprise book, showing its cover and full details, including the description, on the same page (Task 8).
 * **404 Page (`*`):** A styled "Page Not Found" page with a link back to `/`.
 
 ## 4. Must-Have Features
@@ -33,10 +33,11 @@ The application uses React Router with dedicated pages:
 
 ## 6. Not Now (Ideas for Later)
 * Quick genre filter chips (e.g., "Fantasy", "Science Fiction", "History") above the search bar.
-* A short description snippet on cards (not reliably available from the Search API).
+* A short description line on cards (would need one extra request per card).
 
 ## 7. Data
 * **API Base URL:** `https://openlibrary.org/search.json?q={query}` (called once on load with `q=subject:psychological_thriller AND first_publish_year:[2000 TO *] AND cover_i:[1 TO *]`)
+* **Book Description:** `https://openlibrary.org/works/{id}.json` (`description` field; loaded on the details and roulette pages, with a "No description is available" message when missing)
 * **Single Book Lookup:** `https://openlibrary.org/search.json?q=key:/works/{id}` (used when a details page is refreshed)
 * **Book Cover CDN URL:** `https://covers.openlibrary.org/b/id/{cover_i}-M.jpg` (or `-L.jpg` for the details page)
 * **API Fields Used:**
