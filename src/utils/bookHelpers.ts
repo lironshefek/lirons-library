@@ -48,3 +48,26 @@ export function pickRandomBook(
   const index = Math.floor(random() * candidates.length);
   return candidates[index];
 }
+
+// Turns a raw Open Library description into clean display text, or null.
+// Removes the "----------" source notes some books have at the end, removes
+// Markdown bold markers (**), and replaces Markdown links like [text](url)
+// or [text][1] (with a "[1]: url" line) with just the text.
+export function getDescriptionText(description: unknown): string | null {
+  const raw = typeof description === 'string'
+    ? description
+    : typeof description === 'object' && description !== null
+      && 'value' in description && typeof description.value === 'string'
+      ? description.value
+      : '';
+
+  const text = raw
+    .split(/\n-{3,}/)[0]
+    .replace(/^\s*\[\d+\]:\s*\S+\s*$/gm, '')
+    .replace(/\[([^\]]+)\]\[\d+\]/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/\*\*/g, '')
+    .trim();
+
+  return text.length > 0 ? text : null;
+}
