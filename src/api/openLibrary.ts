@@ -78,7 +78,10 @@ export async function getBookById(id: string, signal?: AbortSignal): Promise<Boo
 
 export async function searchBooks(query = '', signal?: AbortSignal): Promise<Book[]> {
   const trimmedQuery = query.trim();
-  const apiQuery = trimmedQuery || 'subject:(psychological_thriller OR comedy OR Mystery OR romance OR science_fiction OR fantasy)';
+  // The home list shows only psychological thrillers (the site owner's favorite
+  // genre) first published in 2000 or later that have a cover image.
+  const apiQuery = trimmedQuery
+    || 'subject:psychological_thriller AND first_publish_year:[2000 TO *] AND cover_i:[1 TO *]';
   const params = new URLSearchParams({ q: apiQuery, limit: '100', fields: FIELDS });
   const response = await fetch(`${SEARCH_URL}?${params}`, { signal });
 
@@ -91,5 +94,7 @@ export async function searchBooks(query = '', signal?: AbortSignal): Promise<Boo
 
   return docs
     .map(normalizeBook)
-    .filter((book): book is Book => book !== null);
+    .filter((book): book is Book => book !== null)
+    // Safety check: keep only books that really have a cover image.
+    .filter((book) => book.cover_i !== null);
 }
