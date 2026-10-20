@@ -436,3 +436,8 @@ Please run the tests and show the passing output.
 **Prompt:** what is the url for the tests?
 **Agent did:** Identified the local Vitest UI address and the project paths containing the unit and component tests.
 **I checked:** Reviewed the `test:ui` script and previously verified Vitest UI command configuration.
+
+### Prompt 36 — Confirm Workflow Rules and Next Task (2026-10-20)
+**Prompt:** Read the agent guidelines and task board, follow the workflow rules (update TASKS.md status, log every prompt in PROMPTS.md, commit with Conventional Commits), and summarize the next active task before starting.
+**Agent did:** Read `AGENTS.md`, `tasks.MD`, `PROMPTS.md`, and the git history. Marked Tasks 5, 6, and 7 as `(Completed)` in `tasks.MD`, since they were already implemented and committed but their status had not been updated. Identified Task 8 (Mystery Book Roulette `/random`, CSS color palette, responsive refinements) as the next active task. No source code changed.
+**I checked:** Ran `npx vitest run` (2 files, 9 tests passed) and `npm run build` (succeeded) before marking the tasks complete.

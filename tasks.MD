@@ -16,15 +16,15 @@ Create the `SearchBar` component with an input field and the placeholder "Search
 Create an API helper module to fetch book data from the Open Library Search endpoint using the query string typed into `SearchBar`. Replace the local mock data source with this live API call, and clear results when the input is empty.
 **Done when:** Typing "harry potter" queries the Open Library API and populates the list with live book search results.
 
-## Task 5: TypeScript Migration, React Router & Dedicated Details Page
+## Task 5: TypeScript Migration, React Router & Dedicated Details Page (Completed)
 Migrate the project from JavaScript to TypeScript: configure tsconfig.json, convert all .jsx/.js files to .tsx/.ts, and define strict types in `src/types/book.ts` without any `any`. Install `react-router-dom` and replace the inline details sidebar with dedicated routing (`/` for book list and `/books/:id` for details reading the id via `useParams`).
 **Done when:** All source files use TypeScript, `npm run build` passes with zero errors, and clicking a book navigates to its dedicated `/books/:id` URL with a working back button.
 
-## Task 6: Unit Testing with Vitest and Vitest UI
+## Task 6: Unit Testing with Vitest and Vitest UI (Completed)
 Install and configure Vitest and `@vitest/ui`. Extract book filtering, publish year formatting, and cover URL fallback logic into pure utility functions in `src/utils/bookHelpers.ts` with explicit TypeScript types. Write unit tests covering these helpers and configure scripts `test` and `test:ui`.
 **Done when:** Running `npm test` passes all tests in the terminal, and `npm run test:ui` launches the Vitest browser interface with all tests passing.
 
-## Task 7: Build Favorites Page with LocalStorage (Bonus) & 404 Route
+## Task 7: Build Favorites Page with LocalStorage (Bonus) & 404 Route (Completed)
 Implement a Favorites page at route `/favorites`. Allow users to bookmark books from cards and detail views, persisting the list in browser `localStorage`. Display saved books in a grid with an empty state message if none are saved. Add a customized 404 "Page Not Found" route for any invalid path.
 **Done when:** Bookmarked books persist across browser reloads, `/favorites` renders all saved items, and invalid URLs display a styled 404 page with a link back to `/`.
 
