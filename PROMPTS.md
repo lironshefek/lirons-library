@@ -431,3 +431,8 @@ Please run the tests and show the passing output.
 **Prompt:** how can i know that you applied all the goals until mission 8? check all the ddetails again?
 **Agent did:** Compared the current implementation and project configuration with `tasks.MD` and the PRD, identified which task requirements are present and which earlier behaviors were superseded by later tasks, and checked for Task 8 features.
 **I checked:** Re-ran `npm test` (2 files, 9 tests passed), `npm run build` (passed), checked the source for explicit `any` types, inspected routes/CSS/API/tests, and ran `git diff --check`.
+
+### Prompt 35 — Ask for Tests URL
+**Prompt:** what is the url for the tests?
+**Agent did:** Identified the local Vitest UI address and the project paths containing the unit and component tests.
+**I checked:** Reviewed the `test:ui` script and previously verified Vitest UI command configuration.
