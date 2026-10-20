@@ -29,3 +29,22 @@ export function getCoverUrl(coverId: number | null | undefined, size: CoverSize 
 
   return `https://covers.openlibrary.org/b/id/${coverId}-${size}.jpg`;
 }
+
+// Picks a random book from the list, avoiding the book with `excludeId`
+// when another option exists. `random` can be replaced in tests.
+export function pickRandomBook(
+  books: readonly Book[],
+  excludeId: string | null = null,
+  random: () => number = Math.random,
+): Book | null {
+  const candidates = books.length > 1
+    ? books.filter((book) => book.id !== excludeId)
+    : books;
+
+  if (candidates.length === 0) {
+    return null;
+  }
+
+  const index = Math.floor(random() * candidates.length);
+  return candidates[index];
+}

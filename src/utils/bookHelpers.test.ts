@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Book } from '../types/book';
-import { filterBooksByTitle, formatPublishYear, getCoverUrl } from './bookHelpers';
+import { filterBooksByTitle, formatPublishYear, getCoverUrl, pickRandomBook } from './bookHelpers';
 
 function makeBook(overrides: Partial<Book> = {}): Book {
   return {
@@ -60,5 +60,28 @@ describe('getCoverUrl', () => {
   // Uses a placeholder image when the book has no cover.
   it('returns a placeholder when the cover identifier is missing', () => {
     expect(getCoverUrl(null)).toBe('https://via.placeholder.com/150x220?text=No+Cover');
+  });
+});
+
+describe('pickRandomBook', () => {
+  const books = [
+    makeBook({ id: '1', title: 'First' }),
+    makeBook({ id: '2', title: 'Second' }),
+    makeBook({ id: '3', title: 'Third' }),
+  ];
+
+  // Uses the random number to choose a position in the list.
+  it('picks the book at the random position', () => {
+    expect(pickRandomBook(books, null, () => 0.5)).toBe(books[1]);
+  });
+
+  // Never repeats the excluded book when other books are available.
+  it('skips the excluded book', () => {
+    expect(pickRandomBook(books, '1', () => 0)).toBe(books[1]);
+  });
+
+  // Returns null when there are no books to choose from.
+  it('returns null for an empty list', () => {
+    expect(pickRandomBook([], null, () => 0)).toBeNull();
   });
 });
