@@ -568,3 +568,9 @@ Please run the tests and show the passing output.
 **Agent did:** Replaced "the student" with "Liron" in `AGENTS.md` (mentor intro, logging rules, and git rules). From this entry on, `PROMPTS.md` refers to Liron by name; earlier entries were left unchanged as history. No app code changed.
 **I checked:** Searched `AGENTS.md` to confirm no "student" references remain apart from the intro ("Liron, a student").
 **Questions asked:** Asked whether to also rename "student" to "Liron" in the earlier `PROMPTS.md` entries. Awaiting answer. (Prompt 56's question about the books without a description is still open.)
+
+### Prompt 58 — Keep Earlier Log Entries Unchanged (2026-10-21)
+**Prompt:** keep them as they were written
+**Agent did:** Left the earlier `PROMPTS.md` entries unchanged (they still say "student"); only new entries use Liron's name. No code changed.
+**I checked:** Nothing to verify.
+**Questions asked:** Liron answered Prompt 57: keep the earlier entries as they were written. Prompt 56's question (does a book without a description show the "No description is available" message?) is still open.
