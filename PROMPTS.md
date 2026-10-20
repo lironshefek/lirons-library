@@ -586,3 +586,15 @@ Please run the tests and show the passing output.
 **Agent did:** Added two git rules to `AGENTS.md`: no commits when only `PROMPTS.md` changed (the entry rides along with the next real commit), and commit messages must describe the change instead of "log prompt N". Committed because `AGENTS.md` changed.
 **I checked:** Re-read the git section of `AGENTS.md`.
 **Questions asked:** Prompt 59's question (responsive styling or colors first?) is still open.
+
+### Prompt 61 — Suggestions for Responsive Styling (2026-10-21)
+**Prompt:** before you make changes - what do you suggest me to? about the responsive styling
+**Agent did:** Reviewed `src/App.css` (breakpoints at 900/700/560px) and listed suggestions: let the page scroll instead of the inner scroll box on `.book-grid`; use an auto-fitting grid (4 columns on wide screens, 2 on phones); keep covers at book proportions with `aspect-ratio`; scale the long home title down on small phones; full-width Spin button on phones; remove unused Task 2 CSS (`.master-detail-layout`, `.book-card--active`, `grid-area`). No code changed.
+**I checked:** Read the full stylesheet and searched `src/` for the classes still in use.
+**Questions asked:** Which suggestions to apply? Awaiting answer.
+
+### Prompt 62 — Apply Responsive Styling (2026-10-21)
+**Prompt:** you can do it :) it sounds good - i will think about the colors after
+**Agent did:** Applied all six suggestions in `src/App.css`, one commit per step: (1) removed unused Task 2 CSS (`.master-detail-layout`, `.book-card--active`, `.book-details__placeholder`, `grid-area`, a duplicate `color`); (2) `.book-grid` now uses `repeat(auto-fill, minmax(220px, 1fr))` with normal page scrolling, and 2 smaller cards per row on phones; (3) covers use `aspect-ratio: 2 / 3`; (4) home title minimum size reduced to 2.1rem and the Spin button is full width on phones. Updated the Task 8 progress list in `tasks.MD`.
+**I checked:** `npm run build` after each step and `npx vitest run` (16 tests passed). Browser check on desktop and phone width pending with Liron.
+**Questions asked:** Liron answered Prompt 61: apply all suggestions; colors will be decided later. New question: asked Liron to check the layout at desktop, tablet, and phone widths. Awaiting answer.

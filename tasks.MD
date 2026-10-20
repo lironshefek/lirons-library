@@ -36,4 +36,4 @@ Implement an interactive book roulette page at route `/random` that picks a surp
 **Progress:**
 - [x] `/random` roulette page with Spin button, back link, nav link, cover switching while spinning, and `pickRandomBook` tests (checked by the student)
 - [ ] Custom CSS color palette with variables (waiting for the student to choose colors)
-- [ ] Responsive styling refinements across mobile and desktop
+- [ ] Responsive styling refinements across mobile and desktop: page scrolling instead of an inner scroll box, auto-fit grid (4/3/2 columns), 2:3 covers, smaller phone title, full-width Spin button, unused CSS removed (implemented, awaiting Liron's check)
