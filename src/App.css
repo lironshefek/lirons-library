@@ -207,10 +207,11 @@ h1 {
   outline-offset: 3px;
 }
 
+/* Covers keep a book's 2:3 shape at any card width */
 .book-card__cover {
   display: block;
   width: 100%;
-  height: 280px;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
   background: #e9e5d9;
 }
@@ -453,9 +454,5 @@ h1 {
     width: min(100%, 280px);
     max-height: 360px;
     justify-self: center;
-  }
-
-  .book-card__cover {
-    height: 300px;
   }
 }
