@@ -15,7 +15,7 @@ Create the `SearchBar` component with an input field and the placeholder "Search
 **Done when:** I can type text into the search bar, see the typed characters in real time, and verify the value is tracked in state.
 
 ## Task 4: Connect Live Search to Open Library API (Completed)
-Create an API helper module that fetches a list of popular books from the Open Library Search endpoint and replace the local mock data source with it. Typing in `SearchBar` filters only these loaded books by title (no new API request while typing); if no title matches, the list is empty. When the input is empty, the full list of popular books is shown.
+Create an API helper module that fetches a list of psychological thrillers first published in 2000 or later that have a cover image from the Open Library Search endpoint and replace the local mock data source with it. Typing in `SearchBar` filters only these loaded books by title (no new API request while typing); if no title matches, the list is empty. When the input is empty, the full list of psychological thrillers is shown.
 **Done when:** The home page shows live books from the Open Library API, typing letters shows only the loaded books whose titles contain them (or an empty list with "No books match your search."), and clearing the input restores the full list.
 
 ## Task 5: TypeScript Migration, React Router & Dedicated Details Page (Completed)
