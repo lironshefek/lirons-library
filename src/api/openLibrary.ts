@@ -1,5 +1,10 @@
-import type { Book, OpenLibraryDocument, OpenLibraryResponse } from '../types/book';
-import { getCoverUrl } from '../utils/bookHelpers';
+import type {
+  Book,
+  OpenLibraryDocument,
+  OpenLibraryResponse,
+  OpenLibraryWork,
+} from '../types/book';
+import { getCoverUrl, getDescriptionText } from '../utils/bookHelpers';
 
 const SEARCH_URL = 'https://openlibrary.org/search.json';
 
@@ -74,6 +79,19 @@ export async function getBookById(id: string, signal?: AbortSignal): Promise<Boo
   const doc = Array.isArray(data.docs) ? data.docs[0] : undefined;
 
   return doc ? normalizeBook(doc) : null;
+}
+
+// Loads a book's description from its Open Library work page.
+// Returns null when the book has no description.
+export async function getBookDescription(id: string, signal?: AbortSignal): Promise<string | null> {
+  const response = await fetch(`https://openlibrary.org/works/${encodeURIComponent(id)}.json`, { signal });
+
+  if (!response.ok) {
+    throw new Error(`Open Library description request failed (${response.status}).`);
+  }
+
+  const work = await response.json() as OpenLibraryWork;
+  return getDescriptionText(work.description);
 }
 
 export async function searchBooks(query = '', signal?: AbortSignal): Promise<Book[]> {

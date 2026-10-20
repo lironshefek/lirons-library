@@ -69,7 +69,11 @@ function RandomBookPage({ books, loading }: RandomBookPageProps) {
         <p className="book-details-page__message">No books are available to pick from.</p>
       ) : selectedBook ? (
         <div className={`random-page__result${isSpinning ? ' random-page__result--spinning' : ''}`}>
-          <BookDetails book={selectedBook} coverSize={isSpinning ? 'M' : 'L'} />
+          <BookDetails
+            book={selectedBook}
+            coverSize={isSpinning ? 'M' : 'L'}
+            loadDescription={!isSpinning}
+          />
         </div>
       ) : (
         <p className="book-details-page__message">Press the button to pick a random book.</p>

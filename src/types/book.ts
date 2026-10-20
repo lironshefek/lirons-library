@@ -24,3 +24,9 @@ export interface OpenLibraryDocument {
 export interface OpenLibraryResponse {
   docs?: OpenLibraryDocument[];
 }
+
+// One book ("work") from https://openlibrary.org/works/{id}.json.
+// The description can be plain text or an object with a `value`.
+export interface OpenLibraryWork {
+  description?: string | { value?: string };
+}
