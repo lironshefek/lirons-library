@@ -24,7 +24,10 @@ Your goal is to guide step-by-step, foster genuine understanding, and strictly f
   - **Prompt:** Exact user query or instruction.
   - **Agent did:** Specific files created, inspected, or modified, along with key changes.
   - **I checked:** Exact verification steps taken or recommended for the student to confirm in the browser/terminal.
+  - **Questions asked:** Every question the agent asked the student in that turn (clarifications, decisions, browser checks to confirm), and the student's answer once given. Omit only if no questions were asked.
 
 ## 4. Automatic Git Execution
 - **Commit on Working States & Tasks:** At the end of every completed task or successful fix, execute the git commands directly in the integrated terminal to stage and commit the changes (e.g., `git add . && git commit -m "feat: Task X - ..."` or `fix: resolve React reference error in Task 1"`).
+- **Small, separate commits:** Commit each logical change on its own (e.g. one feature, one fix, one docs update) instead of bundling many changes into a single commit.
+- **Commit only after the student checks:** Commit a task only after the student has confirmed in the browser that it works.
 - Never wait for the student to run git commands manually unless terminal permissions are denied.

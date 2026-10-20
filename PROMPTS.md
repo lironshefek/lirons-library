@@ -441,3 +441,50 @@ Please run the tests and show the passing output.
 **Prompt:** Read the agent guidelines and task board, follow the workflow rules (update TASKS.md status, log every prompt in PROMPTS.md, commit with Conventional Commits), and summarize the next active task before starting.
 **Agent did:** Read `AGENTS.md`, `tasks.MD`, `PROMPTS.md`, and the git history. Marked Tasks 5, 6, and 7 as `(Completed)` in `tasks.MD`, since they were already implemented and committed but their status had not been updated. Identified Task 8 (Mystery Book Roulette `/random`, CSS color palette, responsive refinements) as the next active task. No source code changed.
 **I checked:** Ran `npx vitest run` (2 files, 9 tests passed) and `npm run build` (succeeded) before marking the tasks complete.
+
+### Prompt 37 — Verify Tasks 1-7 Step by Step (2026-10-20)
+**Prompt:** make sure to commit a mission only after we checked that it done. all the tasks are located in Tasks.md and we are continue sep by step. your first misson it to check that tasks 1-7 are finished. ask me questions if you need
+**Agent did:** Removed the "(Completed)" markers from Tasks 5-7 until the student confirms them. Audited every source file against the "Done when" criteria of Tasks 1-7 and listed open questions (card details, empty-search behavior, unused mock data, refresh on a search-result details page).
+**I checked:** Read all files in `src/`, `package.json`, `tsconfig.json`, `vite.config.ts`; confirmed no `.js/.jsx` files and no `any` types remain; tests (9/9) and build passed earlier this session. Browser checks are pending with the student.
+**Questions asked:** (1) Should cards also show author and year (description is not available from the API)? (2) Keep the default popular books on empty search, or clear the list as Task 4 says? (3) Fix "Book not found" after refreshing a search-result details page? (4) Delete the unused `src/data/mockBooks.json`? — Student answered in Prompt 38: add author/year, keep default books, fix the refresh, keep the file.
+
+### Prompt 38 — Apply Audit Answers for Tasks 1-7 (2026-10-20)
+**Prompt:** answer to your questions: 1- add those details. 2- keep the books if its empty. 3- fix it. dont remove it now. if you are catching diff between the missions and tasks.md or prd.md , fix it in those files
+**Agent did:** Added author and publication year to `BookCard.tsx` (+ `.book-card__meta` style in `App.css`). Added `getBookById` to `src/api/openLibrary.ts` (search by `key:/works/{id}`) and made `BookDetailsPage.tsx` fetch the book when it is not in memory, so refreshing a details page works. Kept the default book list on empty search and kept `mockBooks.json`. Updated `tasks.MD` (notes on Tasks 1-2, empty-search behavior in Task 4, refresh behavior in Task 5) and rewrote `PRD.MD` sections 3-7 to match the routed app, favorites, 404 page, and API fields.
+**I checked:** `npx vitest run` (2 files, 9 tests passed) and `npm run build` (succeeded). Browser checks of Tasks 1-7 are pending with the student before marking Tasks 5-7 completed and committing.
+**Questions asked:** Asked the student to confirm in the browser: author/year on cards, F5 on a search-result details page still shows the book, clearing search restores popular books, plus the earlier Task 5-7 checks (back link, favorites persistence, empty favorites, 404 page, `npm run test:ui`). Awaiting answer.
+
+### Prompt 39 — Log Questions in PROMPTS.md (2026-10-20)
+**Prompt:** make sure that if you ask me questions - you should mention it in PROMPTS.md .
+**Agent did:** Added a **Questions asked:** line to Prompts 37 and 38 listing the questions put to the student (and the answers, where given). Added the same field to the entry structure in `AGENTS.md` so every future entry records questions.
+**I checked:** Re-read the updated entries in `PROMPTS.md` and the logging rules in `AGENTS.md`.
+
+### Prompt 40 — Explain Changes, Browser Checks, and Commit Status (2026-10-20)
+**Prompt:** tell about the changes that you made, what should i notice in the browser? you commited the changes?
+**Agent did:** Explained the uncommitted changes from Prompts 37-39 (author/year on cards, details-page refresh fix, docs alignment, logging rule), listed what to look for in the browser, and confirmed nothing has been committed since `8b97fdf`. No code changed.
+**I checked:** Ran `git status` to confirm the changes are still uncommitted.
+**Questions asked:** Asked the student to run the browser checks and reply whether each one works, so Tasks 5-7 can be marked completed and committed. Awaiting answer.
+
+### Prompt 41 — Shorter Summary of Changes (2026-10-20)
+**Prompt:** summerize it - less sentences
+**Agent did:** Gave a short version of the Prompt 40 explanation (changes, browser checks, commit status). No code changed.
+**I checked:** Nothing new to verify; changes remain uncommitted.
+**Questions asked:** Asked the student to reply whether the browser checks pass. Awaiting answer.
+
+### Prompt 42 — Search Only the Home List (2026-10-20)
+**Prompt:** we need to fix an issue - when i type some words in the serach box , i only want to see the books that matches the letters that i wrote. i prefer the list to be empty in that case. and another question - when i typed those letters (and i know that any book matches those letters) i saw diffrent books from the original list - where is it came from?
+**Agent did:** Explained that the extra books came from a live search over the whole Open Library catalog (filtered by title), not from the home list. After the student chose "Only the home list", removed the debounced API search, the `searchResults` state, and the `SearchResultSet` type from `src/App.tsx`; typing now only filters the loaded books by title and shows "No books match your search." when nothing matches. Updated Task 4 and Task 8 in `tasks.MD` and the pitch, Home screen, feature 1, acceptance criteria, and API note in `PRD.MD`.
+**I checked:** Queried the Open Library API for "qzx", "zzz", and "abc" to confirm where the extra books came from (e.g. "abc" returned 100 books, 81 with "abc" in the title). Ran `npx vitest run` (9 tests passed) and `npm run build` (succeeded).
+**Questions asked:** "What should the search box search?" — options: only the home list / home list first, then API / keep all of Open Library. Student answered: **Only the home list**. Also asked the student to confirm the new search behavior in the browser. Awaiting answer.
+
+### Prompt 43 — Browser Checklist Before Commit (2026-10-20)
+**Prompt:** what sould i check in the browser before we commit those changes?
+**Agent did:** Gave one combined browser checklist covering all uncommitted changes (author/year on cards, home-list-only search, details refresh) and the Task 5-7 checks. No code changed.
+**I checked:** Nothing new to verify; changes remain uncommitted.
+**Questions asked:** Asked the student to run the checklist and report which checks pass or fail. Awaiting answer.
+
+### Prompt 44 — Confirm Tasks 1-7 and Commit Separately (2026-10-20)
+**Prompt:** its great , those are a lot of changes for one commit, next time make sure to seperate those. i think that we are ready fot task 8
+**Agent did:** Marked Tasks 5-7 as `(Completed)` in `tasks.MD`. Added two git rules to `AGENTS.md` (small separate commits; commit only after the student checks). Split the pending work into separate commits: card details, details-page refresh fix, home-list-only search, task/PRD docs, and logging rules/prompt log.
+**I checked:** Student confirmed all browser checks pass. Ran `npx vitest run` and `npm run build` before committing.
+**Questions asked:** Asked which color palette style to use for Task 8.
