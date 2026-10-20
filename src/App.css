@@ -235,9 +235,17 @@ h1 {
 
 .book-card__title {
   display: block;
-  padding: 16px 18px 18px;
+  padding: 16px 18px 6px;
   font-size: 1.45rem;
   line-height: 1.2;
+}
+
+/* Author and publication year shown under the card title */
+.book-card__meta {
+  display: block;
+  padding: 0 18px 18px;
+  color: #6b675d;
+  font-size: 0.95rem;
 }
 
 .book-details {

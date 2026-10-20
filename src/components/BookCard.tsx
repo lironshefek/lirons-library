@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Book } from '../types/book';
+import { formatPublishYear } from '../utils/bookHelpers';
 
 interface BookCardProps {
   book: Book;
@@ -15,6 +16,9 @@ function BookCard({ book, isFavorite, onToggleFavorite }: BookCardProps) {
       <Link className="book-card__link" to={`/books/${routeId}`}>
         <img className="book-card__cover" src={book.coverUrl} alt={`Cover of ${book.title}`} />
         <span className="book-card__title">{book.title}</span>
+        <span className="book-card__meta">
+          {book.author} · {formatPublishYear(book.year)}
+        </span>
       </Link>
       <button
         className="favorite-toggle"
