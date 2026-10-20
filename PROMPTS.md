@@ -574,3 +574,9 @@ Please run the tests and show the passing output.
 **Agent did:** Left the earlier `PROMPTS.md` entries unchanged (they still say "student"); only new entries use Liron's name. No code changed.
 **I checked:** Nothing to verify.
 **Questions asked:** Liron answered Prompt 57: keep the earlier entries as they were written. Prompt 56's question (does a book without a description show the "No description is available" message?) is still open.
+
+### Prompt 59 — Confirm Missing-Description Message (2026-10-21)
+**Prompt:** yes, it shows No description is available for this book. thats great
+**Agent did:** Recorded the confirmation; the book-description feature (Prompts 54-56) is verified in the browser. No code changed.
+**I checked:** Liron checked "La chica de nieve" (`/books/OL25065067W`) in the browser.
+**Questions asked:** Liron answered Prompt 56: the book without a description shows "No description is available for this book." New question: continue Task 8 with responsive styling, or choose the color palette first? Awaiting answer.
