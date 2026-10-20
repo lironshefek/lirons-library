@@ -562,3 +562,9 @@ Please run the tests and show the passing output.
 **Agent did:** Checked the Works API for all 100 books in the home list: 98 have a description, 2 do not — "Prowadz swój plug przez kosci umarlych" by Olga Tokarczuk (`/books/OL17351965W`) and "La chica de nieve" by Javier Castillo (`/books/OL25065067W`). Added to the logging rule in `AGENTS.md` that answers to earlier questions must be recorded in the new entry. No app code changed.
 **I checked:** Fetched `/works/{id}.json` for all 100 books from the live API.
 **Questions asked:** Student answered Prompt 55: descriptions appear on the books they opened; they could not find one without a description. New question: asked the student to open one of the two books above and confirm the "No description is available for this book." message. Awaiting answer.
+
+### Prompt 57 — Use Liron's Name in the Log (2026-10-21)
+**Prompt:** instead of student - you can use my name: Liron
+**Agent did:** Replaced "the student" with "Liron" in `AGENTS.md` (mentor intro, logging rules, and git rules). From this entry on, `PROMPTS.md` refers to Liron by name; earlier entries were left unchanged as history. No app code changed.
+**I checked:** Searched `AGENTS.md` to confirm no "student" references remain apart from the intro ("Liron, a student").
+**Questions asked:** Asked whether to also rename "student" to "Liron" in the earlier `PROMPTS.md` entries. Awaiting answer. (Prompt 56's question about the books without a description is still open.)
