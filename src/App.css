@@ -121,15 +121,12 @@ h1 {
   border-color: #547c61;
 }
 
+/* As many 220px+ columns as fit: 4 on wide screens, 3 on laptops, 2 on tablets.
+   The whole page scrolls (no inner scroll box), which feels natural on phones. */
 .book-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 24px;
-  max-height: min(72vh, 900px);
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
-  scrollbar-gutter: stable;
-  padding: 4px;
 }
 
 .book-list__empty {
@@ -402,17 +399,7 @@ h1 {
   font-style: italic;
 }
 
-@media (max-width: 900px) {
-  .book-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 700px) {
-  .book-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .book-details-page .book-details {
     grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
     gap: 20px;
@@ -434,9 +421,28 @@ h1 {
     margin-bottom: 28px;
   }
 
+  /* Two smaller cards per row on phones, so the list is not too long */
   .book-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .book-card__title {
+    padding: 12px 12px 4px;
+    font-size: 1.05rem;
+  }
+
+  .book-card__meta {
+    padding: 0 12px 12px;
+    font-size: 0.82rem;
+  }
+
+  .favorite-toggle {
+    top: 6px;
+    right: 6px;
+    min-width: 36px;
+    min-height: 36px;
+    font-size: 1.1rem;
   }
 
   .book-details-page .book-details {
