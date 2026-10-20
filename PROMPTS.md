@@ -510,3 +510,32 @@ Please run the tests and show the passing output.
 **Prompt:** it worked ! you can commit
 **Agent did:** Marked the roulette sub-task as done in the Task 8 progress list in `tasks.MD`, then committed the work in separate commits: the `pickRandomBook` helper with tests, the `/random` page (with route, nav link, styles, and cover-size support in `BookDetails`), and the docs/log updates.
 **I checked:** Student confirmed in the browser that the roulette, cover switching, and back link work (answers the open questions in Prompts 44-46). Ran `npx vitest run` and `npm run build` before committing.
+
+### Prompt 48 — Psychological Thrillers Only (2026-10-20)
+**Prompt:** before we will continue, i want to change the genere of the books to be only psychological thriller - you can change the title in the main page so the visitors will see that the books are only ones that i like :)
+**Agent did:** Changed the default query in `src/api/openLibrary.ts` from six genres to `subject:psychological_thriller`. Updated the home page header in `src/App.tsx` (eyebrow "BookFinder · My personal shelf", title "Psychological Thrillers I Love", and a personal intro line). Replaced "popular books" with "psychological thrillers" in `tasks.MD` and `PRD.MD`. The roulette uses the same list, so it now picks only psychological thrillers too.
+**I checked:** Queried Open Library for `subject:psychological_thriller` (4,229 found; 100 returned, 99 with covers, e.g. The Silent Patient, The Housemaid). Ran `npx vitest run` (12 tests passed) and `npm run build` (succeeded). Browser check pending with the student.
+**Questions asked:** Asked the student to check the new list and header in the browser and whether the header wording is right. Awaiting answer.
+
+### Prompt 49 — Only Books From 2000 Onward (2026-10-20)
+**Prompt:** show only books from 2000+ (year)
+**Agent did:** Added `AND first_publish_year:[2000 TO *]` to the default query in `src/api/openLibrary.ts`, so Open Library returns only psychological thrillers first published in 2000 or later. Mentioned "from 2000 onward" in the home page intro in `src/App.tsx`. Updated the Home screen and API note in `PRD.MD` and Task 4 in `tasks.MD`.
+**I checked:** Queried the API with the new filter (3,670 found; 100 returned; earliest year 2000; none missing a year; 99 with covers). Ran `npx vitest run` and `npm run build`. Browser check pending with the student.
+**Questions asked:** Asked the student to check in the browser that all books are from 2000 or later. Awaiting answer.
+
+### Prompt 50 — Only Books With a Cover (2026-10-20)
+**Prompt:** show only books who have cover
+**Agent did:** Added `AND cover_i:[1 TO *]` to the default query in `src/api/openLibrary.ts` so Open Library returns only books with a cover image, and added a safety filter in `searchBooks` that drops any book whose `cover_i` is `null`. Updated the Home screen and API note in `PRD.MD` and Task 4 in `tasks.MD`.
+**I checked:** Queried the API with the cover filter (2,098 found; 100 returned; all 100 with covers). Ran `npx vitest run` and `npm run build`. Browser check pending with the student.
+**Questions asked:** Asked the student to check in the browser that every card shows a real cover (no "No Cover" placeholder). Awaiting answer.
+
+### Prompt 51 — Clarify What Confirmation Is Needed (2026-10-20)
+**Prompt:** what answer yoy need?
+**Agent did:** Explained that only a yes/no confirmation of the three uncommitted changes (thrillers only, 2000+, covers only) is needed before committing. No code changed.
+**I checked:** Nothing new to verify.
+**Questions asked:** Asked: "Does the home page look right — only thrillers, from 2000+, all with covers, and is the header OK?" Awaiting answer.
+
+### Prompt 52 — Commit Genre, Year, and Cover Filters (2026-10-20)
+**Prompt:** yes, commit. notice that you can commit on your own if you checked that its working
+**Agent did:** Updated the commit rule in `AGENTS.md`: the agent may commit on its own after verifying a change works; whole tasks are still marked `(Completed)` only after the student's browser check. Committed the Prompts 48-50 work in separate commits (home header, API filters, docs, log/rules).
+**I checked:** Student confirmed the home page shows only psychological thrillers from 2000+ with covers and approved the header (answers the open questions in Prompts 48-51). Ran `npx vitest run` and `npm run build` before committing.
