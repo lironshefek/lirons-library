@@ -487,4 +487,26 @@ Please run the tests and show the passing output.
 **Prompt:** its great , those are a lot of changes for one commit, next time make sure to seperate those. i think that we are ready fot task 8
 **Agent did:** Marked Tasks 5-7 as `(Completed)` in `tasks.MD`. Added two git rules to `AGENTS.md` (small separate commits; commit only after the student checks). Split the pending work into separate commits: card details, details-page refresh fix, home-list-only search, task/PRD docs, and logging rules/prompt log.
 **I checked:** Student confirmed all browser checks pass. Ran `npx vitest run` and `npm run build` before committing.
-**Questions asked:** Asked which color palette style to use for Task 8.
+**Questions asked:** Asked which color palette to use for Task 8 (keep current / warm library / night reading / fresh & bright). Student answered: wants to choose colors themselves — wait with the color part.
+
+### Prompt 44 (continued) — Task 8 Step 1: Mystery Book Roulette (2026-10-20)
+**Agent did:** Added `pickRandomBook` to `src/utils/bookHelpers.ts` with 3 unit tests; created `src/pages/RandomBookPage.tsx` (Spin button, ~1.2 s roulette animation flipping through random books, result shown with `BookDetails` and a "View full details" link to `/books/:id`); added the `/random` route and "Random" nav link in `src/App.tsx`; added roulette styles in `src/App.css` using the existing colors. Added a Task 8 progress list to `tasks.MD`. Color palette postponed.
+**I checked:** `npx vitest run` (12 tests passed) and `npm run build` (succeeded). Browser check pending with the student.
+**Questions asked:** Asked the student to check the `/random` page in the browser. Awaiting answer.
+
+### Prompt 45 — Roulette Cover Switching, Remove Details Link (2026-10-20)
+**Prompt:** in the random section - make sure that the photo also switched when the text is moving. and the button "click for full details" is n longer needed bc all the details already there. the reandom books are coming from the original list? if not make sure that they came onl from the original list.
+**Agent did:** Confirmed the roulette already picks only from the home page's book list (`books` in `App.tsx`, no search results or API calls). Added an optional `coverSize` prop to `BookDetails.tsx`; the roulette shows the fast medium ('M') cover while spinning and the large ('L') one when it stops, and the cover `<img>` gets `key={book.id}` so an old cover never stays next to new text. Removed the "View full details" link and its CSS. Updated Task 8 in `tasks.MD` and the roulette screen in `PRD.MD` (no link to `/books/:id`; details shown on the page).
+**I checked:** `npx vitest run` (12 tests passed) and `npm run build` (succeeded). Browser check pending with the student.
+**Questions asked:** Asked the student to check in the browser that the cover changes together with the text while spinning and the link is gone. Awaiting answer.
+
+### Prompt 46 — Back Button on the Random Page (2026-10-20)
+**Prompt:** in the "random" page add a button who return to the main page
+**Agent did:** Added a "<- Back to books" link to `/` at the top of `src/pages/RandomBookPage.tsx`, reusing the `book-details-page__back` style from the details page so both pages look the same.
+**I checked:** `npx vitest run` and `npm run build`. Browser check pending with the student.
+**Questions asked:** Asked the student to check that the back link returns to the home page. Awaiting answer.
+
+### Prompt 47 — Commit Task 8 Step 1: Roulette (2026-10-20)
+**Prompt:** it worked ! you can commit
+**Agent did:** Marked the roulette sub-task as done in the Task 8 progress list in `tasks.MD`, then committed the work in separate commits: the `pickRandomBook` helper with tests, the `/random` page (with route, nav link, styles, and cover-size support in `BookDetails`), and the docs/log updates.
+**I checked:** Student confirmed in the browser that the roulette, cover switching, and back link work (answers the open questions in Prompts 44-46). Ran `npx vitest run` and `npm run build` before committing.

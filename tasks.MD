@@ -31,5 +31,9 @@ Implement a Favorites page at route `/favorites`. Allow users to bookmark books 
 **Done when:** Bookmarked books persist across browser reloads, `/favorites` renders all saved items, and invalid URLs display a styled 404 page with a link back to `/`.
 
 ## Task 8: Build Mystery Book Roulette Page, Custom Color Palette & Responsive CSS
-Implement an interactive book roulette page at route `/random` that picks a surprise random book from the loaded book list, displaying its cover, details, and navigation to `/books/:id`. Introduce a custom CSS color palette using CSS variables for a cohesive theme, and refine responsive styling across mobile and desktop.
+Implement an interactive book roulette page at route `/random` that picks a surprise random book from the home page's book list (the books shown when the search is empty), displaying its cover and full details directly on the page. The cover switches together with the text while the roulette spins. Introduce a custom CSS color palette using CSS variables for a cohesive theme, and refine responsive styling across mobile and desktop.
 **Done when:** The `/random` roulette works smoothly, the custom color palette and responsive design are applied across the entire app, at least 5 unit tests pass, and `npm run build` succeeds cleanly.
+**Progress:**
+- [x] `/random` roulette page with Spin button, back link, nav link, cover switching while spinning, and `pickRandomBook` tests (checked by the student)
+- [ ] Custom CSS color palette with variables (waiting for the student to choose colors)
+- [ ] Responsive styling refinements across mobile and desktop

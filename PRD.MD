@@ -11,7 +11,7 @@ The application uses React Router with dedicated pages:
 * **Home (`/`):** A search bar at the top with a responsive grid of popular books loaded from Open Library. Typing filters this list by title.
 * **Book Details (`/books/:id`):** A dedicated page with the selected book's larger cover, title, author, publication year, rating, genre tags, a favorite toggle, and a back link.
 * **Favorites (`/favorites`):** A grid of bookmarked books, or an empty-state message when none are saved.
-* **Mystery Book Roulette (`/random`):** Picks a surprise random book and links to its details page (Task 8).
+* **Mystery Book Roulette (`/random`):** Spins through the home page's books and stops on a surprise book, showing its cover and full details on the same page (Task 8).
 * **404 Page (`*`):** A styled "Page Not Found" page with a link back to `/`.
 
 ## 4. Must-Have Features
