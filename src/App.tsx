@@ -6,6 +6,7 @@ import BookList from './components/BookList';
 import SearchBar from './components/SearchBar';
 import FavoritesPage from './pages/FavoritesPage';
 import NotFoundPage from './pages/NotFoundPage';
+import RandomBookPage from './pages/RandomBookPage';
 import type { Book } from './types/book';
 import { filterBooksByTitle } from './utils/bookHelpers';
 import './App.css';
@@ -139,6 +140,9 @@ function App() {
         <NavLink to="/favorites" className={({ isActive }) => `site-nav__link${isActive ? ' site-nav__link--active' : ''}`}>
           Favorites <span className="site-nav__count">{favorites.length}</span>
         </NavLink>
+        <NavLink to="/random" className={({ isActive }) => `site-nav__link${isActive ? ' site-nav__link--active' : ''}`}>
+          Random
+        </NavLink>
       </nav>
       <Routes>
         <Route
@@ -168,6 +172,7 @@ function App() {
             onToggleFavorite={toggleFavorite}
           />
         )} />
+        <Route path="/random" element={<RandomBookPage books={books} loading={loading} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

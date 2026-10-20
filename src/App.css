@@ -375,6 +375,40 @@ h1 {
   font-weight: 600;
 }
 
+/* Mystery Book Roulette page */
+.random-page__spin {
+  margin-bottom: 28px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 999px;
+  background: #405d48;
+  color: #fffefa;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.random-page__spin:hover:not(:disabled) {
+  background: #547c61;
+  transform: translateY(-1px);
+}
+
+.random-page__spin:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.random-page__result {
+  max-width: 900px;
+  transition: opacity 0.1s ease;
+}
+
+/* Slightly fade the book while the roulette is still spinning */
+.random-page__result--spinning {
+  opacity: 0.7;
+}
+
 @media (max-width: 900px) {
   .master-detail-layout {
     grid-template-columns: minmax(0, 1fr) 280px;

@@ -1,20 +1,26 @@
 import type { Book } from '../types/book';
 import { formatPublishYear, getCoverUrl } from '../utils/bookHelpers';
+import type { CoverSize } from '../utils/bookHelpers';
 
 interface BookDetailsProps {
   book: Book;
+  // Cover image size; the roulette uses the smaller 'M' image while spinning
+  // because it loads fast enough to keep up with the switching books.
+  coverSize?: CoverSize;
 }
 
-function BookDetails({ book }: BookDetailsProps) {
+function BookDetails({ book, coverSize = 'L' }: BookDetailsProps) {
   const hasRating = Number.isFinite(book.rating)
     && Number.isFinite(book.ratingsCount);
   const genres = Array.isArray(book.genres) ? book.genres.slice(0, 3) : [];
 
   return (
     <aside className="book-details" aria-label={`Details for ${book.title}`}>
+      {/* key: a new image element per book, so an old cover never stays next to new text */}
       <img
+        key={book.id}
         className="book-details__cover"
-        src={getCoverUrl(book.cover_i, 'L')}
+        src={getCoverUrl(book.cover_i, coverSize)}
         alt={`Cover of ${book.title}`}
       />
       <div className="book-details__content">
