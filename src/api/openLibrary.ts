@@ -49,20 +49,37 @@ function normalizeBook(doc: OpenLibraryDocument): Book | null {
   };
 }
 
+const FIELDS = [
+  'key',
+  'title',
+  'author_name',
+  'first_publish_year',
+  'cover_i',
+  'subject',
+  'ratings_average',
+  'ratings_count',
+].join(',');
+
+// Loads one book by its work id (e.g. "OL82563W"), used when the details
+// page is opened directly or refreshed and the book is not in memory.
+export async function getBookById(id: string, signal?: AbortSignal): Promise<Book | null> {
+  const params = new URLSearchParams({ q: `key:/works/${id}`, limit: '1', fields: FIELDS });
+  const response = await fetch(`${SEARCH_URL}?${params}`, { signal });
+
+  if (!response.ok) {
+    throw new Error(`Open Library lookup failed (${response.status}).`);
+  }
+
+  const data = await response.json() as OpenLibraryResponse;
+  const doc = Array.isArray(data.docs) ? data.docs[0] : undefined;
+
+  return doc ? normalizeBook(doc) : null;
+}
+
 export async function searchBooks(query = '', signal?: AbortSignal): Promise<Book[]> {
-  const fields = [
-    'key',
-    'title',
-    'author_name',
-    'first_publish_year',
-    'cover_i',
-    'subject',
-    'ratings_average',
-    'ratings_count',
-  ].join(',');
   const trimmedQuery = query.trim();
   const apiQuery = trimmedQuery || 'subject:(psychological_thriller OR comedy OR Mystery OR romance OR science_fiction OR fantasy)';
-  const params = new URLSearchParams({ q: apiQuery, limit: '100', fields });
+  const params = new URLSearchParams({ q: apiQuery, limit: '100', fields: FIELDS });
   const response = await fetch(`${SEARCH_URL}?${params}`, { signal });
 
   if (!response.ok) {
