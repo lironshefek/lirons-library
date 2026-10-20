@@ -37,9 +37,12 @@ function BookListPage({
   return (
     <main className="page-shell">
       <header className="page-header">
-        <p className="eyebrow">A little space for readers</p>
-        <h1>BookFinder</h1>
-        <p className="page-intro">Browse a few hand-picked reads from the shelf.</p>
+        <p className="eyebrow">BookFinder · My personal shelf</p>
+        <h1>Psychological Thrillers I Love</h1>
+        <p className="page-intro">
+          Only one genre lives here: twisty, dark psychological thrillers from 2000
+          onward, hand-picked because they are my favorite kind of book.
+        </p>
       </header>
       <div className="book-browser">
         <SearchBar value={searchQuery} onChange={onSearchChange} />
