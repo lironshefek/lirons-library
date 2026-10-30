@@ -1,28 +1,51 @@
 /* SearchBar component */
 
 .search-bar {
-  margin-bottom: 24px;
+  display: flex;
+  max-width: 560px;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
 .search-bar__label {
-  display: block;
-  margin-bottom: 8px;
-  color: #405d48;
-  font-size: 0.84rem;
+  color: var(--color-text-soft);
+  font-size: var(--text-xs);
   font-weight: 600;
+}
+
+/* Holds the icon on top of the input */
+.search-bar__field {
+  position: relative;
+}
+
+.search-bar__icon {
+  position: absolute;
+  top: 50%;
+  left: var(--space-4);
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-faint);
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .search-bar__input {
   width: 100%;
-  padding: 13px 15px;
-  border: 1px solid #d8d9cf;
-  border-radius: 10px;
-  background: #fffefa;
-  color: #242d28;
+  height: 52px;
+  padding: 0 var(--space-4) 0 var(--space-7);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
   font: inherit;
+  font-size: var(--text-base);
+}
+
+.search-bar__input::placeholder {
+  color: var(--color-text-faint);
 }
 
 .search-bar__input:focus-visible {
-  outline: 3px solid rgb(84 124 97 / 28%);
-  border-color: #547c61;
+  outline: 2px solid var(--color-accent-focus);
+  outline-offset: 2px;
 }

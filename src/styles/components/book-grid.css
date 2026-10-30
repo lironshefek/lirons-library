@@ -1,7 +1,11 @@
 /* BookList component: the grid of book cards */
 
+/* The search bar above the grid, with space between them */
 .book-browser {
+  display: flex;
   min-width: 0;
+  flex-direction: column;
+  gap: var(--space-6);
 }
 
 /* As many 220px+ columns as fit: 4 on wide screens, 3 on laptops, 2 on tablets.
