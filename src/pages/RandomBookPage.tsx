@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BookDetails from '../components/BookDetails';
+import ErrorMessage from '../components/ErrorMessage';
 import type { Book } from '../types/book';
 import { pickRandomBook } from '../utils/bookHelpers';
 
 interface RandomBookPageProps {
   books: Book[];
   loading: boolean;
+  loadError: boolean;
+  onRetry: () => void;
 }
 
 // How long one spin lasts and how often the shown book changes while spinning.
 const SPIN_DURATION_MS = 1200;
 const SPIN_STEP_MS = 100;
 
-function RandomBookPage({ books, loading }: RandomBookPageProps) {
+function RandomBookPage({ books, loading, loadError, onRetry }: RandomBookPageProps) {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
 
@@ -58,12 +61,18 @@ function RandomBookPage({ books, loading }: RandomBookPageProps) {
         className="random-page__spin"
         type="button"
         onClick={handleSpin}
-        disabled={loading || isSpinning || books.length === 0}
+        disabled={loading || loadError || isSpinning || books.length === 0}
       >
         {isSpinning ? 'Spinning...' : selectedBook ? 'Spin again' : 'Spin the roulette'}
       </button>
 
-      {loading ? (
+      {loadError ? (
+        <ErrorMessage
+          title="Could not load the books"
+          message="The roulette needs the book list from Open Library, but it could not be loaded. Please try again."
+          onRetry={onRetry}
+        />
+      ) : loading ? (
         <p className="book-details-page__message">Loading books...</p>
       ) : books.length === 0 ? (
         <p className="book-details-page__message">No books are available to pick from.</p>

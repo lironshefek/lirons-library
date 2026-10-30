@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import BookDetails from './BookDetails';
+import ErrorMessage from './ErrorMessage';
 import { getBookById } from '../api/openLibrary';
 import type { Book } from '../types/book';
 
@@ -21,6 +22,8 @@ function BookDetailsPage({ books, loading, favoriteIds, onToggleFavorite }: Book
   const [fetchedBook, setFetchedBook] = useState<Book | null>(null);
   // The id whose API lookup has finished, so we know when to show "not found".
   const [checkedId, setCheckedId] = useState<string | null>(null);
+  // The id whose API lookup failed (network or server problem).
+  const [failedId, setFailedId] = useState<string | null>(null);
 
   useEffect(() => {
     if (loading || isInList || !id) {
@@ -30,11 +33,15 @@ function BookDetailsPage({ books, loading, favoriteIds, onToggleFavorite }: Book
     const controller = new AbortController();
 
     getBookById(id, controller.signal)
-      .then((result) => setFetchedBook(result))
+      .then((result) => {
+        setFetchedBook(result);
+        setFailedId(null);
+      })
       .catch((error: unknown) => {
-        if (error instanceof Error && error.name !== 'AbortError') {
+        if (!(error instanceof Error && error.name === 'AbortError')) {
           console.error('Could not load book from Open Library:', error);
           setFetchedBook(null);
+          setFailedId(id);
         }
       })
       .finally(() => {
@@ -57,6 +64,11 @@ function BookDetailsPage({ books, loading, favoriteIds, onToggleFavorite }: Book
       </Link>
       {loading || isLookingUp ? (
         <p className="book-details-page__message">Loading book details...</p>
+      ) : failedId === id && !book ? (
+        <ErrorMessage
+          title="Could not load this book"
+          message="There was a problem connecting to Open Library. Please go back and try again later."
+        />
       ) : book ? (
         <div className="book-details-page__content">
           <button

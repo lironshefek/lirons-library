@@ -3,6 +3,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { searchBooks } from './api/openLibrary';
 import BookDetailsPage from './components/BookDetailsPage';
 import BookList from './components/BookList';
+import ErrorMessage from './components/ErrorMessage';
 import SearchBar from './components/SearchBar';
 import FavoritesPage from './pages/FavoritesPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -13,6 +14,9 @@ import './App.css';
 
 interface BookListPageProps {
   books: Book[];
+  loading: boolean;
+  loadError: boolean;
+  onRetry: () => void;
   searchQuery: string;
   onSearchChange: (query: string) => void;
   favoriteIds: ReadonlySet<string>;
@@ -25,6 +29,9 @@ function isStringArray(value: unknown): value is string[] {
 
 function BookListPage({
   books,
+  loading,
+  loadError,
+  onRetry,
   searchQuery,
   onSearchChange,
   favoriteIds,
@@ -33,6 +40,14 @@ function BookListPage({
   // Search only filters the books already shown on the home page by title.
   const searchTerm = searchQuery.trim();
   const filteredBooks = filterBooksByTitle(books, searchQuery);
+
+  // Text shown when the list is empty, depending on why it is empty.
+  let emptyMessage = 'No books were found.';
+  if (loading) {
+    emptyMessage = 'Loading books...';
+  } else if (searchTerm) {
+    emptyMessage = 'No books match your search.';
+  }
 
   return (
     <main className="page-shell">
@@ -46,12 +61,20 @@ function BookListPage({
       </header>
       <div className="book-browser">
         <SearchBar value={searchQuery} onChange={onSearchChange} />
-        <BookList
-          books={filteredBooks}
-          emptyMessage={searchTerm ? 'No books match your search.' : null}
-          favoriteIds={favoriteIds}
-          onToggleFavorite={onToggleFavorite}
-        />
+        {loadError ? (
+          <ErrorMessage
+            title="Could not load the books"
+            message="There was a problem connecting to Open Library. Please check your internet connection and try again."
+            onRetry={onRetry}
+          />
+        ) : (
+          <BookList
+            books={filteredBooks}
+            emptyMessage={emptyMessage}
+            favoriteIds={favoriteIds}
+            onToggleFavorite={onToggleFavorite}
+          />
+        )}
       </div>
     </main>
   );
@@ -92,17 +115,25 @@ function App() {
   });
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
+  // True when the book list could not be loaded from Open Library.
+  const [loadError, setLoadError] = useState(false);
+  // Increased by the "Try again" button to run the loading effect again.
+  const [reloadCount, setReloadCount] = useState(0);
 
   useEffect(() => {
     const controller = new AbortController();
 
     async function loadBooks() {
+      setLoading(true);
+      setLoadError(false);
+
       try {
         const mappedBooks = await searchBooks('', controller.signal);
         setBooks(mappedBooks);
       } catch (error: unknown) {
-        if (error instanceof Error && error.name !== 'AbortError') {
+        if (!(error instanceof Error && error.name === 'AbortError')) {
           console.error('Could not search Open Library:', error);
+          setLoadError(true);
         }
       } finally {
         if (!controller.signal.aborted) {
@@ -114,7 +145,11 @@ function App() {
     void loadBooks();
 
     return () => controller.abort();
-  }, []);
+  }, [reloadCount]);
+
+  function retryLoadBooks() {
+    setReloadCount((count) => count + 1);
+  }
 
   useEffect(() => {
     try {
@@ -153,6 +188,9 @@ function App() {
           element={(
             <BookListPage
               books={books}
+              loading={loading}
+              loadError={loadError}
+              onRetry={retryLoadBooks}
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
               favoriteIds={favoriteIds}
@@ -175,7 +213,12 @@ function App() {
             onToggleFavorite={toggleFavorite}
           />
         )} />
-        <Route path="/random" element={<RandomBookPage books={books} loading={loading} />} />
+        <Route path="/random" element={<RandomBookPage
+          books={books}
+          loading={loading}
+          loadError={loadError}
+          onRetry={retryLoadBooks}
+        />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

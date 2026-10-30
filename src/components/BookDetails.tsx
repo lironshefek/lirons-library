@@ -17,6 +17,8 @@ interface BookDetailsProps {
 interface LoadedDescription {
   bookId: string;
   text: string | null;
+  // True when the request failed, so we can say so instead of "no description".
+  failed: boolean;
 }
 
 function BookDetails({ book, coverSize = 'L', loadDescription = true }: BookDetailsProps) {
@@ -31,11 +33,11 @@ function BookDetails({ book, coverSize = 'L', loadDescription = true }: BookDeta
     const controller = new AbortController();
 
     getBookDescription(book.id, controller.signal)
-      .then((text) => setDescription({ bookId: book.id, text }))
+      .then((text) => setDescription({ bookId: book.id, text, failed: false }))
       .catch((error: unknown) => {
-        if (error instanceof Error && error.name !== 'AbortError') {
+        if (!(error instanceof Error && error.name === 'AbortError')) {
           console.error('Could not load book description:', error);
-          setDescription({ bookId: book.id, text: null });
+          setDescription({ bookId: book.id, text: null, failed: true });
         }
       });
 
@@ -80,7 +82,9 @@ function BookDetails({ book, coverSize = 'L', loadDescription = true }: BookDeta
         <p className={`book-details__description${isDescriptionReady && description?.text ? '' : ' book-details__description--empty'}`}>
           {!isDescriptionReady
             ? 'Loading description...'
-            : description?.text ?? 'No description is available for this book.'}
+            : description?.failed
+              ? 'Could not load the description right now. Please try again later.'
+              : description?.text ?? 'No description is available for this book.'}
         </p>
       )}
       <ul className="book-details__genres" aria-label="Genres">
