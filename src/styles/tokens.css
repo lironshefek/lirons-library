@@ -1,0 +1,58 @@
+/*
+  Design tokens: fonts, sizes, spacing, corner radius, shadows and layout
+  values shared by the whole app (colors live in colors.css).
+*/
+
+:root {
+  /* Fonts (loaded in index.html) */
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+
+  /* Font sizes */
+  --text-xs: 0.8125rem; /* 13px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-md: 0.9375rem; /* 15px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.75rem; /* 28px */
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 44px;
+  --space-8: 56px;
+  --space-9: 64px;
+  --space-10: 72px;
+  --space-11: 96px;
+
+  /* Corner radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-cover: 0 14px 32px rgb(0 0 0 / 40%);
+  --shadow-hero-side: 0 24px 48px rgb(0 0 0 / 50%);
+  --shadow-hero-main: 0 32px 64px rgb(0 0 0 / 60%);
+
+  /* Layout */
+  --content-width: 1200px;
+  --page-gutter: 24px;
+
+  /* Motion */
+  --transition-fast: 0.2s ease;
+}
+
+@media (max-width: 560px) {
+  :root {
+    --page-gutter: 16px;
+  }
+}

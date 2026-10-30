@@ -1,11 +1,15 @@
 /*
   App stylesheet entry point. It only imports the other style files, in order:
-  1. base       - page-wide defaults
-  2. layout     - navigation and the shared page frame
-  3. components - one file per component
-  4. pages      - styles that belong to a single page
+  1. colors     - the color palette (CSS variables)
+  2. tokens     - fonts, sizes, spacing, radius, shadows (CSS variables)
+  3. base       - page-wide defaults
+  4. layout     - header, footer and the shared page frame
+  5. components - one file per component
+  6. pages      - styles that belong to a single page
 */
 
+@import './styles/colors.css';
+@import './styles/tokens.css';
 @import './styles/base.css';
 @import './styles/layout.css';
 

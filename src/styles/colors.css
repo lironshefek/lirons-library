@@ -1,0 +1,42 @@
+/*
+  Colors: the "calm dark" palette from the BookFinder design.
+  Components use these variables instead of hard-coded colors, so the
+  whole look can be changed from this one file.
+*/
+
+:root {
+  /* Backgrounds, from darkest to lightest */
+  --color-bg: #0e0d12;
+  --color-surface: #17151d;
+  --color-surface-raised: #1d1b24;
+  --color-surface-active: #211e29;
+
+  /* Borders and dividers */
+  --color-border: #24212c;
+  --color-border-strong: #2c2836;
+
+  /* Text, from strongest to faintest */
+  --color-text: #f2f0f5;
+  --color-text-soft: #c9c4d3;
+  --color-text-muted: #b4afbf;
+  --color-text-subtle: #a49fb0;
+  --color-text-faint: #8c8798;
+
+  /* Accent (violet) */
+  --color-accent: #6e4ce6;
+  --color-accent-focus: #8b6cf6;
+  --color-accent-soft: #cdbfff;
+  --color-on-accent: #ffffff;
+
+  /* Links */
+  --color-link: #b7a3ff;
+  --color-link-hover: #d3c7ff;
+
+  /* Hearts and errors */
+  --color-danger: #ff8fa3;
+  --color-danger-border: #4a2a33;
+  --color-danger-surface: #1a1216;
+
+  /* Dark see-through circle behind the heart button on covers */
+  --color-overlay: rgb(14 13 18 / 72%);
+}
