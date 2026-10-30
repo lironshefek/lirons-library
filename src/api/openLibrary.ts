@@ -8,6 +8,37 @@ import { getCoverUrl, getDescriptionText } from '../utils/bookHelpers';
 
 const SEARCH_URL = 'https://openlibrary.org/search.json';
 
+// How long to wait for Open Library before treating the request as failed.
+export const REQUEST_TIMEOUT_MS = 10000;
+
+// Like fetch, but gives up after REQUEST_TIMEOUT_MS. Without this, a request can
+// stay "pending" for minutes when the network is down, and the page would show
+// "Loading..." forever. A timeout rejects with a "TimeoutError" (shown to the user
+// as an error), while cancelling through `signal` still rejects with "AbortError".
+async function fetchWithTimeout(url: string, signal?: AbortSignal): Promise<Response> {
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => {
+    controller.abort(new DOMException('Open Library did not respond in time.', 'TimeoutError'));
+  }, REQUEST_TIMEOUT_MS);
+
+  // Pass a cancel from the caller (e.g. leaving the page) on to this request.
+  function cancelFromCaller() {
+    controller.abort(signal?.reason);
+  }
+
+  if (signal?.aborted) {
+    cancelFromCaller();
+  }
+  signal?.addEventListener('abort', cancelFromCaller);
+
+  try {
+    return await fetch(url, { signal: controller.signal });
+  } finally {
+    window.clearTimeout(timeoutId);
+    signal?.removeEventListener('abort', cancelFromCaller);
+  }
+}
+
 function getCleanGenres(subjects: unknown): string[] {
   const cleanGenres = Array.isArray(subjects)
     ? subjects
@@ -69,7 +100,7 @@ const FIELDS = [
 // page is opened directly or refreshed and the book is not in memory.
 export async function getBookById(id: string, signal?: AbortSignal): Promise<Book | null> {
   const params = new URLSearchParams({ q: `key:/works/${id}`, limit: '1', fields: FIELDS });
-  const response = await fetch(`${SEARCH_URL}?${params}`, { signal });
+  const response = await fetchWithTimeout(`${SEARCH_URL}?${params}`, signal);
 
   if (!response.ok) {
     throw new Error(`Open Library lookup failed (${response.status}).`);
@@ -84,7 +115,7 @@ export async function getBookById(id: string, signal?: AbortSignal): Promise<Boo
 // Loads a book's description from its Open Library work page.
 // Returns null when the book has no description.
 export async function getBookDescription(id: string, signal?: AbortSignal): Promise<string | null> {
-  const response = await fetch(`https://openlibrary.org/works/${encodeURIComponent(id)}.json`, { signal });
+  const response = await fetchWithTimeout(`https://openlibrary.org/works/${encodeURIComponent(id)}.json`, signal);
 
   if (!response.ok) {
     throw new Error(`Open Library description request failed (${response.status}).`);
@@ -101,7 +132,7 @@ export async function searchBooks(query = '', signal?: AbortSignal): Promise<Boo
   const apiQuery = trimmedQuery
     || 'subject:psychological_thriller AND first_publish_year:[2000 TO *] AND cover_i:[1 TO *]';
   const params = new URLSearchParams({ q: apiQuery, limit: '100', fields: FIELDS });
-  const response = await fetch(`${SEARCH_URL}?${params}`, { signal });
+  const response = await fetchWithTimeout(`${SEARCH_URL}?${params}`, signal);
 
   if (!response.ok) {
     throw new Error(`Open Library search failed (${response.status}).`);
