@@ -37,7 +37,7 @@ Implement an interactive book roulette page at route `/random` that picks a surp
 **Progress:**
 - [x] `/random` roulette page with Spin button, back link, nav link, cover switching while spinning, and `pickRandomBook` tests (checked by the student)
 - [ ] Custom CSS color palette with variables, from Liron's "calm dark" design, applied page by page:
-  - [ ] Home page: CSS split into `src/styles/` (colors, tokens, base, layout, components, pages), header with logo, footer, hero with Liron's 3 saved picks (`src/data/heroPicks.json`), search bar, cards, skeleton/empty/error states (implemented, awaiting Liron's check)
+  - [ ] Home page: CSS split into `src/styles/` (colors, tokens, base, layout, components, pages), header with logo, footer, hero with Liron's 3 saved picks (`src/data/heroPicks.json`, covers saved in `public/hero/`), search bar, cards, skeleton/empty/error states (implemented, awaiting Liron's check)
   - [ ] Book details page
   - [ ] Mystery Book Roulette page
   - [ ] Favorites page
