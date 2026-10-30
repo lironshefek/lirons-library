@@ -20,7 +20,7 @@ The application uses React Router with dedicated pages:
 3. **Dedicated Details Page:** Clicking a card navigates to `/books/:id`, which shows the larger cover, author, year, rating, and genre/subject tags. The page also loads the book by id when opened directly or refreshed.
 4. **Favorites:** Bookmark books from cards and the details page; saved in `localStorage` so they persist after reloads.
 5. **Clear Feedback States:** Visible messages for loading, no results, an empty favorites list, a missing book, and invalid URLs.
-6. **API Error Handling:** Every request gives up after 10 seconds. When Open Library cannot be reached or does not answer in time, the home and roulette pages show a short error title ("Could not load the books") with a Try again button; the details page shows "Could not load this book"; a failed description request says so instead of "No description".
+6. **API Error Handling:** Every request gives up after 5 seconds. When Open Library cannot be reached or does not answer in time, the home and roulette pages show a short error title ("Could not load the books") with a Try again button; the details page shows "Could not load this book"; a failed description request says so instead of "No description".
 
 ## 5. Acceptance Criteria
 * When I open the app, I see the search input with the placeholder "Search for a book..." and a grid of psychological thrillers.

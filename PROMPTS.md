@@ -616,3 +616,9 @@ Please run the tests and show the passing output.
 **Agent did:** Diagnosed that with Wi-Fi off the request did not fail but stayed pending (Windows can keep another network adapter active, so the browser does not know it is offline), and nothing limited how long it could wait. Added `fetchWithTimeout` in `src/api/openLibrary.ts`: every Open Library request gives up after `REQUEST_TIMEOUT_MS` (10 s) with a `TimeoutError`, which the pages show as an error; cancelling (leaving the page) still gives an `AbortError` and is ignored. Added `src/api/openLibrary.test.ts` (timeout and cancel tests with fake timers) and noted the 10-second limit in `PRD.MD`.
 **I checked:** `npx vitest run` (4 files, 20 tests passed) and `npm run build` (succeeded). Browser re-check pending with Liron.
 **Questions asked:** Liron answered Prompt 64: with Wi-Fi off only "Loading books..." was shown. New question: asked Liron to repeat the Wi-Fi-off test and wait about 10 seconds. Awaiting answer.
+
+### Prompt 66 — Shorten Request Limit to 5 Seconds (2026-10-30)
+**Prompt:** it worked ! change the limit to 5 seconds
+**Agent did:** Changed `REQUEST_TIMEOUT_MS` in `src/api/openLibrary.ts` from 10000 to 5000 and updated the API error handling note in `PRD.MD`.
+**I checked:** `npx vitest run` (the timeout test uses `REQUEST_TIMEOUT_MS`, so it checks the new 5-second limit) and `npm run build`.
+**Questions asked:** Liron answered Prompt 65: with Wi-Fi off the error box now appears and Try again works.
