@@ -1,0 +1,31 @@
+/* BookList component: the grid of book cards */
+
+.book-browser {
+  min-width: 0;
+}
+
+/* As many 220px+ columns as fit: 4 on wide screens, 3 on laptops, 2 on tablets.
+   The whole page scrolls (no inner scroll box), which feels natural on phones. */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.book-list__empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 28px 22px;
+  border: 1px dashed #c9cec4;
+  border-radius: 14px;
+  color: #59645d;
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  /* Two smaller cards per row on phones, so the list is not too long */
+  .book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}

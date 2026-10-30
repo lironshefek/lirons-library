@@ -15,7 +15,7 @@ Your goal is to guide step-by-step, foster genuine understanding, and strictly f
   - Never mutate state directly; always use state setter functions.
   - Always assign unique, stable `key` props when mapping over lists.
   - Avoid triggering state updates during render to prevent infinite loops.
-- **Clean Styling:** Use standard CSS in `App.css` keeping the layout readable and structured.
+- **Clean Styling:** Use standard CSS organized in `src/styles/`: `colors.css` and `tokens.css` (design tokens as CSS variables), `base.css`, `layout.css`, `components/` (one file per component) and `pages/` (one file per page). `App.css` only imports these files in order. Use the tokens instead of hard-coded values.
 
 ## 3. Mandatory Per-Prompt Logging (`prompts.md`)
 - **Log Every Interaction:** You must append an entry to `prompts.md` after **every single prompt/request** from the user — including bug fixes, errors, follow-ups, and intermediate steps, not just upon final task completion.

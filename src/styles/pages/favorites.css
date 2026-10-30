@@ -1,0 +1,19 @@
+/* Favorites page (/favorites) */
+
+.favorites-empty {
+  padding: 28px;
+  border: 1px dashed #c9cec4;
+  border-radius: 14px;
+  color: #59645d;
+  text-align: center;
+}
+
+.favorites-empty a {
+  color: #405d48;
+  font-weight: 600;
+}
+
+.favorites-empty a:focus-visible {
+  outline: 3px solid #547c61;
+  outline-offset: 3px;
+}

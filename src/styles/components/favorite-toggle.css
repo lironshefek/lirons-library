@@ -1,0 +1,43 @@
+/* Favorite (heart) button on cards and the details page */
+
+.favorite-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  min-width: 40px;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 10px;
+  border: 1px solid #d8d9cf;
+  border-radius: 999px;
+  background: #fffefa;
+  color: #9d3e4c;
+  font: inherit;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.favorite-toggle:focus-visible {
+  outline: 3px solid #547c61;
+  outline-offset: 3px;
+}
+
+.favorite-toggle--details {
+  position: static;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .favorite-toggle {
+    top: 6px;
+    right: 6px;
+    min-width: 36px;
+    min-height: 36px;
+    font-size: 1.1rem;
+  }
+}

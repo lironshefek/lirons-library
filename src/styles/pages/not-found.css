@@ -1,0 +1,13 @@
+/* 404 page */
+
+.not-found-page__link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #405d48;
+  font-weight: 600;
+}
+
+.not-found-page__link:focus-visible {
+  outline: 3px solid #547c61;
+  outline-offset: 3px;
+}

@@ -1,0 +1,71 @@
+/* BookCard component */
+
+.book-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid #e8e5dc;
+  border-radius: 18px;
+  background: #fffefa;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.book-card:focus-visible {
+  outline: 3px solid #547c61;
+  outline-offset: 3px;
+}
+
+.book-card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.book-card__link:focus-visible {
+  outline: 3px solid #547c61;
+  outline-offset: -3px;
+}
+
+/* Covers keep a book's 2:3 shape at any card width */
+.book-card__cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background: #e9e5d9;
+}
+
+.book-card__title {
+  display: block;
+  padding: 16px 18px 6px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+
+/* Author and publication year shown under the card title */
+.book-card__meta {
+  display: block;
+  padding: 0 18px 18px;
+  color: #6b675d;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 560px) {
+  .book-card__title {
+    padding: 12px 12px 4px;
+    font-size: 1.05rem;
+  }
+
+  .book-card__meta {
+    padding: 0 12px 12px;
+    font-size: 0.82rem;
+  }
+}

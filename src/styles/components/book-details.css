@@ -1,0 +1,83 @@
+/* BookDetails component (used on the details and roulette pages) */
+
+.book-details {
+  min-height: 220px;
+  padding: 22px;
+  border: 1px solid #e8e5dc;
+  border-radius: 18px;
+  background: #fffefa;
+}
+
+.book-details__cover {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.book-details__content {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.book-details__title {
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.65rem;
+  line-height: 1.2;
+}
+
+.book-details__author,
+.book-details__year {
+  margin: 8px 0 0;
+  color: #657068;
+}
+
+.book-details__rating {
+  margin: 12px 0 0;
+  color: #405d48;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.book-details__rating-star {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.3em;
+  fill: #c58a27;
+  vertical-align: -0.12em;
+}
+
+/* Book description on the details and roulette pages */
+.book-details__description {
+  margin: 16px 0 0;
+  color: #3d4741;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* Loading text and the "no description" message */
+.book-details__description--empty {
+  color: #8a918b;
+  font-style: italic;
+}
+
+.book-details__genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.book-details__genre {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #e9eee8;
+  color: #405d48;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
