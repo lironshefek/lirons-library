@@ -628,3 +628,15 @@ Please run the tests and show the passing output.
 **Agent did:** Read the design files (Main, Details, Roulette, Favorites, NotFound). For the home page, in separate commits: (1) split `App.css` into `src/styles/` (base, layout, components/, pages/) with no visual change (275/275 declarations kept), `App.css` now only imports; (2) added `colors.css` and `tokens.css`, dark base styles, Manrope/Fraunces fonts in `index.html`; (3) new `SiteHeader` (logo + pill nav + violet favorites badge) and `SiteFooter`; (4) `HeroSection` with "Psychological thrillers, only.", "Surprise me" (to `/random`) and a tilted stack of Liron's 3 picks saved in `src/data/heroPicks.json` (Rock Paper Scissors, The Boyfriend, The Housemaid — ids and covers checked against Open Library), home page moved to `src/pages/HomePage.tsx`; (5) search bar with icon; (6) cards with rounded shadowed covers, title/author below, dark heart circle; (7) `BookGridSkeleton`, `EmptyState`, and a redesigned `ErrorMessage` ("The books didn’t load"). Updated the styling rule in `AGENTS.md`, Task 8 progress in `tasks.MD`, and the Home screen in `PRD.MD`.
 **I checked:** `npm run build` after every step, `npx vitest run` (20 tests passed), and headless-Chrome screenshots at 1440px and 512px (Chrome's minimum width; phone styles apply below 560px) plus the error state with Open Library blocked.
 **Questions asked:** (1) Hero covers: real or decorative? Liron answered: real covers of Rock Paper Scissors, The Boyfriend, and The Housemaid, saved in a prefetched JSON. (2) Other pages may look mismatched until redesigned? Liron answered: OK, temporary. (3) CSS organization? Liron answered: `styles/` folder. New question: asked Liron to check the home page in the browser. Awaiting answer.
+
+### Prompt 68 — Rename the Site Title (2026-10-30)
+**Prompt:** change the title to "lironslibrary" instead of bookfinder. do it with the same font you used in the 404 page
+**Agent did:** Changed the header name to "lironslibrary" in the display font (Fraunces, the font of the 404 heading) and renamed the visible "BookFinder" text in the browser tab title, the footer, and the 404 link. Superseded by Prompt 69 before committing.
+**I checked:** `npm run build` and `npx vitest run` (20 tests passed).
+**Questions asked:** None. (Prompt 67's request to check the home page is still open.)
+
+### Prompt 69 — Use "LIRONS LIBRARY" Without the Icon, Commit and Push (2026-10-30)
+**Prompt:** change it to "LIRONS LIBRARY" and delete the side icon next to it. commit and push all the changes
+**Agent did:** Changed the name to "LIRONS LIBRARY" in `SiteHeader.tsx`, `SiteFooter.tsx`, `NotFoundPage.tsx`, and the `<title>` in `index.html`; removed the book icon from the header and its `.site-logo__icon` style; set the name in Fraunces with slightly wider letter spacing (0.04em) for the capitals. Committed and pushed all changes to `origin/main`.
+**I checked:** `npm run build`, `npx vitest run` (20 tests passed), and searched `src/` and `index.html` for leftover "lironslibrary" or icon styles (none).
+**Questions asked:** None. (Prompt 67's request to check the home page in the browser is still open.)
