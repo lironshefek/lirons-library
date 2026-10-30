@@ -652,3 +652,9 @@ Please run the tests and show the passing output.
 **Agent did:** Downloaded the three large covers into `public/hero/` (`rock-paper-scissors.jpg` 329×500, `the-boyfriend.jpg` 137×219, `the-housemaid.jpg` 326×500), added an `image` path to each entry in `src/data/heroPicks.json` and to the `HeroPick` type, and made `HeroSection.tsx` use the local image instead of `getCoverUrl`. Looked for a sharper Boyfriend cover: the only larger one on Open Library is the German edition ("Der Freund"), so the small English cover was kept. Updated the hero notes in `PRD.MD` and `tasks.MD`.
 **I checked:** `npm run build` (images copied to `dist/hero/`), `npx vitest run` (20 tests passed), and a headless-Chrome screenshot with all `openlibrary.org` hosts blocked: the three hero covers still show and the error box appears below.
 **Questions asked:** The Boyfriend cover is low-resolution (137×219) and is the big front cover. Asked Liron whether to keep it in front, move it to a side position, or use an image Liron provides. Awaiting answer. (Prompt 70's merge question and Prompt 67's home page check are still open.)
+
+### Prompt 72 — The Housemaid in the Center of the Hero (2026-10-31)
+**Prompt:** make sure the "the housemaind" book will be the in the center instead of the boyfriend
+**Agent did:** Reordered `src/data/heroPicks.json` (the order is left, center, right): Rock Paper Scissors on the left, The Housemaid in the center (front), The Boyfriend on the right. No code changes needed.
+**I checked:** `npm run build` and `npx vitest run`.
+**Questions asked:** Liron answered Prompt 71: The Housemaid goes in the center, so the low-resolution Boyfriend cover moves to a smaller side position. (Prompt 70's merge question and Prompt 67's home page check are still open.)
