@@ -15,13 +15,15 @@ function BookCard({ book, isFavorite, onToggleFavorite }: BookCardProps) {
     <article className="book-card">
       <Link className="book-card__link" to={`/books/${routeId}`}>
         <img className="book-card__cover" src={book.coverUrl} alt={`Cover of ${book.title}`} />
-        <span className="book-card__title">{book.title}</span>
-        <span className="book-card__meta">
-          {book.author} · {formatPublishYear(book.year)}
+        <span className="book-card__text">
+          <span className="book-card__title">{book.title}</span>
+          <span className="book-card__meta">
+            {book.author} · {formatPublishYear(book.year)}
+          </span>
         </span>
       </Link>
       <button
-        className="favorite-toggle"
+        className={`favorite-toggle${isFavorite ? ' favorite-toggle--active' : ''}`}
         type="button"
         aria-label={isFavorite ? `Remove ${book.title} from favorites` : `Add ${book.title} to favorites`}
         aria-pressed={isFavorite}

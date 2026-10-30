@@ -72,7 +72,7 @@ function BookDetailsPage({ books, loading, favoriteIds, onToggleFavorite }: Book
       ) : book ? (
         <div className="book-details-page__content">
           <button
-            className="favorite-toggle favorite-toggle--details"
+            className={`favorite-toggle favorite-toggle--details${favoriteIds.has(book.id) ? ' favorite-toggle--active' : ''}`}
             type="button"
             aria-label={favoriteIds.has(book.id) ? `Remove ${book.title} from favorites` : `Add ${book.title} to favorites`}
             aria-pressed={favoriteIds.has(book.id)}

@@ -8,21 +8,22 @@
   gap: var(--space-6);
 }
 
-/* As many 220px+ columns as fit: 4 on wide screens, 3 on laptops, 2 on tablets.
+/* As many 200px+ columns as fit: 5 on wide screens, 4 on laptops, 3 on tablets.
    The whole page scrolls (no inner scroll box), which feels natural on phones. */
 .book-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-7) 28px;
 }
 
+/* Message in a dashed box, e.g. "No books match your search." */
 .book-list__empty {
   grid-column: 1 / -1;
   margin: 0;
-  padding: 28px 22px;
-  border: 1px dashed #c9cec4;
-  border-radius: 14px;
-  color: #59645d;
+  padding: 40px;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-xl);
+  color: var(--color-text-subtle);
   text-align: center;
 }
 
@@ -30,6 +31,6 @@
   /* Two smaller cards per row on phones, so the list is not too long */
   .book-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: var(--space-6) var(--space-4);
   }
 }
