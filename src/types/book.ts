@@ -11,13 +11,16 @@ export interface Book {
 }
 
 // One of Liron's favorite books shown in the home page hero.
-// Saved ahead of time in src/data/heroPicks.json, so no request is needed.
+// Saved ahead of time in src/data/heroPicks.json, and the cover image is
+// saved in public/hero/, so the hero needs no request to Open Library.
 export interface HeroPick {
   id: string;
   title: string;
   author: string;
   year: number;
   cover_i: number;
+  // Path of the local cover image, e.g. "/hero/the-housemaid.jpg"
+  image: string;
 }
 
 export interface OpenLibraryDocument {

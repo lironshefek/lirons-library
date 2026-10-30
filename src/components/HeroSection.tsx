@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import heroPicksData from '../data/heroPicks.json';
 import type { HeroPick } from '../types/book';
-import { getCoverUrl } from '../utils/bookHelpers';
 
-// Liron's three favorite books, saved in a JSON file so they show right away.
+// Liron's three favorite books. Their details are saved in a JSON file and
+// their covers in public/hero/, so they show right away, even offline.
 const heroPicks: HeroPick[] = heroPicksData;
 
 // Where each cover sits in the tilted stack: left, front (center), right.
@@ -36,7 +36,7 @@ function HeroSection() {
           <img
             key={pick.id}
             className={`hero__cover hero__cover--${coverPositions[index]}`}
-            src={getCoverUrl(pick.cover_i, 'L')}
+            src={pick.image}
             alt=""
           />
         ))}
