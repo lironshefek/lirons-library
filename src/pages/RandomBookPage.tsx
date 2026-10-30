@@ -1,3 +1,4 @@
+// TODO: Restyle this page to match the "calm dark" design (see src/styles/pages/random.css).
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BookDetails from '../components/BookDetails';

@@ -1,5 +1,11 @@
 /* Mystery Book Roulette page (/random) */
 
+/*
+  TODO: Restyle this page to match the "calm dark" design (Roulette artboard).
+  It still uses the old light colors; switch them to the variables in
+  colors.css and tokens.css. The shared card is in components/book-details.css.
+*/
+
 .random-page__spin {
   margin-bottom: 28px;
   padding: 12px 22px;

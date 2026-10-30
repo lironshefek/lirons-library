@@ -658,3 +658,9 @@ Please run the tests and show the passing output.
 **Agent did:** Reordered `src/data/heroPicks.json` (the order is left, center, right): Rock Paper Scissors on the left, The Housemaid in the center (front), The Boyfriend on the right. No code changes needed.
 **I checked:** `npm run build` and `npx vitest run`.
 **Questions asked:** Liron answered Prompt 71: The Housemaid goes in the center, so the low-resolution Boyfriend cover moves to a smaller side position. (Prompt 70's merge question and Prompt 67's home page check are still open.)
+
+### Prompt 73 — TODO Notes for the Details and Roulette Pages (2026-10-31)
+**Prompt:** add a TODO note - to change the style in the detailspage, roulette page
+**Agent did:** Added `TODO` comments saying the page must be restyled to the "calm dark" design with the color/token variables: at the top of `src/styles/pages/details.css`, `src/styles/pages/random.css`, the shared `src/styles/components/book-details.css`, `src/components/BookDetailsPage.tsx`, and `src/pages/RandomBookPage.tsx`. These pages are already listed as open items in the Task 8 progress list in `tasks.MD`.
+**I checked:** `npm run build` and `npx vitest run` (comments only); `grep TODO src` lists all five notes.
+**Questions asked:** None. (Prompt 70's merge question and Prompt 67's home page check are still open.)

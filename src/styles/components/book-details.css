@@ -1,5 +1,7 @@
 /* BookDetails component (used on the details and roulette pages) */
 
+/* TODO: Restyle with the dark design tokens together with the details and roulette pages. */
+
 .book-details {
   min-height: 220px;
   padding: 22px;

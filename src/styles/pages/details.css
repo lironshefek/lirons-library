@@ -1,5 +1,11 @@
 /* Book details page (/books/:id) */
 
+/*
+  TODO: Restyle this page to match the "calm dark" design (Details artboard).
+  It still uses the old light colors; switch them to the variables in
+  colors.css and tokens.css. The shared card is in components/book-details.css.
+*/
+
 .book-details-page__back {
   display: inline-block;
   margin-bottom: 24px;
