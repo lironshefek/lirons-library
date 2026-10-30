@@ -17,6 +17,7 @@ Create the `SearchBar` component with an input field and the placeholder "Search
 ## Task 4: Connect Live Search to Open Library API (Completed)
 Create an API helper module that fetches a list of psychological thrillers first published in 2000 or later that have a cover image from the Open Library Search endpoint and replace the local mock data source with it. Typing in `SearchBar` filters only these loaded books by title (no new API request while typing); if no title matches, the list is empty. When the input is empty, the full list of psychological thrillers is shown.
 **Done when:** The home page shows live books from the Open Library API, typing letters shows only the loaded books whose titles contain them (or an empty list with "No books match your search."), and clearing the input restores the full list.
+**Note:** If Open Library cannot be reached, the app shows a short error title with a "Try again" button instead of an empty page (added before the Task 8 color palette).
 
 ## Task 5: TypeScript Migration, React Router & Dedicated Details Page (Completed)
 Migrate the project from JavaScript to TypeScript: configure tsconfig.json, convert all .jsx/.js files to .tsx/.ts, and define strict types in `src/types/book.ts` without any `any`. Install `react-router-dom` and replace the inline details sidebar with dedicated routing (`/` for book list and `/books/:id` for details reading the id via `useParams`). If the book is not already loaded (for example after a page refresh), the details page fetches it from Open Library by its id.

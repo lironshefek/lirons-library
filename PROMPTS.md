@@ -604,3 +604,9 @@ Please run the tests and show the passing output.
 **Agent did:** Marked the responsive styling sub-task as done in the Task 8 progress list in `tasks.MD`. Only the color palette remains in Task 8.
 **I checked:** Liron checked desktop, tablet, and phone widths in the browser.
 **Questions asked:** Liron answered Prompt 62: the responsive changes are confirmed. Next step (color palette) waits for Liron's color choice.
+
+### Prompt 64 — Show an Error When the API Is Not Working (2026-10-30)
+**Prompt:** before we will continue to the color pallete, i would like to focus on the case when the api isnt working.i want that the user will see a short title about it (if you cant load the books or there is a problem with it)
+**Agent did:** Created `src/components/ErrorMessage.tsx` (title, short text, optional "Try again" button, `role="alert"`). In `src/App.tsx` added `loadError` and `reloadCount` state so a failed load shows "Could not load the books" with a retry button, and the home list now shows "Loading books..." / "No books were found." when empty. `RandomBookPage.tsx` shows the same error and disables Spin; `BookDetailsPage.tsx` shows "Could not load this book" when the lookup fails (instead of "Book not found"); `BookDetails.tsx` says "Could not load the description right now" when the description request fails (instead of "No description"). Added error styles in `App.css`, 2 tests in `src/App.test.tsx` (error shown; Try again loads the books), and notes in `PRD.MD` and `tasks.MD`.
+**I checked:** `npx vitest run` (3 files, 18 tests passed; the new tests simulate a failed `fetch`) and `npm run build` (succeeded). Browser check pending with Liron.
+**Questions asked:** Asked Liron to test it in the browser by going offline in DevTools (Network — Offline) and reloading. Awaiting answer.
