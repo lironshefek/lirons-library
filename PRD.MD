@@ -8,7 +8,7 @@ Individuals and avid readers who want a fast, effortless way to look up books, e
 
 ## 3. Screens
 The application uses React Router with dedicated pages:
-* **Home (`/`):** A search bar at the top with a responsive grid of psychological thrillers first published in 2000 or later that have a cover image, loaded from Open Library. Typing filters this list by title.
+* **Home (`/`):** A hero ("Psychological thrillers, only.") with a "Surprise me" button and a tilted stack of 3 of Liron's favorite covers (saved in `src/data/heroPicks.json`, no request needed), then a search bar and a responsive grid of psychological thrillers first published in 2000 or later that have a cover image, loaded from Open Library. Typing filters this list by title.
 * **Book Details (`/books/:id`):** A dedicated page with the selected book's larger cover, title, author, publication year, rating, description, genre tags, a favorite toggle, and a back link.
 * **Favorites (`/favorites`):** A grid of bookmarked books, or an empty-state message when none are saved.
 * **Mystery Book Roulette (`/random`):** Spins through the home page's books and stops on a surprise book, showing its cover and full details, including the description, on the same page (Task 8).
