@@ -6,7 +6,7 @@ function NotFoundPage() {
       <p className="eyebrow">Lost your place?</p>
       <h1>Page Not Found</h1>
       <p className="page-intro">We could not find the page you were looking for.</p>
-      <Link className="not-found-page__link" to="/">Return to LIRONS LIBRARY</Link>
+      <Link className="not-found-page__link" to="/">Return to Lirons Library</Link>
     </main>
   );
 }

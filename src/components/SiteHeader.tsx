@@ -9,13 +9,13 @@ function getNavLinkClass({ isActive }: { isActive: boolean }): string {
   return `site-nav__link${isActive ? ' site-nav__link--active' : ''}`;
 }
 
-// Top bar on every page: the LIRONS LIBRARY name and the main navigation.
+// Top bar on every page: the Lirons Library name and the main navigation.
 function SiteHeader({ favoritesCount }: SiteHeaderProps) {
   return (
     <header className="site-header">
       <div className="site-header__inner">
         <Link className="site-logo" to="/">
-          LIRONS LIBRARY
+          Lirons Library
         </Link>
         <nav className="site-nav" aria-label="Main navigation">
           <NavLink to="/" end className={getNavLinkClass}>

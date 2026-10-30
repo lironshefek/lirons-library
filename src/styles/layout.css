@@ -34,8 +34,7 @@
   font-family: var(--font-display);
   font-size: 1.375rem;
   font-weight: 600;
-  /* A little extra space between capital letters makes them easier to read */
-  letter-spacing: 0.04em;
+  letter-spacing: -0.01em;
 }
 
 .site-logo:hover {

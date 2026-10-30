@@ -640,3 +640,9 @@ Please run the tests and show the passing output.
 **Agent did:** Changed the name to "LIRONS LIBRARY" in `SiteHeader.tsx`, `SiteFooter.tsx`, `NotFoundPage.tsx`, and the `<title>` in `index.html`; removed the book icon from the header and its `.site-logo__icon` style; set the name in Fraunces with slightly wider letter spacing (0.04em) for the capitals. Committed and pushed all changes to `origin/main`.
 **I checked:** `npm run build`, `npx vitest run` (20 tests passed), and searched `src/` and `index.html` for leftover "lironslibrary" or icon styles (none).
 **Questions asked:** None. (Prompt 67's request to check the home page in the browser is still open.)
+
+### Prompt 70 — Title Case "Lirons Library" and Push the Branch (2026-10-30)
+**Prompt:** change the title to Lirons Library
+**Agent did:** Changed "LIRONS LIBRARY" to "Lirons Library" in the header, footer, 404 link, and browser tab title, and set the name's letter spacing back to -0.01em (the wider spacing was only for capitals). Found that the work is on the branch `feature/style-redesign` (created from `main` at `c8815ae`), so Prompt 69's `git push origin main` only pushed `main` up to `c8815ae`; pushed `feature/style-redesign` to `origin` with upstream tracking. `main` was not changed.
+**I checked:** `npm run build`, `npx vitest run` (20 tests passed), `git branch -vv` before and after pushing.
+**Questions asked:** Asked whether to merge `feature/style-redesign` into `main` now or after all pages are redesigned. Awaiting answer. (Prompt 67's request to check the home page is still open.)
