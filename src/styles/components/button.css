@@ -1,0 +1,25 @@
+/* Shared pill-shaped buttons (works on both <button> and <a>) */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: var(--text-md);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.button--primary {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.button--primary:hover {
+  background: var(--color-accent-focus);
+  color: var(--color-on-accent);
+}

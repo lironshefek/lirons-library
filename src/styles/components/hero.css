@@ -1,0 +1,113 @@
+/* HeroSection component: the big introduction on the home page */
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.hero__text {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 520px;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.hero__title {
+  font-size: clamp(2.75rem, 6vw + 1rem, 5rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.hero__title-accent {
+  color: var(--color-accent-soft);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.hero__intro {
+  max-width: 500px;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+/*
+  The stack is a square; the covers are placed with percentages,
+  so the whole stack shrinks nicely on small screens.
+*/
+.hero__stack {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  flex: 0 1 380px;
+  aspect-ratio: 1;
+}
+
+.hero__cover {
+  position: absolute;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+}
+
+.hero__cover--left {
+  top: 13%;
+  left: 0;
+  width: 45%;
+  box-shadow: var(--shadow-hero-side);
+  transform: rotate(-9deg);
+}
+
+.hero__cover--right {
+  top: 13%;
+  right: 0;
+  width: 45%;
+  box-shadow: var(--shadow-hero-side);
+  transform: rotate(9deg);
+}
+
+/* The front cover is bigger and sits on top of the other two */
+.hero__cover--center {
+  z-index: 1;
+  top: 0;
+  left: 50%;
+  width: 53%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hero-main);
+  transform: translateX(-50%);
+}
+
+/* When the stack wraps under the text, center it */
+@media (max-width: 960px) {
+  .hero__stack {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    gap: 40px;
+  }
+
+  .hero__intro {
+    font-size: var(--text-base);
+  }
+
+  .hero__stack {
+    max-width: 300px;
+  }
+}

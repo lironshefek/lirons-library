@@ -2,84 +2,17 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { searchBooks } from './api/openLibrary';
 import BookDetailsPage from './components/BookDetailsPage';
-import BookList from './components/BookList';
-import ErrorMessage from './components/ErrorMessage';
-import SearchBar from './components/SearchBar';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
 import FavoritesPage from './pages/FavoritesPage';
+import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import RandomBookPage from './pages/RandomBookPage';
 import type { Book } from './types/book';
-import { filterBooksByTitle } from './utils/bookHelpers';
 import './App.css';
-
-interface BookListPageProps {
-  books: Book[];
-  loading: boolean;
-  loadError: boolean;
-  onRetry: () => void;
-  searchQuery: string;
-  onSearchChange: (query: string) => void;
-  favoriteIds: ReadonlySet<string>;
-  onToggleFavorite: (book: Book) => void;
-}
 
 function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((item: unknown) => typeof item === 'string');
-}
-
-function BookListPage({
-  books,
-  loading,
-  loadError,
-  onRetry,
-  searchQuery,
-  onSearchChange,
-  favoriteIds,
-  onToggleFavorite,
-}: BookListPageProps) {
-  // Search only filters the books already shown on the home page by title.
-  const searchTerm = searchQuery.trim();
-  const filteredBooks = filterBooksByTitle(books, searchQuery);
-
-  // Text shown when the list is empty, depending on why it is empty.
-  let emptyMessage = 'No books were found.';
-  if (loading) {
-    emptyMessage = 'Loading books...';
-  } else if (searchTerm) {
-    emptyMessage = 'No books match your search.';
-  }
-
-  return (
-    <main className="page-shell">
-      <header className="page-header">
-        <p className="eyebrow">BookFinder · My personal shelf</p>
-        <h1>Psychological Thrillers I Love</h1>
-        <p className="page-intro">
-          Only one genre lives here: twisty, dark psychological thrillers from 2000
-          onward, hand-picked because they are my favorite kind of book.
-        </p>
-      </header>
-      <div className="book-browser">
-        <SearchBar value={searchQuery} onChange={onSearchChange} />
-        {loadError ? (
-          <ErrorMessage
-            title="Could not load the books"
-            message="There was a problem connecting to Open Library. Please check your internet connection and try again."
-            onRetry={onRetry}
-          />
-        ) : (
-          <BookList
-            books={filteredBooks}
-            emptyMessage={emptyMessage}
-            favoriteIds={favoriteIds}
-            onToggleFavorite={onToggleFavorite}
-          />
-        )}
-      </div>
-    </main>
-  );
 }
 
 function App() {
@@ -179,7 +112,7 @@ function App() {
           <Route
             path="/"
             element={(
-              <BookListPage
+              <HomePage
                 books={books}
                 loading={loading}
                 loadError={loadError}

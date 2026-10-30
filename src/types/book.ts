@@ -10,6 +10,16 @@ export interface Book {
   ratingsCount: number | null;
 }
 
+// One of Liron's favorite books shown in the home page hero.
+// Saved ahead of time in src/data/heroPicks.json, so no request is needed.
+export interface HeroPick {
+  id: string;
+  title: string;
+  author: string;
+  year: number;
+  cover_i: number;
+}
+
 export interface OpenLibraryDocument {
   key?: string;
   title?: string;

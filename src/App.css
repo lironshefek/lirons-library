@@ -13,6 +13,8 @@
 @import './styles/base.css';
 @import './styles/layout.css';
 
+@import './styles/components/button.css';
+@import './styles/components/hero.css';
 @import './styles/components/search-bar.css';
 @import './styles/components/book-grid.css';
 @import './styles/components/book-card.css';
@@ -20,6 +22,7 @@
 @import './styles/components/book-details.css';
 @import './styles/components/error-message.css';
 
+@import './styles/pages/home.css';
 @import './styles/pages/details.css';
 @import './styles/pages/random.css';
 @import './styles/pages/favorites.css';
