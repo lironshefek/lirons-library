@@ -1,0 +1,63 @@
+/*
+  Centered message boxes used by two components:
+  ErrorMessage (status-box--error) and EmptyState (status-box--empty).
+*/
+
+.status-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: var(--space-8) var(--space-5);
+  border-radius: var(--radius-2xl);
+  text-align: center;
+}
+
+.status-box--error {
+  border: 1px solid var(--color-danger-border);
+  background: var(--color-danger-surface);
+}
+
+.status-box--empty {
+  border: 1px dashed var(--color-border-strong);
+}
+
+.status-box__icon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-faint);
+}
+
+.status-box--error .status-box__icon {
+  color: var(--color-danger);
+}
+
+.status-box__title {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: 600;
+}
+
+.status-box__text {
+  max-width: 440px;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+.status-box__action {
+  height: 48px;
+  margin-top: var(--space-2);
+  padding: 0 var(--space-5);
+}
+
+@media (max-width: 560px) {
+  .status-box {
+    padding: 40px 20px;
+  }
+
+  .status-box__title {
+    font-size: 1.5rem;
+  }
+}

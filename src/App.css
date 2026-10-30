@@ -20,7 +20,8 @@
 @import './styles/components/book-card.css';
 @import './styles/components/favorite-toggle.css';
 @import './styles/components/book-details.css';
-@import './styles/components/error-message.css';
+@import './styles/components/book-grid-skeleton.css';
+@import './styles/components/status-box.css';
 
 @import './styles/pages/home.css';
 @import './styles/pages/details.css';

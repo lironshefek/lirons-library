@@ -1,0 +1,47 @@
+/* BookGridSkeleton component: placeholder cards while books load */
+
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* A grey block that slowly fades in and out */
+.skeleton {
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+.skeleton--cover {
+  aspect-ratio: 2 / 3;
+  border-radius: var(--radius-md);
+}
+
+.skeleton--title {
+  width: 80%;
+  height: 20px;
+}
+
+.skeleton--meta {
+  width: 55%;
+  height: 14px;
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* No pulsing for people who turned off animations */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}

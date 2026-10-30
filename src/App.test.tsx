@@ -33,7 +33,7 @@ describe('App when Open Library is not available', () => {
 
     render(<App />);
 
-    expect(await screen.findByRole('alert')).toHaveTextContent('Could not load the books');
+    expect(await screen.findByRole('alert')).toHaveTextContent('The books didn’t load');
   });
 
   // The "Try again" button loads the books again and the error disappears.
