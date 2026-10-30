@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { searchBooks } from './api/openLibrary';
 import BookDetailsPage from './components/BookDetailsPage';
 import BookList from './components/BookList';
 import ErrorMessage from './components/ErrorMessage';
 import SearchBar from './components/SearchBar';
+import SiteFooter from './components/SiteFooter';
+import SiteHeader from './components/SiteHeader';
 import FavoritesPage from './pages/FavoritesPage';
 import NotFoundPage from './pages/NotFoundPage';
 import RandomBookPage from './pages/RandomBookPage';
@@ -171,56 +173,49 @@ function App() {
 
   return (
     <BrowserRouter>
-      <nav className="site-nav" aria-label="Main navigation">
-        <NavLink to="/" end className={({ isActive }) => `site-nav__link${isActive ? ' site-nav__link--active' : ''}`}>
-          Home
-        </NavLink>
-        <NavLink to="/favorites" className={({ isActive }) => `site-nav__link${isActive ? ' site-nav__link--active' : ''}`}>
-          Favorites <span className="site-nav__count">{favorites.length}</span>
-        </NavLink>
-        <NavLink to="/random" className={({ isActive }) => `site-nav__link${isActive ? ' site-nav__link--active' : ''}`}>
-          Random
-        </NavLink>
-      </nav>
-      <Routes>
-        <Route
-          path="/"
-          element={(
-            <BookListPage
+      <div className="app-frame">
+        <SiteHeader favoritesCount={favorites.length} />
+        <Routes>
+          <Route
+            path="/"
+            element={(
+              <BookListPage
+                books={books}
+                loading={loading}
+                loadError={loadError}
+                onRetry={retryLoadBooks}
+                searchQuery={searchQuery}
+                onSearchChange={setSearchQuery}
+                favoriteIds={favoriteIds}
+                onToggleFavorite={toggleFavorite}
+              />
+            )}
+          />
+          <Route path="/books/:id" element={(
+            <BookDetailsPage
               books={books}
               loading={loading}
-              loadError={loadError}
-              onRetry={retryLoadBooks}
-              searchQuery={searchQuery}
-              onSearchChange={setSearchQuery}
               favoriteIds={favoriteIds}
               onToggleFavorite={toggleFavorite}
             />
-          )}
-        />
-        <Route path="/books/:id" element={(
-          <BookDetailsPage
+          )} />
+          <Route path="/favorites" element={(
+            <FavoritesPage
+              books={favorites}
+              favoriteIds={favoriteIds}
+              onToggleFavorite={toggleFavorite}
+            />
+          )} />
+          <Route path="/random" element={<RandomBookPage
             books={books}
             loading={loading}
-            favoriteIds={favoriteIds}
-            onToggleFavorite={toggleFavorite}
-          />
-        )} />
-        <Route path="/favorites" element={(
-          <FavoritesPage
-            books={favorites}
-            favoriteIds={favoriteIds}
-            onToggleFavorite={toggleFavorite}
-          />
-        )} />
-        <Route path="/random" element={<RandomBookPage
-          books={books}
-          loading={loading}
-          loadError={loadError}
-          onRetry={retryLoadBooks}
-        />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+            loadError={loadError}
+            onRetry={retryLoadBooks}
+          />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+        <SiteFooter />
+      </div>
     </BrowserRouter>
   );
 }

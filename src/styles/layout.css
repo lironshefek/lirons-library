@@ -1,48 +1,119 @@
-/* Layout: site navigation and the shared page frame */
+/* Layout: the app frame, header with navigation, footer and page frame */
+
+/* Header on top, page in the middle, footer always at the bottom */
+.app-frame {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.app-frame > main {
+  flex: 1;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner {
+  display: flex;
+  max-width: var(--content-width);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin: 0 auto;
+  padding: 18px var(--page-gutter);
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.site-logo:hover {
+  color: var(--color-text);
+}
+
+.site-logo__icon {
+  width: 26px;
+  height: 26px;
+  color: var(--color-accent);
+}
 
 .site-nav {
   display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  width: min(1120px, calc(100% - 48px));
-  margin: 0 auto;
-  padding: 20px 0 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-md);
+  font-weight: 600;
 }
 
 .site-nav__link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 9px 13px;
-  border-radius: 999px;
-  color: #405d48;
-  font-weight: 600;
-  text-decoration: none;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-soft);
 }
 
-.site-nav__link:focus-visible {
-  outline: 3px solid #547c61;
-  outline-offset: 3px;
+.site-nav__link:hover {
+  color: var(--color-text);
 }
 
 .site-nav__link--active {
-  background: #e5ebe3;
+  background: var(--color-surface-active);
+  color: var(--color-text);
 }
 
+/* Number of saved favorites, in a small violet pill */
 .site-nav__count {
-  display: inline-grid;
-  min-width: 20px;
-  height: 20px;
-  place-items: center;
-  border-radius: 50%;
-  background: #fffefa;
-  font-size: 0.75rem;
+  display: inline-flex;
+  min-width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-size: 12px;
 }
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer__inner {
+  display: flex;
+  max-width: var(--content-width);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin: 0 auto;
+  padding: var(--space-5) var(--page-gutter);
+  color: var(--color-text-faint);
+  font-size: var(--text-xs);
+}
+
+/* ---------- Page frame ---------- */
 
 .page-shell {
-  width: min(1120px, calc(100% - 48px));
+  width: 100%;
+  max-width: var(--content-width);
   margin: 0 auto;
-  padding: 72px 0 88px;
+  padding: var(--space-10) var(--page-gutter) var(--space-11);
 }
 
 .page-header {
@@ -52,7 +123,7 @@
 
 .eyebrow {
   margin: 0 0 10px;
-  color: #6b806f;
+  color: var(--color-text-faint);
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -60,20 +131,20 @@
 }
 
 .page-intro {
-  margin: 16px 0 0;
-  color: #66716b;
-  font-size: 1.05rem;
+  margin: var(--space-4) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  line-height: 1.6;
 }
 
 @media (max-width: 560px) {
-  .site-nav {
-    width: min(100% - 32px, 420px);
-    justify-content: center;
+  /* Smaller nav pills so all three links fit in one row under the logo */
+  .site-nav__link {
+    padding: 10px var(--space-3);
   }
 
   .page-shell {
-    width: min(100% - 32px, 420px);
-    padding: 48px 0 64px;
+    padding: 48px var(--page-gutter) var(--space-9);
   }
 
   .page-header {
