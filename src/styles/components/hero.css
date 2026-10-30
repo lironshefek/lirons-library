@@ -45,15 +45,16 @@
 }
 
 /*
-  The stack is a square; the covers are placed with percentages,
+  The covers are placed with percentages of the stack's size,
   so the whole stack shrinks nicely on small screens.
+  The height (85% of the width) fits the tallest cover with no empty space below.
 */
 .hero__stack {
   position: relative;
   width: 100%;
   max-width: 380px;
   flex: 0 1 380px;
-  aspect-ratio: 1;
+  aspect-ratio: 1 / 0.85;
 }
 
 .hero__cover {
