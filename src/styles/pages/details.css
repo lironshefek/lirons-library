@@ -1,60 +1,24 @@
 /* Book details page (/books/:id) */
 
-/*
-  TODO: Restyle this page to match the "calm dark" design (Details artboard).
-  It still uses the old light colors; switch them to the variables in
-  colors.css and tokens.css. The shared card is in components/book-details.css.
-*/
+/* Back link on top, then the book, with space between them */
+.book-details-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-10);
+}
 
 .book-details-page__back {
-  display: inline-block;
-  margin-bottom: 24px;
-  color: #405d48;
+  align-self: flex-start;
+  padding: var(--space-3) 0;
+  font-size: var(--text-md);
   font-weight: 600;
-  text-decoration: none;
-}
-
-.book-details-page__back:hover {
-  text-decoration: underline;
-}
-
-.book-details-page__content {
-  max-width: 900px;
-}
-
-.book-details-page__message {
-  color: #59645d;
-}
-
-.book-details-page .book-details {
-  display: grid;
-  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
-  align-items: start;
-  gap: 28px;
-}
-
-.book-details-page .book-details__cover {
-  width: 100%;
-  max-height: 420px;
-  margin: 0;
-  object-fit: contain;
-}
-
-@media (max-width: 700px) {
-  .book-details-page .book-details {
-    grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
-    gap: 20px;
-  }
 }
 
 @media (max-width: 560px) {
-  .book-details-page .book-details {
-    grid-template-columns: 1fr;
-  }
-
-  .book-details-page .book-details__cover {
-    width: min(100%, 280px);
-    max-height: 360px;
-    justify-self: center;
+  .book-details-page {
+    padding-top: var(--space-4);
+    gap: var(--space-5);
   }
 }

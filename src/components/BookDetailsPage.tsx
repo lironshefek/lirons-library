@@ -1,7 +1,8 @@
-// TODO: Restyle this page to match the "calm dark" design (see src/styles/pages/details.css).
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import BookDetails from './BookDetails';
+import BookDetailsSkeleton from './BookDetailsSkeleton';
+import EmptyState from './EmptyState';
 import ErrorMessage from './ErrorMessage';
 import { getBookById } from '../api/openLibrary';
 import type { Book } from '../types/book';
@@ -25,6 +26,8 @@ function BookDetailsPage({ books, loading, favoriteIds, onToggleFavorite }: Book
   const [checkedId, setCheckedId] = useState<string | null>(null);
   // The id whose API lookup failed (network or server problem).
   const [failedId, setFailedId] = useState<string | null>(null);
+  // Increased by the "Try again" button to run the lookup again.
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     if (loading || isInList || !id) {
@@ -52,40 +55,60 @@ function BookDetailsPage({ books, loading, favoriteIds, onToggleFavorite }: Book
       });
 
     return () => controller.abort();
-  }, [id, loading, isInList]);
+  }, [id, loading, isInList, retryCount]);
+
+  function retryLookup() {
+    // Clear the old result so the loading skeleton shows while trying again.
+    setFailedId(null);
+    setCheckedId(null);
+    setRetryCount((count) => count + 1);
+  }
 
   // Only use the fetched book if it belongs to the id in the current URL.
   const book = bookFromList ?? (fetchedBook?.id === id ? fetchedBook : undefined);
   const isLookingUp = !isInList && checkedId !== id;
+
+  // Pick what to show under the back link: loading, error, the book, or "not found".
+  let content;
+  if (loading || isLookingUp) {
+    content = <BookDetailsSkeleton />;
+  } else if (failedId === id && !book) {
+    content = (
+      <ErrorMessage
+        title="This book didn’t load"
+        message="We couldn’t get its details from Open Library. Check your connection and try again."
+        onRetry={retryLookup}
+      />
+    );
+  } else if (book) {
+    const isFavorite = favoriteIds.has(book.id);
+    content = (
+      <BookDetails book={book} isPageTitle>
+        <button
+          className={`button button--large ${isFavorite ? 'button--outline' : 'button--primary'}`}
+          type="button"
+          aria-pressed={isFavorite}
+          onClick={() => onToggleFavorite(book)}
+        >
+          {isFavorite ? '♥ Remove from favorites' : '♡ Add to favorites'}
+        </button>
+      </BookDetails>
+    );
+  } else {
+    content = (
+      <EmptyState
+        title="We couldn’t find this book"
+        message="Open Library has no book at this address. Go back and pick another one."
+      />
+    );
+  }
 
   return (
     <main className="page-shell book-details-page">
       <Link className="book-details-page__back" to="/">
         ← Back to books
       </Link>
-      {loading || isLookingUp ? (
-        <p className="book-details-page__message">Loading book details...</p>
-      ) : failedId === id && !book ? (
-        <ErrorMessage
-          title="Could not load this book"
-          message="There was a problem connecting to Open Library. Please go back and try again later."
-        />
-      ) : book ? (
-        <div className="book-details-page__content">
-          <button
-            className={`favorite-toggle favorite-toggle--details${favoriteIds.has(book.id) ? ' favorite-toggle--active' : ''}`}
-            type="button"
-            aria-label={favoriteIds.has(book.id) ? `Remove ${book.title} from favorites` : `Add ${book.title} to favorites`}
-            aria-pressed={favoriteIds.has(book.id)}
-            onClick={() => onToggleFavorite(book)}
-          >
-            {favoriteIds.has(book.id) ? '♥ Remove from favorites' : '♡ Add to favorites'}
-          </button>
-          <BookDetails book={book} />
-        </div>
-      ) : (
-        <p className="book-details-page__message">Book not found.</p>
-      )}
+      {content}
     </main>
   );
 }

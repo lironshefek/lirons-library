@@ -1,0 +1,60 @@
+/* BookDetailsSkeleton component: placeholders shaped like the details page.
+   The grey pulsing look comes from .skeleton in book-grid-skeleton.css. */
+
+/* The cover placeholder reuses the size of .book-details__cover, without the shadow */
+.skeleton.book-details__cover {
+  box-shadow: none;
+}
+
+.skeleton--details-title {
+  width: 70%;
+  height: 48px;
+  border-radius: var(--space-2);
+}
+
+.skeleton--details-author {
+  width: 35%;
+  height: 20px;
+}
+
+.skeleton--details-fact {
+  width: 170px;
+  height: 38px;
+  border-radius: var(--radius-md);
+}
+
+.skeleton--details-fact-wide {
+  width: 210px;
+}
+
+/* Four lines that look like a paragraph */
+.skeleton-lines {
+  display: flex;
+  max-width: 640px;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.skeleton--line {
+  width: 100%;
+  height: 16px;
+}
+
+.skeleton--line:nth-child(2) {
+  width: 96%;
+}
+
+.skeleton--line:nth-child(3) {
+  width: 88%;
+}
+
+.skeleton--line:nth-child(4) {
+  width: 60%;
+}
+
+.skeleton--details-button {
+  width: 200px;
+  height: 52px;
+  margin-top: var(--space-2);
+  border-radius: var(--radius-pill);
+}
