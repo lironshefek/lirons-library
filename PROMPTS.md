@@ -712,3 +712,15 @@ Please run the tests and show the passing output.
 **Agent did:** Committed the `PROMPTS.md` entries for Prompts 78-81 on `main` (Liron asked for this commit explicitly, so the "no log-only commits" rule does not apply). Not pushed.
 **I checked:** `git status` is clean after the commit.
 **Questions asked:** None.
+
+### Prompt 82 — Push Main and Sync the Redesign Branch (2026-11-01)
+**Prompt:** yes
+**Agent did:** Moved `feature/style-redesign` forward to `main` (`git branch -f`, a fast-forward since it was an ancestor) and pushed both branches, so `main` and `feature/style-redesign` point to `3f3bc83` locally and on GitHub.
+**I checked:** Compared `git rev-parse` of the four refs after the push.
+**Questions asked:** Liron answered Prompt 81: yes, push `main` and sync `feature/style-redesign`.
+
+### Prompt 83 — Redesign the Roulette Page (2026-11-01)
+**Prompt:** lets move to the roulette page redesign
+**Agent did:** Read the Roulette artboard. Added a `compact` option to `BookDetails.tsx` (year as plain text, no rating box or genre pills, "Loading description..." while spinning) with compact styles in `book-details.css`, plus `--radius-3xl` and `--shadow-cover-medium` tokens. Moved the "<- Back to books" style to a shared `.back-link` in `layout.css` (used by the details and roulette pages). Rewrote `RandomBookPage.tsx` and `pages/random.css`: centered header (violet eyebrow, bold Manrope title), violet Spin button with a circular-arrow icon that turns while spinning, dark rounded result card, dashed placeholder before the first spin, skeleton loading, "Nothing to spin yet" error with Try again, and an empty-shelf state. Removed the remaining roulette TODO notes. Kept the existing "press the button first" behavior (the design shows a book right away). Updated `tasks.MD` and `PRD.MD`.
+**I checked:** `npm run build`, `npx vitest run` (20 tests passed), and headless-Chrome screenshots (driven through the DevTools protocol to click Spin) of `/random` before, during, and after a spin at 1440px, and after a spin at 390px.
+**Questions asked:** Asked Liron to check the roulette page in the browser, and whether to show a random book right away (like the design) instead of the "press the button" placeholder. Awaiting answer.
