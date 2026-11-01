@@ -688,3 +688,27 @@ Please run the tests and show the passing output.
 **Agent did:** Changed the roulette Spin button in `src/styles/pages/random.css` from the old green (`#405d48`, hover `#547c61`) to the same violet as "Surprise me": `var(--color-accent)` with `var(--color-accent-focus)` on hover, white text (`var(--color-on-accent)`), and the pill radius token.
 **I checked:** `npm run build` and `npx vitest run`.
 **Questions asked:** None. (Prompt 75's request to check the details page is still open.)
+
+### Prompt 78 — Push the Branch (2026-11-01)
+**Prompt:** git push
+**Agent did:** Pushed `feature/style-redesign` to GitHub with all local commits, including the TODO commit `ed8a984` (the newer commits are built on top of it).
+**I checked:** `git status -sb` after the push shows the branch in sync with `origin/feature/style-redesign`.
+**Questions asked:** Asked whether to push everything (including the TODO commit kept local in Prompt 74) or drop that commit first. Liron answered: push everything.
+
+### Prompt 79 — Merge the Redesign Into Main (2026-11-01)
+**Prompt:** merge to main
+**Agent did:** Fast-forwarded `main` to `feature/style-redesign` (`git merge --ff-only`; `main` had no commits of its own since `c8815ae`), so `main` now has the CSS split, design tokens, redesigned home and details pages, the Lirons Library name, local hero images, and the violet Spin button. Kept the uncommitted `PROMPTS.md` entries aside with `git stash` while switching branches. Did not push `main`.
+**I checked:** `npm run build` and `npx vitest run` on `main` after the merge.
+**Questions asked:** Asked whether to push `main` to GitHub. Awaiting answer. (Prompt 70's merge question is answered by this request.)
+
+### Prompt 80 — Make Main the Same as style-redesign (2026-11-01)
+**Prompt:** i want the main to ne as same as style-redesign
+**Agent did:** Confirmed local `main` and `feature/style-redesign` already point to the same commit (`e21c4c2`) after Prompt 79; only `origin/main` was behind (`c8815ae`). Pushed `main` to GitHub (fast-forward), so `main` and `feature/style-redesign` are identical locally and on GitHub.
+**I checked:** Compared `git rev-parse` of `main`, `feature/style-redesign`, `origin/main`, and `origin/feature/style-redesign` before and after the push.
+**Questions asked:** Liron answered Prompt 79: yes, `main` on GitHub should match `style-redesign`.
+
+### Prompt 81 — Commit the Prompt Log (2026-11-01)
+**Prompt:** so commit it
+**Agent did:** Committed the `PROMPTS.md` entries for Prompts 78-81 on `main` (Liron asked for this commit explicitly, so the "no log-only commits" rule does not apply). Not pushed.
+**I checked:** `git status` is clean after the commit.
+**Questions asked:** None.
