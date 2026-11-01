@@ -1,7 +1,7 @@
-// TODO: Restyle this page to match the "calm dark" design (see src/styles/pages/random.css).
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BookDetails from '../components/BookDetails';
+import EmptyState from '../components/EmptyState';
 import ErrorMessage from '../components/ErrorMessage';
 import type { Book } from '../types/book';
 import { pickRandomBook } from '../utils/bookHelpers';
@@ -47,47 +47,96 @@ function RandomBookPage({ books, loading, loadError, onRetry }: RandomBookPagePr
     setIsSpinning(true);
   }
 
+  // Pick what to show under the title: error, loading, empty shelf, or the roulette.
+  let content;
+  if (loadError) {
+    content = (
+      <ErrorMessage
+        title="Nothing to spin yet"
+        message="We couldn’t load the books from Open Library. Check your connection and try again."
+        onRetry={onRetry}
+      />
+    );
+  } else if (loading) {
+    content = (
+      <div className="random-page__content" aria-busy="true">
+        <span className="sr-only" role="status">Loading books...</span>
+        <div className="skeleton random-page__skeleton-button" aria-hidden="true" />
+        <div className="random-page__card" aria-hidden="true">
+          <div className="book-details book-details--compact">
+            <div className="skeleton book-details__cover" />
+            <div className="book-details__content">
+              <div className="skeleton skeleton--details-title" />
+              <div className="skeleton skeleton--details-author" />
+              <div className="skeleton-lines">
+                <div className="skeleton skeleton--line" />
+                <div className="skeleton skeleton--line" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  } else if (books.length === 0) {
+    content = (
+      <EmptyState
+        title="The shelf is empty for now"
+        message="There are no books to spin right now. Check back a little later."
+      />
+    );
+  } else {
+    content = (
+      <div className="random-page__content">
+        <button
+          className="button button--primary random-page__spin"
+          type="button"
+          onClick={handleSpin}
+          disabled={isSpinning}
+        >
+          {/* Circular arrow icon; it turns while the roulette spins */}
+          <svg
+            className={`random-page__spin-icon${isSpinning ? ' random-page__spin-icon--spinning' : ''}`}
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21 12a9 9 0 1 1-3-6.7" />
+            <path d="M21 3v6h-6" />
+          </svg>
+          {isSpinning ? 'Spinning...' : selectedBook ? 'Spin again' : 'Spin the roulette'}
+        </button>
+
+        {selectedBook ? (
+          <div className={`random-page__card${isSpinning ? ' random-page__card--spinning' : ''}`}>
+            <BookDetails
+              book={selectedBook}
+              coverSize={isSpinning ? 'M' : 'L'}
+              loadDescription={!isSpinning}
+              compact
+            />
+          </div>
+        ) : (
+          <p className="random-page__placeholder">Press the button to pick a surprise book.</p>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <main className="page-shell book-details-page random-page">
-      <Link className="book-details-page__back" to="/">
+    <main className="page-shell random-page">
+      <Link className="back-link" to="/">
         ← Back to books
       </Link>
-      <header className="page-header">
-        <p className="eyebrow">Feeling lucky?</p>
-        <h1>Mystery Book Roulette</h1>
-        <p className="page-intro">Spin the roulette and let a surprise book find you.</p>
+      <header className="random-page__header">
+        <p className="random-page__eyebrow">Feeling lucky?</p>
+        <h1 className="random-page__title">Mystery Book Roulette</h1>
+        <p className="random-page__intro">Spin the roulette and let a surprise book find you.</p>
       </header>
-
-      <button
-        className="random-page__spin"
-        type="button"
-        onClick={handleSpin}
-        disabled={loading || loadError || isSpinning || books.length === 0}
-      >
-        {isSpinning ? 'Spinning...' : selectedBook ? 'Spin again' : 'Spin the roulette'}
-      </button>
-
-      {loadError ? (
-        <ErrorMessage
-          title="Could not load the books"
-          message="The roulette needs the book list from Open Library, but it could not be loaded. Please try again."
-          onRetry={onRetry}
-        />
-      ) : loading ? (
-        <p className="book-details-page__message">Loading books...</p>
-      ) : books.length === 0 ? (
-        <p className="book-details-page__message">No books are available to pick from.</p>
-      ) : selectedBook ? (
-        <div className={`random-page__result${isSpinning ? ' random-page__result--spinning' : ''}`}>
-          <BookDetails
-            book={selectedBook}
-            coverSize={isSpinning ? 'M' : 'L'}
-            loadDescription={!isSpinning}
-          />
-        </div>
-      ) : (
-        <p className="book-details-page__message">Press the button to pick a random book.</p>
-      )}
+      {content}
     </main>
   );
 }

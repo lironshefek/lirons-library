@@ -1,30 +1,74 @@
 /* Mystery Book Roulette page (/random) */
 
-/*
-  TODO: Restyle this page to match the "calm dark" design (Roulette artboard).
-  It still uses the old light colors; switch them to the variables in
-  colors.css and tokens.css. The shared card is in components/book-details.css.
-*/
-
-.random-page__spin {
-  /* Keep the button its natural size (the page stacks items in a column) */
-  align-self: flex-start;
-  margin-bottom: 28px;
-  padding: 12px 22px;
-  border: none;
-  border-radius: var(--radius-pill);
-  /* Same violet as the "Surprise me" button */
-  background: var(--color-accent);
-  color: var(--color-on-accent);
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
+/* A narrower page with everything centered */
+.random-page {
+  display: flex;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-10);
 }
 
-.random-page__spin:hover:not(:disabled) {
-  background: var(--color-accent-focus);
-  transform: translateY(-1px);
+.random-page .back-link {
+  align-self: flex-start;
+}
+
+/* Error and empty-shelf boxes use the full width */
+.random-page .status-box {
+  width: 100%;
+}
+
+/* ---------- Header ---------- */
+
+.random-page__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.random-page__eyebrow {
+  margin: 0;
+  color: var(--color-link);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.random-page__title {
+  font-family: var(--font-body);
+  font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.random-page__intro {
+  margin: 0;
+  color: var(--color-text-subtle);
+  font-size: 1.0625rem;
+}
+
+/* ---------- Spin button and result ---------- */
+
+.random-page__content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+/* Big violet pill (colors come from .button--primary) */
+.random-page__spin {
+  gap: 10px;
+  height: 56px;
+  padding: 0 var(--space-6);
+  font-size: var(--text-base);
 }
 
 .random-page__spin:disabled {
@@ -32,19 +76,73 @@
   cursor: default;
 }
 
-.random-page__result {
-  max-width: 900px;
+.random-page__spin-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* The arrow turns while the roulette is spinning */
+.random-page__spin-icon--spinning {
+  animation: spin-icon 0.8s linear infinite;
+}
+
+@keyframes spin-icon {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark rounded card around the picked book */
+.random-page__card {
+  width: 100%;
+  padding: 36px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-3xl);
+  background: var(--color-surface);
   transition: opacity 0.1s ease;
 }
 
 /* Slightly fade the book while the roulette is still spinning */
-.random-page__result--spinning {
-  opacity: 0.7;
+.random-page__card--spinning {
+  opacity: 0.75;
+}
+
+/* Shown before the first spin */
+.random-page__placeholder {
+  width: 100%;
+  margin: 0;
+  padding: 40px;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-3xl);
+  color: var(--color-text-subtle);
+  text-align: center;
+}
+
+/* Loading placeholder shaped like the Spin button */
+.random-page__skeleton-button {
+  width: 230px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .random-page__spin-icon--spinning {
+    animation: none;
+  }
 }
 
 @media (max-width: 560px) {
+  .random-page {
+    padding-top: var(--space-4);
+    gap: var(--space-5);
+  }
+
   /* A full-width Spin button is easier to tap on a phone */
   .random-page__spin {
     width: 100%;
+  }
+
+  .random-page__card {
+    padding: var(--space-5);
   }
 }
