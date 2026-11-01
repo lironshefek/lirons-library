@@ -9,7 +9,7 @@ Individuals and avid readers who want a fast, effortless way to look up books, e
 ## 3. Screens
 The application uses React Router with dedicated pages:
 * **Home (`/`):** A hero ("Psychological thrillers, only.") with a "Surprise me" button and a tilted stack of 3 of Liron's favorite covers (details saved in `src/data/heroPicks.json` and cover images in `public/hero/`, so the hero needs no request and works offline), then a search bar and a responsive grid of psychological thrillers first published in 2000 or later that have a cover image, loaded from Open Library. Typing filters this list by title.
-* **Book Details (`/books/:id`):** A dedicated page with the selected book's larger cover, title, author, publication year, rating, description, genre tags, a favorite toggle, and a back link.
+* **Book Details (`/books/:id`):** A dedicated page with the selected book's large cover, bold title, author, publication year and rating boxes, description, violet genre pills, a large Add/Remove favorites button, and a back link. While loading it shows skeleton placeholders; if Open Library cannot be reached it shows "This book didn’t load" with a Try again button.
 * **Favorites (`/favorites`):** A grid of bookmarked books, or an empty-state message when none are saved.
 * **Mystery Book Roulette (`/random`):** Spins through the home page's books and stops on a surprise book, showing its cover and full details, including the description, on the same page (Task 8).
 * **404 Page (`*`):** A styled "Page Not Found" page with a link back to `/`.

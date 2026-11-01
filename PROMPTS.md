@@ -664,3 +664,21 @@ Please run the tests and show the passing output.
 **Agent did:** Added `TODO` comments saying the page must be restyled to the "calm dark" design with the color/token variables: at the top of `src/styles/pages/details.css`, `src/styles/pages/random.css`, the shared `src/styles/components/book-details.css`, `src/components/BookDetailsPage.tsx`, and `src/pages/RandomBookPage.tsx`. These pages are already listed as open items in the Task 8 progress list in `tasks.MD`.
 **I checked:** `npm run build` and `npx vitest run` (comments only); `grep TODO src` lists all five notes.
 **Questions asked:** None. (Prompt 70's merge question and Prompt 67's home page check are still open.)
+
+### Prompt 74 — Push Without the TODO Commit (2026-10-31)
+**Prompt:** push the commits to github (without the TODO)
+**Agent did:** Pushed `feature/style-redesign` to GitHub up to `0e8a9e7` (local hero images, docs, The Housemaid in the center) with `git push origin 0e8a9e7:refs/heads/feature/style-redesign`. The TODO commit `ed8a984` stays local only.
+**I checked:** `git status -sb` shows the branch 1 commit ahead of `origin/feature/style-redesign` (the TODO commit).
+**Questions asked:** None. (Prompt 70's merge question and Prompt 67's home page check are still open.)
+
+### Prompt 75 — Redesign the Book Details Page (2026-11-01)
+**Prompt:** lets go to the next mission - change the style in the book details page as sama as the design
+**Agent did:** Read the Details and Roulette artboards. Added colors (`--color-border-button`, `--color-accent-surface`, `--color-star`) and tokens (`--radius-cover`, `--shadow-cover-large`), plus `.button--outline` and `.button--large`. Rebuilt `BookDetails.tsx` (cover on the left; bold Manrope title, author, fact boxes for year and rating, description, violet genre pills, and a `children` slot for actions; new `isPageTitle` prop makes the title an `<h1>`) and rewrote `book-details.css` and `pages/details.css`. `BookDetailsPage.tsx` now shows a new `BookDetailsSkeleton` while loading, "This book didn’t load" with a working Try again (`retryCount`), "We couldn’t find this book" (`EmptyState`), and the large Add/Remove favorites button (filled when not saved, outlined when saved). Removed the unused `favorite-toggle--details` style and the details-page TODO notes. Updated `tasks.MD` and `PRD.MD`.
+**I checked:** `npm run build`, `npx vitest run` (20 tests passed), and headless-Chrome screenshots of `/books/OL27729743W` at 1440px and 512px.
+**Questions asked:** Asked Liron to check the details page in the browser. Awaiting answer.
+
+### Prompt 76 — Keep the Spin Button Small (2026-11-01)
+**Prompt:** change the "spin again" button to be asa same as before - it should be small
+**Agent did:** The roulette page shares the `book-details-page` class, whose new column layout stretched the Spin button to full width. Added `align-self: flex-start` to `.random-page__spin` in `src/styles/pages/random.css` so it keeps its natural size (still full width on phones, as before).
+**I checked:** Headless-Chrome screenshot of `/random` at 1440px: the button is small again.
+**Questions asked:** None.
