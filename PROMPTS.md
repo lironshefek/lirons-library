@@ -682,3 +682,9 @@ Please run the tests and show the passing output.
 **Agent did:** The roulette page shares the `book-details-page` class, whose new column layout stretched the Spin button to full width. Added `align-self: flex-start` to `.random-page__spin` in `src/styles/pages/random.css` so it keeps its natural size (still full width on phones, as before).
 **I checked:** Headless-Chrome screenshot of `/random` at 1440px: the button is small again.
 **Questions asked:** None.
+
+### Prompt 77 — Violet Spin Button (2026-11-01)
+**Prompt:** now change the color to be purpule as same as the "suprise me" button
+**Agent did:** Changed the roulette Spin button in `src/styles/pages/random.css` from the old green (`#405d48`, hover `#547c61`) to the same violet as "Surprise me": `var(--color-accent)` with `var(--color-accent-focus)` on hover, white text (`var(--color-on-accent)`), and the pill radius token.
+**I checked:** `npm run build` and `npx vitest run`.
+**Questions asked:** None. (Prompt 75's request to check the details page is still open.)

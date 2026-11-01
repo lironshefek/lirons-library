@@ -12,9 +12,10 @@
   margin-bottom: 28px;
   padding: 12px 22px;
   border: none;
-  border-radius: 999px;
-  background: #405d48;
-  color: #fffefa;
+  border-radius: var(--radius-pill);
+  /* Same violet as the "Surprise me" button */
+  background: var(--color-accent);
+  color: var(--color-on-accent);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
@@ -22,7 +23,7 @@
 }
 
 .random-page__spin:hover:not(:disabled) {
-  background: #547c61;
+  background: var(--color-accent-focus);
   transform: translateY(-1px);
 }
 
