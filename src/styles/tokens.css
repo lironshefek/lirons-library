@@ -34,6 +34,7 @@
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 12px;
+  --radius-cover: 14px;
   --radius-xl: 16px;
   --radius-2xl: 20px;
   --radius-pill: 999px;
@@ -42,6 +43,7 @@
   --shadow-cover: 0 14px 32px rgb(0 0 0 / 40%);
   --shadow-hero-side: 0 24px 48px rgb(0 0 0 / 50%);
   --shadow-hero-main: 0 32px 64px rgb(0 0 0 / 60%);
+  --shadow-cover-large: 0 32px 64px rgb(0 0 0 / 50%);
 
   /* Layout */
   --content-width: 1200px;

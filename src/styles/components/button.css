@@ -23,3 +23,20 @@
   background: var(--color-accent-focus);
   color: var(--color-on-accent);
 }
+
+/* See-through button with a thin border, e.g. "Remove from favorites" */
+.button--outline {
+  border: 1px solid var(--color-border-button);
+  background: transparent;
+  color: var(--color-on-accent);
+}
+
+.button--outline:hover {
+  background: var(--color-surface-active);
+}
+
+/* Taller button for the main action on a page */
+.button--large {
+  height: 52px;
+  padding: 0 var(--space-5);
+}

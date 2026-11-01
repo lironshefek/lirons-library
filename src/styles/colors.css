@@ -14,6 +14,7 @@
   /* Borders and dividers */
   --color-border: #24212c;
   --color-border-strong: #2c2836;
+  --color-border-button: #3a3444;
 
   /* Text, from strongest to faintest */
   --color-text: #f2f0f5;
@@ -26,11 +27,15 @@
   --color-accent: #6e4ce6;
   --color-accent-focus: #8b6cf6;
   --color-accent-soft: #cdbfff;
+  --color-accent-surface: #241e33;
   --color-on-accent: #ffffff;
 
   /* Links */
   --color-link: #b7a3ff;
   --color-link-hover: #d3c7ff;
+
+  /* Rating star */
+  --color-star: #f5c451;
 
   /* Hearts and errors */
   --color-danger: #ff8fa3;
