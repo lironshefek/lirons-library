@@ -105,7 +105,7 @@ function BookDetailsPage({ books, loading, favoriteIds, onToggleFavorite }: Book
 
   return (
     <main className="page-shell book-details-page">
-      <Link className="book-details-page__back" to="/">
+      <Link className="back-link" to="/">
         ← Back to books
       </Link>
       {content}

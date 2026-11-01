@@ -102,6 +102,14 @@
 
 /* ---------- Page frame ---------- */
 
+/* "← Back to books" link at the top of the details and roulette pages */
+.back-link {
+  align-self: flex-start;
+  padding: var(--space-3) 0;
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
 .page-shell {
   width: 100%;
   max-width: var(--content-width);
