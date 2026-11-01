@@ -1,7 +1,5 @@
 /* BookDetails component (used on the details and roulette pages) */
 
-/* TODO: Restyle the roulette page's version of this card (see pages/random.css). */
-
 /* Big cover on the left, details on the right; they stack on small screens */
 .book-details {
   display: flex;
@@ -118,9 +116,61 @@
   margin-top: var(--space-2);
 }
 
+/* ---------- Compact card (roulette) ---------- */
+
+.book-details--compact {
+  align-items: center;
+  gap: 36px;
+}
+
+.book-details--compact .book-details__cover {
+  min-width: 180px;
+  flex: 0 1 220px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-cover-medium);
+}
+
+.book-details--compact .book-details__content {
+  flex: 1 1 340px;
+  gap: 14px;
+}
+
+.book-details--compact .book-details__heading {
+  gap: 14px;
+}
+
+.book-details--compact .book-details__title {
+  font-size: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.book-details--compact .book-details__author {
+  font-size: var(--text-base);
+}
+
+.book-details__year {
+  margin: 0;
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+}
+
+.book-details--compact .book-details__description {
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+
 @media (max-width: 560px) {
   .book-details {
     gap: var(--space-6);
+  }
+
+  .book-details--compact .book-details__cover {
+    width: min(100%, 200px);
+  }
+
+  .book-details--compact .book-details__title {
+    font-size: 1.625rem;
   }
 
   /* On phones the cover sits centered above the details */
