@@ -7,6 +7,8 @@
 */
 
 .random-page__spin {
+  /* Keep the button its natural size (the page stacks items in a column) */
+  align-self: flex-start;
   margin-bottom: 28px;
   padding: 12px 22px;
   border: none;
