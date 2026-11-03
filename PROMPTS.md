@@ -772,3 +772,9 @@ Please run the tests and show the passing output.
 **Agent did:** Removed The Shining from `src/data/myPicks.json` (8 picks left; the nav badge updates automatically from the file) and changed the count/list in `PRD.MD`, `tasks.MD`, and `README.md`.
 **I checked:** `npm run build` and `npx vitest run` (the My Picks test checks every title in the file).
 **Questions asked:** None. (Prompt 90’s next-step question and Prompt 84’s roulette/search question are still open.)
+
+### Prompt 92 — Redesign the Favorites Page (2026-11-03)
+**Prompt:** lets nove to the next step - redesign the favorite page
+**Agent did:** Read the Favorites artboard. Added a `size="small"` option to `BookList.tsx` (`.book-grid--small`: 170px+ columns, bold Manrope titles, smaller meta text, softer `--shadow-cover-small` shadow) and made `EmptyState.tsx` support an optional title and a heart icon. Rewrote `FavoritesPage.tsx`: shared page header (violet eyebrow, bold `page-title`, intro), the small grid, and an empty state with a heart icon and a violet Browse books button. Gave `MyPicksPage.tsx` the same header and small grid. Moved the header styles (`.collection-page`, `.page-header`, `.eyebrow`, `.page-title`, `.page-intro`) to `layout.css` and deleted the old `pages/favorites.css` (old green colors). Skipped the design’s loading/error states because favorites come from `localStorage` instantly. Updated `tasks.MD` and `PRD.MD`.
+**I checked:** `npm run build`, `npx vitest run` (22 tests passed), and headless-Chrome screenshots of `/favorites` empty, with 5 saved books (desktop and 390px phone), and `/picks`.
+**Questions asked:** Liron answered Prompt 90: start with the Favorites page. Asked Liron to check Favorites and My Picks in the browser. Awaiting answer.
