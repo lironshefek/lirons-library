@@ -802,3 +802,9 @@ Please run the tests and show the passing output.
 **Agent did:** Marked the roulette sub-task and the color-palette item as checked, and Task 8 as `(Completed)` in `tasks.MD`. All 8 tasks are now completed.
 **I checked:** Task 8’s "Done when": the roulette works (checked by Liron), the palette and responsive design are applied on every page (all five pages checked by Liron), `npx vitest run` passes 22 tests in 6 files (at least 5 required), and `npm run build` succeeds.
 **Questions asked:** Liron answered Prompt 95: the roulette page looks great. Asked whether to push `main` to GitHub. Awaiting answer.
+
+### Prompt 97 — Make Sure the README Is Up to Date (2026-11-03)
+**Prompt:** before doing that, can you make sure that the README is updated?
+**Agent did:** Reviewed `README.md` against the current app and updated what had changed since it was written: a status line (all 8 tasks completed), the pages table (details works after refresh, My Picks built like Favorites, Favorites’ small cards and heart empty state, the roulette uses only the 100 home books and shows all details, the redesigned 404), the font description (Fraunces is now used for the site name, hero title, home card titles, and "404"; Manrope for text and page titles) and the favicon, `mockBooks.json` in the `data/` folder, and `tasks.MD` described as completed.
+**I checked:** Verified the README’s numbers against the code: 8 picks in `myPicks.json`, `REQUEST_TIMEOUT_MS = 5000`, `limit: '100'`, 22 tests from `npx vitest run`, React 18 in `package.json`, and the files in `src/data/`.
+**Questions asked:** Liron answered Prompt 96 by asking to update the README before pushing. The push question is still open.
