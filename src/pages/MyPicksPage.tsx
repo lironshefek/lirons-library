@@ -14,16 +14,17 @@ interface MyPicksPageProps {
 // Built like the Favorites page: a header and the same grid of book cards.
 function MyPicksPage({ favoriteIds, onToggleFavorite }: MyPicksPageProps) {
   return (
-    <main className="page-shell">
+    <main className="page-shell collection-page">
       <header className="page-header">
         <p className="eyebrow">Hand-picked by me</p>
-        <h1>My Picks</h1>
+        <h1 className="page-title">My Picks</h1>
         <p className="page-intro">The thrillers I love most and would recommend to anyone.</p>
       </header>
       <BookList
         books={myPicks}
         favoriteIds={favoriteIds}
         onToggleFavorite={onToggleFavorite}
+        size="small"
       />
     </main>
   );
