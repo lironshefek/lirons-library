@@ -760,3 +760,15 @@ Please run the tests and show the passing output.
 **Agent did:** In `src/components/BookDetails.tsx` the `compact` option now only changes the layout (smaller cover and title); the roulette card shows the same details as the details page: the year and rating boxes, the description, and the genre pills. Removed the now-unused `.book-details__year` style from `book-details.css`. Updated the roulette description in `tasks.MD`, `PRD.MD`, and `README.md`.
 **I checked:** `npm run build`, `npx vitest run` (22 tests passed), and a headless-Chrome screenshot of `/random` after a spin (showed "First published 2002", "3.8 / 5 · 9 ratings", the description, and three genre pills).
 **Questions asked:** None. (Prompt 84’s question about using only the search results is still open.)
+
+### Prompt 90 — Next Steps: Is the Style Refactor Done? (2026-11-03)
+**Prompt:** what are the next steps? we finished the style refactor?
+**Agent did:** Checked the styles and the Task 8 checklist in `tasks.MD`. The redesign is not finished: `pages/favorites.css` and `pages/not-found.css` still use the old green/light hard-coded colors (the only hard-coded colors left outside `colors.css`), and the Favorites and 404 pages were not redesigned from their artboards. Home, details, and roulette are done but not yet confirmed by Liron. Listed the remaining steps. No code changed.
+**I checked:** Searched `src/styles` for hex colors outside `colors.css`; read the Task 8 progress list.
+**Questions asked:** Asked which step to start with (recommended: Favorites page). Awaiting answer. (Prompt 84’s roulette/search question is still open.)
+
+### Prompt 91 — Remove The Shining From My Picks (2026-11-03)
+**Prompt:** remove "the shihng" book from my picks.
+**Agent did:** Removed The Shining from `src/data/myPicks.json` (8 picks left; the nav badge updates automatically from the file) and changed the count/list in `PRD.MD`, `tasks.MD`, and `README.md`.
+**I checked:** `npm run build` and `npx vitest run` (the My Picks test checks every title in the file).
+**Questions asked:** None. (Prompt 90’s next-step question and Prompt 84’s roulette/search question are still open.)
