@@ -139,9 +139,15 @@
 }
 
 @media (max-width: 560px) {
-  /* Smaller nav pills so all three links fit in one row under the logo */
+  /* Smaller nav pills so all four links fit in one row under the logo */
+  .site-nav {
+    gap: 2px;
+    font-size: var(--text-sm);
+  }
+
   .site-nav__link {
-    padding: 10px var(--space-3);
+    gap: 6px;
+    padding: var(--space-2) 10px;
   }
 
   .page-shell {
