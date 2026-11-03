@@ -754,3 +754,9 @@ Please run the tests and show the passing output.
 **Agent did:** Rewrote `README.md` (in Hebrew, like the original) to describe Lirons Library instead of the course starter template: how to run it and the npm scripts (including the Vitest UI URL), every page and its address, data and loading/error behavior, the dark design and the `src/styles/` structure, the project folders, the 22 tests, the tech stack, and the working-process files (PRD, tasks, AGENTS, PROMPTS). Removed the template’s instructions about a prompt-logging hook (`scripts/`, `.claude/`), which does not exist in this project, and the outdated sidebar section. Updated `PRD.MD` (My Picks screen) and `tasks.MD` (extras note).
 **I checked:** Compared the README’s file list against `src/` and `public/`, and the test count against `npx vitest run` (22 tests).
 **Questions asked:** None.
+
+### Prompt 89 — Full Details in the Roulette Result (2026-11-03)
+**Prompt:** in the shuffle feature, the outcome book should conatain all the detatils - rating,genere..
+**Agent did:** In `src/components/BookDetails.tsx` the `compact` option now only changes the layout (smaller cover and title); the roulette card shows the same details as the details page: the year and rating boxes, the description, and the genre pills. Removed the now-unused `.book-details__year` style from `book-details.css`. Updated the roulette description in `tasks.MD`, `PRD.MD`, and `README.md`.
+**I checked:** `npm run build`, `npx vitest run` (22 tests passed), and a headless-Chrome screenshot of `/random` after a spin (showed "First published 2002", "3.8 / 5 · 9 ratings", the description, and three genre pills).
+**Questions asked:** None. (Prompt 84’s question about using only the search results is still open.)

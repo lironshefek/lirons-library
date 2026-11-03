@@ -12,7 +12,7 @@ The application uses React Router with dedicated pages:
 * **Book Details (`/books/:id`):** A dedicated page with the selected book's large cover, bold title, author, publication year and rating boxes, description, violet genre pills, a large Add/Remove favorites button, and a back link. While loading it shows skeleton placeholders; if Open Library cannot be reached it shows "This book didn’t load" with a Try again button.
 * **My Picks (`/picks`):** Liron's 9 recommended books (The Housemaid series, Rock Paper Scissors, The Silent Patient, The Boyfriend, Shutter Island, Behind Her Eyes, The Shining), saved in `src/data/myPicks.json` so they show right away; built like the Favorites page and opening instantly on the details page.
 * **Favorites (`/favorites`):** A grid of bookmarked books, or an empty-state message when none are saved.
-* **Mystery Book Roulette (`/random`):** A centered page with a violet Spin button that flips through the home page's books and stops on a surprise book, shown in a dark card with its cover, title, author, year, and description (Task 8). While loading it shows skeleton placeholders; if the books cannot be loaded it shows "Nothing to spin yet" with a Try again button.
+* **Mystery Book Roulette (`/random`):** A centered page with a violet Spin button that flips through the home page's books and stops on a surprise book, shown in a dark card with all its details: cover, title, author, year and rating, description, and genres (Task 8). While loading it shows skeleton placeholders; if the books cannot be loaded it shows "Nothing to spin yet" with a Try again button.
 * **404 Page (`*`):** A styled "Page Not Found" page with a link back to `/`.
 
 ## 4. Must-Have Features

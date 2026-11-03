@@ -39,7 +39,7 @@ Implement an interactive book roulette page at route `/random` that picks a surp
 - [ ] Custom CSS color palette with variables, from Liron's "calm dark" design, applied page by page:
   - [ ] Home page: CSS split into `src/styles/` (colors, tokens, base, layout, components, pages), header with logo, footer, hero with Liron's 3 saved picks (`src/data/heroPicks.json`, covers saved in `public/hero/`), search bar, cards, skeleton/empty/error states (implemented, awaiting Liron's check)
   - [ ] Book details page: cover + bold title, fact boxes (year, rating), description, violet genre pills, large Add/Remove favorites button, skeleton loading, "This book didn’t load" with Try again, "We couldn’t find this book" (implemented, awaiting Liron's check)
-  - [ ] Mystery Book Roulette page: centered header, violet Spin button with a turning arrow icon, dark result card with the compact `BookDetails` (cover, title, author, year, description), dashed placeholder before the first spin, skeleton loading, "Nothing to spin yet" with Try again (implemented, awaiting Liron's check)
+  - [ ] Mystery Book Roulette page: centered header, violet Spin button with a turning arrow icon, dark result card with the compact `BookDetails` showing all details (cover, title, author, year and rating boxes, description, genres), dashed placeholder before the first spin, skeleton loading, "Nothing to spin yet" with Try again (implemented, awaiting Liron's check)
   - [ ] Favorites page
   - [ ] 404 page
 **Extras (added during Task 8):** "My Picks" page at `/picks` with Liron's 9 saved books (`src/data/myPicks.json`), a book-and-heart favicon (`public/favicon.svg`), and a project README.
