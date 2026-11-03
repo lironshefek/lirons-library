@@ -6,10 +6,15 @@ import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
 import FavoritesPage from './pages/FavoritesPage';
 import HomePage from './pages/HomePage';
+import MyPicksPage from './pages/MyPicksPage';
 import NotFoundPage from './pages/NotFoundPage';
 import RandomBookPage from './pages/RandomBookPage';
+import myPicksData from './data/myPicks.json';
 import type { Book } from './types/book';
 import './App.css';
+
+// Liron's saved picks; the details page also looks here, so picks open instantly.
+const myPicks: Book[] = myPicksData;
 
 function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((item: unknown) => typeof item === 'string');
@@ -107,7 +112,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app-frame">
-        <SiteHeader favoritesCount={favorites.length} />
+        <SiteHeader favoritesCount={favorites.length} picksCount={myPicks.length} />
         <Routes>
           <Route
             path="/"
@@ -126,8 +131,14 @@ function App() {
           />
           <Route path="/books/:id" element={(
             <BookDetailsPage
-              books={books}
+              books={[...books, ...myPicks]}
               loading={loading}
+              favoriteIds={favoriteIds}
+              onToggleFavorite={toggleFavorite}
+            />
+          )} />
+          <Route path="/picks" element={(
+            <MyPicksPage
               favoriteIds={favoriteIds}
               onToggleFavorite={toggleFavorite}
             />

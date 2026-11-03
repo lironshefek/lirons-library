@@ -1,0 +1,137 @@
+[
+  {
+    "id": "OL27729743W",
+    "title": "The Housemaid",
+    "author": "Freida McFadden",
+    "year": 2022,
+    "cover_i": 15105883,
+    "coverUrl": "https://covers.openlibrary.org/b/id/15105883-M.jpg",
+    "genres": [
+      "New York Times bestseller",
+      "Thriller",
+      "Mystery"
+    ],
+    "rating": 3.5,
+    "ratingsCount": 25
+  },
+  {
+    "id": "OL34113490W",
+    "title": "The Housemaid's Secret",
+    "author": "Freida McFadden",
+    "year": 2023,
+    "cover_i": 13439869,
+    "coverUrl": "https://covers.openlibrary.org/b/id/13439869-M.jpg",
+    "genres": [
+      "Thriller",
+      "Mystery",
+      "Fiction"
+    ],
+    "rating": 3.9,
+    "ratingsCount": 12
+  },
+  {
+    "id": "OL37576476W",
+    "title": "The Housemaid Is Watching",
+    "author": "Freida McFadden",
+    "year": 2024,
+    "cover_i": 14633291,
+    "coverUrl": "https://covers.openlibrary.org/b/id/14633291-M.jpg",
+    "genres": [
+      "New York Times bestseller",
+      "Fiction, thrillers, suspense",
+      "Thriller"
+    ],
+    "rating": 3.7,
+    "ratingsCount": 10
+  },
+  {
+    "id": "OL24311121W",
+    "title": "Rock Paper Scissors",
+    "author": "Alice Feeney",
+    "year": 2021,
+    "cover_i": 10826952,
+    "coverUrl": "https://covers.openlibrary.org/b/id/10826952-M.jpg",
+    "genres": [
+      "Fiction, thrillers, suspense",
+      "Fiction, psychological",
+      "English literature"
+    ],
+    "rating": 3.8,
+    "ratingsCount": 21
+  },
+  {
+    "id": "OL19096402W",
+    "title": "The Silent Patient",
+    "author": "Alex Michaelides",
+    "year": 2018,
+    "cover_i": 9407338,
+    "coverUrl": "https://covers.openlibrary.org/b/id/9407338-M.jpg",
+    "genres": [
+      "Fiction, psychological",
+      "Fiction, thrillers",
+      "Artists, fiction"
+    ],
+    "rating": 4.1,
+    "ratingsCount": 215
+  },
+  {
+    "id": "OL37889158W",
+    "title": "The Boyfriend",
+    "author": "Freida McFadden",
+    "year": 2024,
+    "cover_i": 14820506,
+    "coverUrl": "https://covers.openlibrary.org/b/id/14820506-M.jpg",
+    "genres": [
+      "American literature",
+      "Thriller",
+      "Mystery"
+    ],
+    "rating": 4.2,
+    "ratingsCount": 6
+  },
+  {
+    "id": "OL17200W",
+    "title": "Shutter Island",
+    "author": "Dennis Lehane",
+    "year": 2003,
+    "cover_i": 28990,
+    "coverUrl": "https://covers.openlibrary.org/b/id/28990-M.jpg",
+    "genres": [
+      "Fiction",
+      "Psychiatric hospital patients",
+      "Brainwashing"
+    ],
+    "rating": 4.0,
+    "ratingsCount": 22
+  },
+  {
+    "id": "OL20043519W",
+    "title": "Behind Her Eyes",
+    "author": "Sarah Pinborough",
+    "year": 2017,
+    "cover_i": 9254137,
+    "coverUrl": "https://covers.openlibrary.org/b/id/9254137-M.jpg",
+    "genres": [
+      "English fiction",
+      "Fiction",
+      "Secretaries"
+    ],
+    "rating": 3.6,
+    "ratingsCount": 12
+  },
+  {
+    "id": "OL81633W",
+    "title": "The Shining",
+    "author": "Stephen King",
+    "year": 1977,
+    "cover_i": 12376585,
+    "coverUrl": "https://covers.openlibrary.org/b/id/12376585-M.jpg",
+    "genres": [
+      "Fiction",
+      "horror fiction",
+      "precognition"
+    ],
+    "rating": 4.2,
+    "ratingsCount": 294
+  }
+]

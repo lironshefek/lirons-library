@@ -2,6 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 interface SiteHeaderProps {
   favoritesCount: number;
+  picksCount: number;
 }
 
 // Adds the active class to the link of the page we are on.
@@ -10,7 +11,7 @@ function getNavLinkClass({ isActive }: { isActive: boolean }): string {
 }
 
 // Top bar on every page: the Lirons Library name and the main navigation.
-function SiteHeader({ favoritesCount }: SiteHeaderProps) {
+function SiteHeader({ favoritesCount, picksCount }: SiteHeaderProps) {
   return (
     <header className="site-header">
       <div className="site-header__inner">
@@ -20,6 +21,9 @@ function SiteHeader({ favoritesCount }: SiteHeaderProps) {
         <nav className="site-nav" aria-label="Main navigation">
           <NavLink to="/" end className={getNavLinkClass}>
             Home
+          </NavLink>
+          <NavLink to="/picks" className={getNavLinkClass}>
+            My Picks <span className="site-nav__count">{picksCount}</span>
           </NavLink>
           <NavLink to="/favorites" className={getNavLinkClass}>
             Favorites <span className="site-nav__count">{favoritesCount}</span>

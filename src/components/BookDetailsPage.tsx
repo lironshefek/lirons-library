@@ -70,7 +70,8 @@ function BookDetailsPage({ books, loading, favoriteIds, onToggleFavorite }: Book
 
   // Pick what to show under the back link: loading, error, the book, or "not found".
   let content;
-  if (loading || isLookingUp) {
+  // A book that is already in the list (or in My Picks) shows right away, even while loading.
+  if ((loading && !isInList) || isLookingUp) {
     content = <BookDetailsSkeleton />;
   } else if (failedId === id && !book) {
     content = (
