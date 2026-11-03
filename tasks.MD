@@ -42,4 +42,5 @@ Implement an interactive book roulette page at route `/random` that picks a surp
   - [ ] Mystery Book Roulette page: centered header, violet Spin button with a turning arrow icon, dark result card with the compact `BookDetails` (cover, title, author, year, description), dashed placeholder before the first spin, skeleton loading, "Nothing to spin yet" with Try again (implemented, awaiting Liron's check)
   - [ ] Favorites page
   - [ ] 404 page
+**Extras (added during Task 8):** "My Picks" page at `/picks` with Liron's 9 saved books (`src/data/myPicks.json`), a book-and-heart favicon (`public/favicon.svg`), and a project README.
 - [x] Responsive styling refinements across mobile and desktop: page scrolling instead of an inner scroll box, auto-fit grid (4/3/2 columns), 2:3 covers, smaller phone title, full-width Spin button, unused CSS removed (checked by Liron)

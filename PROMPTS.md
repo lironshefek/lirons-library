@@ -730,3 +730,27 @@ Please run the tests and show the passing output.
 **Agent did:** Checked that `RandomBookPage` already receives the same `books` array as `HomePage` in `App.tsx`. The books seen in the roulette (The Surrogate Mother, Holly, You) are in the home list at positions 24, 33, and 39 of 100 — further down the page. Added `src/pages/RandomBookPage.test.tsx`: it spins 20 times with a 3-book list and checks every shown title comes from that list. Explained the test URLs: `npm test` runs in the terminal (no URL); `npm run test:ui` opens the Vitest UI at http://localhost:51204/__vitest__/.
 **I checked:** Fetched the live home-list query (100 books) and found the three titles in it; `npx vitest run` (5 files, 21 tests passed); `npm run build`.
 **Questions asked:** Asked Liron whether "the list" meant the books currently shown after typing a search (the roulette always uses all 100 home books, not the search results). Awaiting answer. (Prompt 83's questions are still open.)
+
+### Prompt 85 — Add a "My Picks" Page (2026-11-03)
+**Prompt:** add another feature - "my picks"  - add the relavent books - the housemaid series, rock paper sciessors,the silent patient,the boyfriend,shutter island, behind her eyes, the shining. it should look very close to the "my favorite" feature. use the same styl.
+**Agent did:** Looked up every book on Open Library (the Housemaid series has 4 books, including the novella The Housemaid’s Wedding) and saved them as full `Book` objects (id, author, year, cover, genres, rating) in `src/data/myPicks.json`, checking every cover exists. Created `src/pages/MyPicksPage.tsx` with the same structure and classes as the Favorites page (header with eyebrow, title, intro, and the `BookList` grid with hearts), a `/picks` route, and a "My Picks" nav link with a count badge in `SiteHeader.tsx`. The details page now also receives the picks (`books={[...books, ...myPicks]}`) and shows a book that is already known right away, so picks open instantly. Made the phone nav pills smaller so all four links fit in one row. Added `src/pages/MyPicksPage.test.tsx`.
+**I checked:** `npm run build`, `npx vitest run` (6 files, 22 tests passed), and headless-Chrome screenshots of `/picks` at 1440px and 390px and `/books/OL81633W` (The Shining).
+**Questions asked:** None.
+
+### Prompt 86 — Shuffle Books Look Unfamiliar (2026-11-03)
+**Prompt:** also  - in the shuffle feature, the books are only from the main list of books? i thougt that i saw a book that didnt look familiar
+**Agent did:** Confirmed again (see Prompt 84): the roulette uses only the home page’s 100 books, guarded by `RandomBookPage.test.tsx`; most of them are below the first rows of the home page. Suggested checking any unfamiliar title by typing it in the home search box. No code changed.
+**I checked:** Same checks as Prompt 84.
+**Questions asked:** Prompt 84’s question (should the roulette use only the current search results?) is still open.
+
+### Prompt 87 — Remove The Housemaid’s Wedding, Add a Favicon (2026-11-03)
+**Prompt:** remove the housemaid wedding book from "my picks" / add a cute favicon to the website. use the same styl
+**Agent did:** Removed The Housemaid’s Wedding from `src/data/myPicks.json` (its only cover was the Dutch edition), leaving 9 picks. Drew `public/favicon.svg` in the site colors: a violet rounded square (#6e4ce6) with an open book (white and soft-violet pages) and a pink heart (#ff8fa3), and linked it in `index.html`.
+**I checked:** Rendered the favicon at 256, 64, 32, and 16 px in headless Chrome; `npm run build`; `npx vitest run`.
+**Questions asked:** None.
+
+### Prompt 88 — Update the README (2026-11-03)
+**Prompt:** update the READ.me file according to the project
+**Agent did:** Rewrote `README.md` (in Hebrew, like the original) to describe Lirons Library instead of the course starter template: how to run it and the npm scripts (including the Vitest UI URL), every page and its address, data and loading/error behavior, the dark design and the `src/styles/` structure, the project folders, the 22 tests, the tech stack, and the working-process files (PRD, tasks, AGENTS, PROMPTS). Removed the template’s instructions about a prompt-logging hook (`scripts/`, `.claude/`), which does not exist in this project, and the outdated sidebar section. Updated `PRD.MD` (My Picks screen) and `tasks.MD` (extras note).
+**I checked:** Compared the README’s file list against `src/` and `public/`, and the test count against `npx vitest run` (22 tests).
+**Questions asked:** None.
