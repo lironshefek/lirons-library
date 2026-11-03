@@ -149,12 +149,6 @@
   font-size: var(--text-base);
 }
 
-.book-details__year {
-  margin: 0;
-  color: var(--color-text-subtle);
-  font-size: var(--text-sm);
-}
-
 .book-details--compact .book-details__description {
   font-size: var(--text-base);
   line-height: 1.65;
