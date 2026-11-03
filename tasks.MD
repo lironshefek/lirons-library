@@ -31,15 +31,15 @@ Install and configure Vitest and `@vitest/ui`. Extract book filtering, publish y
 Implement a Favorites page at route `/favorites`. Allow users to bookmark books from cards and detail views, persisting the list in browser `localStorage`. Display saved books in a grid with an empty state message if none are saved. Add a customized 404 "Page Not Found" route for any invalid path.
 **Done when:** Bookmarked books persist across browser reloads, `/favorites` renders all saved items, and invalid URLs display a styled 404 page with a link back to `/`.
 
-## Task 8: Build Mystery Book Roulette Page, Custom Color Palette & Responsive CSS
+## Task 8: Build Mystery Book Roulette Page, Custom Color Palette & Responsive CSS (Completed)
 Implement an interactive book roulette page at route `/random` that picks a surprise random book from the home page's book list (the books shown when the search is empty), displaying its cover and full details directly on the page. The cover switches together with the text while the roulette spins. Introduce a custom CSS color palette using CSS variables for a cohesive theme, and refine responsive styling across mobile and desktop.
 **Done when:** The `/random` roulette works smoothly, the custom color palette and responsive design are applied across the entire app, at least 5 unit tests pass, and `npm run build` succeeds cleanly.
 **Progress:**
 - [x] `/random` roulette page with Spin button, back link, nav link, cover switching while spinning, and `pickRandomBook` tests (checked by the student)
-- [ ] Custom CSS color palette with variables, from Liron's "calm dark" design, applied page by page:
+- [x] Custom CSS color palette with variables, from Liron's "calm dark" design, applied page by page:
   - [x] Home page: CSS split into `src/styles/` (colors, tokens, base, layout, components, pages), header with logo, footer, hero with Liron's 3 saved picks (`src/data/heroPicks.json`, covers saved in `public/hero/`), search bar, cards, skeleton/empty/error states (checked by Liron)
   - [x] Book details page: cover + bold title, fact boxes (year, rating), description, violet genre pills, large Add/Remove favorites button, skeleton loading, "This book didn’t load" with Try again, "We couldn’t find this book" (checked by Liron)
-  - [ ] Mystery Book Roulette page: centered header, violet Spin button with a turning arrow icon, dark result card with the compact `BookDetails` showing all details (cover, title, author, year and rating boxes, description, genres), dashed placeholder before the first spin, skeleton loading, "Nothing to spin yet" with Try again (implemented, awaiting Liron's check)
+  - [x] Mystery Book Roulette page: centered header, violet Spin button with a turning arrow icon, dark result card with the compact `BookDetails` showing all details (cover, title, author, year and rating boxes, description, genres), dashed placeholder before the first spin, skeleton loading, "Nothing to spin yet" with Try again (checked by Liron)
   - [x] Favorites page: violet eyebrow, bold Manrope title, smaller card grid (`BookList size="small"`), dashed empty state with a heart icon and a Browse books button; My Picks uses the same header and grid (checked by Liron)
   - [x] 404 page: giant faint serif "404", violet eyebrow, bold title, intro, and a violet "Return to Lirons Library" button in a centered column (checked by Liron)
 **Extras (added during Task 8):** "My Picks" page at `/picks` with Liron's 8 saved books (`src/data/myPicks.json`), a book-and-heart favicon (`public/favicon.svg`), and a project README.
