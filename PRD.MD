@@ -13,7 +13,7 @@ The application uses React Router with dedicated pages:
 * **My Picks (`/picks`):** Liron's 8 recommended books (The Housemaid series, Rock Paper Scissors, The Silent Patient, The Boyfriend, Shutter Island, Behind Her Eyes), saved in `src/data/myPicks.json` so they show right away; built like the Favorites page and opening instantly on the details page.
 * **Favorites (`/favorites`):** A header (violet "Your saved shelf" label, bold title, intro) and a grid of smaller cards with the bookmarked books; when none are saved, a dashed box with a heart icon, "You have not saved any favorite books yet.", and a Browse books button.
 * **Mystery Book Roulette (`/random`):** A centered page with a violet Spin button that flips through the home page's books and stops on a surprise book, shown in a dark card with all its details: cover, title, author, year and rating, description, and genres (Task 8). While loading it shows skeleton placeholders; if the books cannot be loaded it shows "Nothing to spin yet" with a Try again button.
-* **404 Page (`*`):** A styled "Page Not Found" page with a link back to `/`.
+* **404 Page (`*`):** A centered page with a giant faint "404", a "Lost your place?" label, the "Page Not Found" title, and a violet "Return to Lirons Library" button back to `/`.
 
 ## 4. Must-Have Features
 1. **Live Title Filter:** An input field that filters the loaded books by title as the user types; the list is empty when nothing matches.
