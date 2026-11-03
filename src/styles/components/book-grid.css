@@ -16,6 +16,37 @@
   gap: var(--space-7) 28px;
 }
 
+/* Smaller cards (Favorites and My Picks pages) */
+.book-grid--small {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: var(--space-6) var(--space-5);
+}
+
+.book-grid--small .book-card__link {
+  gap: var(--space-3);
+}
+
+.book-grid--small .book-card__cover {
+  box-shadow: var(--shadow-cover-small);
+}
+
+/* The small cards use the bold body font for the title */
+.book-grid--small .book-card__title {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.book-grid--small .book-card__meta {
+  font-size: var(--text-xs);
+}
+
+.book-grid--small .favorite-toggle {
+  top: var(--space-2);
+  right: var(--space-2);
+}
+
 /* Message in a dashed box, e.g. "No books match your search." */
 .book-list__empty {
   grid-column: 1 / -1;

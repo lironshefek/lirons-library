@@ -42,6 +42,7 @@
 
   /* Shadows */
   --shadow-cover: 0 14px 32px rgb(0 0 0 / 40%);
+  --shadow-cover-small: 0 12px 28px rgb(0 0 0 / 35%);
   --shadow-hero-side: 0 24px 48px rgb(0 0 0 / 50%);
   --shadow-hero-main: 0 32px 64px rgb(0 0 0 / 60%);
   --shadow-cover-medium: 0 24px 48px rgb(0 0 0 / 45%);
