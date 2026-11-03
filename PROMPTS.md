@@ -790,3 +790,9 @@ Please run the tests and show the passing output.
 **Agent did:** Marked the Home and Book details sub-tasks as checked by Liron in `tasks.MD`. Looked for a real cause of unfamiliar roulette books: requested the home-list query from Open Library 4 times — the same 100 books in the same order every time, so a page reload cannot change the list. Confirmed again that `RandomBookPage` gets the same `books` as `HomePage` and that `RandomBookPage.test.tsx` guards it. No code change was needed; suggested typing a roulette title into the home search box to see it in the list.
 **I checked:** 4 live requests of the home-list query (identical results); existing roulette test passes.
 **Questions asked:** Asked what the roulette should pick from (show the book’s position / only search results / only the top books / only My Picks). Liron answered: from the 100 books in the main list — which is the current behavior. Still awaiting Liron’s check of the roulette and 404 pages to complete Task 8.
+
+### Prompt 95 — Confirm the 404 Page (2026-11-03)
+**Prompt:** i confirm the 404 page
+**Agent did:** Marked the 404 sub-task as checked by Liron in `tasks.MD`. Only the roulette page’s look is still unconfirmed, so Task 8 is not marked completed yet.
+**I checked:** Re-read the Task 8 checklist.
+**Questions asked:** Liron answered Prompt 93: the 404 page is confirmed. Asked Liron to confirm the roulette page’s look so Task 8 can be completed. Awaiting answer.
